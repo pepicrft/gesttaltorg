@@ -18,12 +18,12 @@ defmodule Gesttalt.DataCase do
 
   using do
     quote do
-      alias Gesttalt.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import Gesttalt.DataCase
+
+      alias Gesttalt.Repo
     end
   end
 

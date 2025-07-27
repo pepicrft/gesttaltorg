@@ -19,15 +19,14 @@ defmodule GesttaltWeb.ConnCase do
 
   using do
     quote do
+      use GesttaltWeb, :verified_routes
+      import GesttaltWeb.ConnCase
+      import Phoenix.ConnTest
+      import Plug.Conn
       # The default endpoint for testing
       @endpoint GesttaltWeb.Endpoint
 
-      use GesttaltWeb, :verified_routes
-
       # Import conveniences for testing with connections
-      import Plug.Conn
-      import Phoenix.ConnTest
-      import GesttaltWeb.ConnCase
     end
   end
 

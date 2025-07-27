@@ -12,6 +12,7 @@ Gesttalt is a Phoenix Framework web application built with Elixir. It uses Postg
 ```bash
 mix setup           # Install dependencies, create/migrate database, build assets
 mix deps.get        # Install dependencies only
+mise run install    # Run complete project setup using Mise
 ```
 
 ### Development Server
@@ -35,11 +36,52 @@ mix test path/to/test.exs  # Run specific test file
 mix test path/to/test.exs:42  # Run specific test at line 42
 ```
 
+### Code Quality
+```bash
+mise run lint       # Run Credo linter
+mise run lint --fix # Run formatter to fix issues
+mise run lint --strict  # Run Credo in strict mode
+mix format          # Format code with Elixir formatter + Quokka
+mix format --check-formatted  # Check if code is formatted
+```
+
 ### Assets
 ```bash
 mix assets.build    # Build CSS and JS assets
 mix assets.deploy   # Build and minify assets for production
 ```
+
+## Development Environment
+
+### Tool Management
+
+All project dependencies should be managed through `mise.toml`:
+- Add any new tools the project depends on to `mise.toml`
+- Prefer using the `ubi:` syntax for universal binary installer backend when available
+- Example: `"ubi:superfly/flyctl" = "0.3.161"`
+- This ensures consistent tool versions across all development environments
+
+### Automation Tasks
+
+Automation should be implemented using [Mise file tasks](https://mise.jdx.dev/tasks/file-tasks.html):
+- Create task scripts in `mise/tasks/` directory
+- Keep CI pipelines lightweight by delegating to Mise tasks
+- Use [Usage spec](https://usage.jdx.dev/) for flag parsing in scripts
+- Example task with Usage spec:
+  ```bash
+  #!/usr/bin/env bash
+  # mise description="Deploy the application"
+  
+  #USAGE flag "--dry-run" help="Run without making changes"
+  #USAGE flag "--skip-migrations" help="Skip database migrations"
+  #USAGE arg "<environment>" help="Target environment (staging or production)"
+  
+  # Access flags via $usage_dry_run (value: "1" if set)
+  # Access arguments via $usage_environment
+  if [[ "${usage_dry_run:-}" == "1" ]]; then
+    echo "Running in dry-run mode..."
+  fi
+  ```
 
 ## Architecture Overview
 

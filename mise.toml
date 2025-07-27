@@ -1,8 +1,11 @@
 [tools]
-elixir = "1.18.4"
-erlang = "28.0.2"
-"npm:@anthropic-ai/claude-code" = "1.0.61"
-"ubi:superfly/flyctl" = "0.3.161"
+    elixir = "1.18.4"
+    erlang = "28.0.2"
+    "npm:@anthropic-ai/claude-code" = "1.0.61"
+    "ubi:superfly/flyctl" = "0.3.161"
 
 [hooks]
-postinstall = "mise run install"
+    postinstall = "mise run install"
+
+[settings]
+    lockfile = true
