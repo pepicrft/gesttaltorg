@@ -1,0 +1,6 @@
+[formatting]
+align_comments = false
+reorder_keys = true
+include = ["**/*.toml"]
+indent_tables = true
+indent_entries = true

@@ -1,0 +1,35 @@
+# fly.toml app configuration file generated for gesttalt on 2025-07-27T19:28:38+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'gesttalt'
+kill_signal = 'SIGTERM'
+primary_region = 'fra'
+
+[build]
+
+[deploy]
+    release_command = '/app/bin/migrate'
+
+[env]
+    PHX_HOST = 'gesttalt.org'
+    PORT = '8080'
+
+[http_service]
+    auto_start_machines = true
+    auto_stop_machines = 'stop'
+    force_https = true
+    internal_port = 8080
+    min_machines_running = 0
+    processes = ['app']
+
+    [http_service.concurrency]
+        hard_limit = 1000
+        soft_limit = 1000
+        type = 'connections'
+
+[[vm]]
+    cpu_kind = 'shared'
+    cpus = 1
+    memory = '1gb'
