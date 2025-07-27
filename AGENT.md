@@ -43,6 +43,20 @@ mix assets.deploy   # Build and minify assets for production
 
 ## Architecture Overview
 
+### Styling Philosophy
+
+Gesttalt follows an HTML-first approach to web design:
+
+- **Semantic HTML**: Focus on using proper semantic elements (`<article>`, `<nav>`, `<section>`, etc.)
+- **Text-First Design**: Content and readability are the primary concerns
+- **Minimal Styling**: Clean, functional design inspired by [sourcehut.org](https://sourcehut.org/) and [ampcode.com](https://ampcode.com/how-to-build-an-agent)
+- **EnduringCSS Convention**: Use namespace-based selectors following the EnduringCSS methodology:
+  - Component namespaces: `.ns-Component {}`
+  - Component modifiers: `.ns-Component--modifier {}`
+  - Component children: `.ns-Component_child {}`
+  - State classes: `.is-state {}`
+  - Example: `.gst-Header {}`, `.gst-Header--compact {}`, `.gst-Header_logo {}`
+
 ### Application Structure
 
 - **lib/gesttalt/** - Core business logic and Ecto schemas

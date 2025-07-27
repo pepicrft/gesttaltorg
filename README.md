@@ -6,12 +6,6 @@ A free-software tool for developers to build a digital garden and express themse
 
 Gesttalt is a powerful digital garden platform that empowers developers to create their own personal space on the web. Built with ❤️ by the [Tuist team](https://tuist.dev), Gesttalt is designed to follow the standards and principles of the social web, ensuring your content remains open, accessible, and interconnected.
 
-### 🌐 Hosted Instances
-
-- **Official Instance**: Use the Tuist-maintained instance at [https://gesttalt.org](https://gesttalt.org)
-- **Community Versions**: Find or host your own community-maintained instances
-- **Automatic Deployment**: Changes to the main branch are automatically deployed to [https://gesttalt.org](https://gesttalt.org)
-
 ### ✨ Features
 
 - 🌿 **Digital Garden Philosophy**: Cultivate your ideas and let them grow organically
@@ -19,6 +13,19 @@ Gesttalt is a powerful digital garden platform that empowers developers to creat
 - 🌍 **Social Web Standards**: Follows open web principles for better connectivity
 - ⚡ **Powered by Elixir**: Fast, reliable, and scalable using the Phoenix Framework
 - 🎨 **Customizable**: Express yourself with flexible theming and content organization
+
+### 🌐 Hosted Instances
+
+- **Official Instance**: Use the Tuist-maintained instance at [https://gesttalt.org](https://gesttalt.org)
+- **Community Versions**: Find or host your own community-maintained instances
+
+### 🏗️ Production Infrastructure
+
+The official [gesttalt.org](https://gesttalt.org) instance runs on:
+
+- **🚀 Server**: Managed by [Fly.io](https://fly.io) in Frankfurt, Germany
+- **🗄️ Database**: Managed by [Supabase](https://supabase.com) in Frankfurt, Germany
+- **📧 Email**: Delivered through [Plunk](https://useplunk.com/)
 
 ## 🏃‍♂️ Getting Started
 
