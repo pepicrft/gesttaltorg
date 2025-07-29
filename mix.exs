@@ -54,7 +54,8 @@ defmodule Gesttalt.MixProject do
       {:quokka, "~> 2.9", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
-      {:tidewave, "~> 0.2.0"}
+      {:tidewave, "~> 0.2.0"},
+      {:typed_struct, "~> 0.3.0", runtime: false}
     ]
   end
 
