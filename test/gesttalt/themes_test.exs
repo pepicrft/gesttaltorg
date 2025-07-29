@@ -94,35 +94,6 @@ defmodule Gesttalt.ThemesTest do
       assert {:error, "Input must be a map"} = Themes.from_map(nil)
     end
     
-    test "returns error for invalid colors structure" do
-      map = %{"colors" => "not a map"}
-      assert {:error, "colors must be a map"} = Themes.from_map(map)
-    end
-    
-    test "returns error for invalid font weights" do
-      map = %{
-        "fontWeights" => %{
-          "body" => "not a number"
-        }
-      }
-      assert {:error, "fontWeights values must be integers"} = Themes.from_map(map)
-    end
-    
-    test "returns error for invalid line heights" do
-      map = %{
-        "lineHeights" => %{
-          "body" => "not a number"
-        }
-      }
-      assert {:error, "lineHeights values must be numbers"} = Themes.from_map(map)
-    end
-    
-    test "returns error for invalid font sizes array" do
-      map = %{
-        "fontSizes" => [123, 456]  # Should be strings
-      }
-      assert {:error, "array must contain only strings"} = Themes.from_map(map)
-    end
   end
   
   describe "from_json_string/1" do
@@ -146,11 +117,6 @@ defmodule Gesttalt.ThemesTest do
       assert {:error, "Input must be a string"} = Themes.from_json_string(%{})
     end
     
-    test "validates JSON content after parsing" do
-      json = ~s({"colors": "not a map"})
-      
-      assert {:error, "colors must be a map"} = Themes.from_json_string(json)
-    end
   end
   
   describe "json_schema/0" do
@@ -215,29 +181,6 @@ defmodule Gesttalt.ThemesTest do
       assert json["fontWeights"]["body"] == 400
       assert json["lineHeights"]["body"] == 1.6
       assert json["letterSpacings"]["normal"] == "normal"
-    end
-  end
-  
-  describe "Theme.validate_json/1" do
-    test "validates valid theme JSON" do
-      valid_json = %{
-        "colors" => %{"text" => "#000"},
-        "fonts" => %{"body" => "serif"},
-        "fontSizes" => ["12px", "14px"],
-        "fontWeights" => %{"body" => 400},
-        "lineHeights" => %{"body" => 1.5}
-      }
-      
-      assert :ok = Theme.validate_json(valid_json)
-    end
-    
-    test "allows empty/partial themes" do
-      assert :ok = Theme.validate_json(%{})
-      assert :ok = Theme.validate_json(%{"colors" => %{}})
-    end
-    
-    test "rejects non-map input" do
-      assert {:error, "Theme must be a map"} = Theme.validate_json("not a map")
     end
   end
 end

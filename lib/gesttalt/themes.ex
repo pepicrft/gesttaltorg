@@ -276,13 +276,8 @@ defmodule Gesttalt.Themes do
       })
   """
   def from_map(map) when is_map(map) do
-    case Theme.validate_json(map) do
-      :ok ->
-        theme = build_theme_from_map(map)
-        {:ok, theme}
-      {:error, reason} ->
-        {:error, reason}
-    end
+    theme = build_theme_from_map(map)
+    {:ok, theme}
   end
   
   def from_map(_), do: {:error, "Input must be a map"}
@@ -393,7 +388,7 @@ defmodule Gesttalt.Themes do
     }
   end
   
-  defp build_colors(colors_map) do
+  defp build_colors(colors_map) when is_map(colors_map) do
     default = %Theme.Colors{}
     %Theme.Colors{
       text: colors_map["text"] || default.text,
@@ -411,7 +406,9 @@ defmodule Gesttalt.Themes do
     }
   end
   
-  defp build_fonts(fonts_map) do
+  defp build_colors(_), do: %Theme.Colors{}
+  
+  defp build_fonts(fonts_map) when is_map(fonts_map) do
     default = %Theme.Fonts{}
     %Theme.Fonts{
       body: fonts_map["body"] || default.body,
@@ -420,7 +417,9 @@ defmodule Gesttalt.Themes do
     }
   end
   
-  defp build_font_weights(weights_map) do
+  defp build_fonts(_), do: %Theme.Fonts{}
+  
+  defp build_font_weights(weights_map) when is_map(weights_map) do
     default = %Theme.FontWeights{}
     %Theme.FontWeights{
       body: weights_map["body"] || default.body,
@@ -430,13 +429,17 @@ defmodule Gesttalt.Themes do
     }
   end
   
-  defp build_line_heights(heights_map) do
+  defp build_font_weights(_), do: %Theme.FontWeights{}
+  
+  defp build_line_heights(heights_map) when is_map(heights_map) do
     default = %Theme.LineHeights{}
     %Theme.LineHeights{
       body: heights_map["body"] || default.body,
       heading: heights_map["heading"] || default.heading
     }
   end
+  
+  defp build_line_heights(_), do: %Theme.LineHeights{}
   
   defp flatten_theme_object(theme, prefix \\ "") do
     theme

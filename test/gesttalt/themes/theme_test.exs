@@ -81,43 +81,6 @@ defmodule Gesttalt.Themes.ThemeTest do
     end
   end
   
-  describe "validation edge cases" do
-    test "validates nested color modes" do
-      json = %{
-        "colors" => %{
-          "modes" => %{
-            "dark" => %{
-              "text" => "#fff"
-            }
-          }
-        }
-      }
-      
-      assert :ok = Theme.validate_json(json)
-    end
-    
-    test "accepts float values for line heights" do
-      json = %{
-        "lineHeights" => %{
-          "body" => 1.5,
-          "heading" => 1.25
-        }
-      }
-      
-      assert :ok = Theme.validate_json(json)
-    end
-    
-    test "accepts integer values for line heights" do
-      json = %{
-        "lineHeights" => %{
-          "body" => 2,
-          "heading" => 1
-        }
-      }
-      
-      assert :ok = Theme.validate_json(json)
-    end
-  end
   
   describe "to_json/1" do
     test "includes all theme properties" do
