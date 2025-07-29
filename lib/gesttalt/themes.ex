@@ -1,25 +1,25 @@
 defmodule Gesttalt.Themes do
   @moduledoc """
   Theme management for Gesttalt.
-  
+
   This module provides functions to work with themes, including
   loading, validating, and applying themes to the application.
-  
+
   ## Process-based theme storage
-  
+
   Similar to Gettext, themes can be stored in the current process:
-  
+
       Gesttalt.Themes.put_theme(my_theme)
       current = Gesttalt.Themes.get_theme()
   """
-  
+
   alias Gesttalt.Themes.Theme
-  
+
   @process_key {__MODULE__, :theme}
-  
+
   @doc """
   Returns the default theme.
-  
+
   This is a minimal theme inspired by Are.na's aesthetic.
   """
   def default do
@@ -234,40 +234,40 @@ defmodule Gesttalt.Themes do
       }
     }
   end
-  
+
   @doc """
   Gets the theme from the current process.
-  
+
   Returns the default theme if no theme is set.
-  
+
   ## Examples
-  
+
       theme = Gesttalt.Themes.get_theme()
   """
   def get_theme do
     Process.get(@process_key, default())
   end
-  
+
   @doc """
   Puts a theme in the current process.
-  
+
   ## Examples
-  
+
       Gesttalt.Themes.put_theme(my_theme)
   """
   def put_theme(%Theme{} = theme) do
     Process.put(@process_key, theme)
     theme
   end
-  
+
   @doc """
   Creates a theme from a map.
-  
+
   The map should use string keys with camelCase naming (Theme UI convention).
   Returns `{:ok, theme}` on success or `{:error, reason}` on failure.
-  
+
   ## Examples
-  
+
       {:ok, theme} = Gesttalt.Themes.from_map(%{
         "colors" => %{
           "text" => "#000",
@@ -279,16 +279,16 @@ defmodule Gesttalt.Themes do
     theme = build_theme_from_map(map)
     {:ok, theme}
   end
-  
+
   def from_map(_), do: {:error, "Input must be a map"}
-  
+
   @doc """
   Creates a theme from a JSON string.
-  
+
   Returns `{:ok, theme}` on success or `{:error, reason}` on failure.
-  
+
   ## Examples
-  
+
       json = ~s({"colors": {"text": "#000", "background": "#fff"}})
       {:ok, theme} = Gesttalt.Themes.from_json_string(json)
   """
@@ -296,34 +296,35 @@ defmodule Gesttalt.Themes do
     case Jason.decode(json_string) do
       {:ok, map} ->
         from_map(map)
+
       {:error, %Jason.DecodeError{} = error} ->
         {:error, "Invalid JSON: #{Exception.message(error)}"}
     end
   end
-  
+
   def from_json_string(_), do: {:error, "Input must be a string"}
-  
+
   @doc """
   Returns the current theme as JSON.
   """
   def current_theme_json do
     get_theme() |> Theme.to_json()
   end
-  
+
   @doc """
   Returns the JSON schema for themes.
   """
   def json_schema do
     Theme.json_schema()
   end
-  
+
   @doc """
   Generates CSS custom properties from a theme.
-  
+
   This creates CSS variables that can be used in stylesheets.
-  
+
   ## Examples
-  
+
       theme = Gesttalt.Themes.get_theme()
       css = Gesttalt.Themes.to_css_variables(theme)
       css =~ "--color-text: #000000;"
@@ -331,41 +332,40 @@ defmodule Gesttalt.Themes do
   """
   def to_css_variables(%Theme{} = theme) do
     theme_json = Theme.to_json(theme)
-    
-    variables = 
+
+    variables =
       theme_json
       |> flatten_theme_object()
-      |> Enum.map(fn {key, value} ->
+      |> Enum.map_join("\n  ", fn {key, value} ->
         css_var_name = key |> String.replace(".", "-") |> String.downcase()
         "--#{css_var_name}: #{value};"
       end)
-      |> Enum.join("\n  ")
-    
+
     """
     :root {
       #{variables}
     }
     """
   end
-  
+
   @doc """
   Injects theme CSS variables into a Phoenix layout.
-  
+
   This can be used in your root layout to make theme variables available.
   """
   def theme_style_tag(theme \\ nil) do
     theme = theme || get_theme()
     css = to_css_variables(theme)
-    
+
     Phoenix.HTML.raw("""
     <style>
     #{css}
     </style>
     """)
   end
-  
+
   # Private functions
-  
+
   defp build_theme_from_map(map) do
     %Theme{
       colors: build_colors(map["colors"] || %{}),
@@ -387,9 +387,10 @@ defmodule Gesttalt.Themes do
       styles: map["styles"] || Theme.__struct__().styles
     }
   end
-  
+
   defp build_colors(colors_map) when is_map(colors_map) do
     default = %Theme.Colors{}
+
     %Theme.Colors{
       text: colors_map["text"] || default.text,
       background: colors_map["background"] || default.background,
@@ -405,22 +406,24 @@ defmodule Gesttalt.Themes do
       modes: colors_map["modes"] || default.modes
     }
   end
-  
+
   defp build_colors(_), do: %Theme.Colors{}
-  
+
   defp build_fonts(fonts_map) when is_map(fonts_map) do
     default = %Theme.Fonts{}
+
     %Theme.Fonts{
       body: fonts_map["body"] || default.body,
       heading: fonts_map["heading"] || default.heading,
       monospace: fonts_map["monospace"] || default.monospace
     }
   end
-  
+
   defp build_fonts(_), do: %Theme.Fonts{}
-  
+
   defp build_font_weights(weights_map) when is_map(weights_map) do
     default = %Theme.FontWeights{}
+
     %Theme.FontWeights{
       body: weights_map["body"] || default.body,
       heading: weights_map["heading"] || default.heading,
@@ -428,33 +431,34 @@ defmodule Gesttalt.Themes do
       light: weights_map["light"] || default.light
     }
   end
-  
+
   defp build_font_weights(_), do: %Theme.FontWeights{}
-  
+
   defp build_line_heights(heights_map) when is_map(heights_map) do
     default = %Theme.LineHeights{}
+
     %Theme.LineHeights{
       body: heights_map["body"] || default.body,
       heading: heights_map["heading"] || default.heading
     }
   end
-  
+
   defp build_line_heights(_), do: %Theme.LineHeights{}
-  
+
   defp flatten_theme_object(theme, prefix \\ "") do
     theme
     |> Enum.flat_map(fn {key, value} ->
       full_key = if prefix == "", do: key, else: "#{prefix}-#{key}"
-      
+
       case value do
         # Skip complex nested objects like variants, styles, and modes
         %{} = _map when key in ["variants", "styles", "modes"] ->
           []
-          
+
         # Recursively flatten nested maps
         %{} = map when is_map(map) and map != %{} ->
           flatten_theme_object(map, full_key)
-          
+
         list when is_list(list) ->
           # For arrays, create indexed variables
           list
@@ -462,13 +466,14 @@ defmodule Gesttalt.Themes do
           |> Enum.map(fn {item, index} ->
             {"#{full_key}-#{index}", to_string(item)}
           end)
-          
+
         value when is_number(value) or is_binary(value) or is_atom(value) ->
           [{full_key, to_string(value)}]
-          
+
         _ ->
           []
       end
     end)
   end
 end
+

@@ -2,14 +2,14 @@ defmodule Gesttalt.Themes.Theme.LineHeights do
   @moduledoc """
   Line height scale for the theme.
   """
-  
+
   use TypedStruct
-  
+
   typedstruct do
-    plugin Gesttalt.Themes.JsonSchemaPlugin
-    
+    plugin(Gesttalt.Themes.JsonSchemaPlugin)
+
     @typedoc "Line height definitions"
-    
+
     field :body, float(), default: 1.5
     field :heading, float(), default: 1.125
   end
