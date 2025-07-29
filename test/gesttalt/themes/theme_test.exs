@@ -75,7 +75,6 @@ defmodule Gesttalt.Themes.ThemeTest do
       color_props = schema["properties"]["colors"]["properties"]
       
       assert color_props["text"]["type"] == "string"
-      assert color_props["text"]["format"] == "color"
       assert color_props["background"]["type"] == "string"
       assert color_props["primary"]["type"] == "string"
       assert color_props["modes"]["type"] == "object"

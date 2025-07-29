@@ -131,12 +131,12 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
   defp type_to_json_schema({:map, _, _}), do: %{"type" => "object"}
   
   # Handle %{optional(atom()) => type}
-  defp type_to_json_schema({:%{}, _, [{:optional, _, [{:atom, _, _}]}, {_, _, _}]}) do
+  defp type_to_json_schema({:%{}, _, [{:optional, _, _}, _]}) do
     %{"type" => "object", "additionalProperties" => true}
   end
   
   # Handle %{required(atom()) => type}
-  defp type_to_json_schema({:%{}, _, [{:required, _, [{:atom, _, _}]}, {_, _, _}]}) do
+  defp type_to_json_schema({:%{}, _, [{:required, _, _}, _]}) do
     %{"type" => "object"}
   end
   
@@ -153,5 +153,8 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
   end
   
   # Default fallback
-  defp type_to_json_schema(_), do: %{"type" => "string"}
+  defp type_to_json_schema(_type) do
+    # IO.inspect(_type, label: "Unhandled type")
+    %{"type" => "string"}
+  end
 end
