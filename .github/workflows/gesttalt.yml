@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: erlef/setup-beam@v1
         with:
-          version: v2024.11.7
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          elixir-version: '1.17.2'
+          otp-version: '27.0'
       
       - name: Install mix dependencies
         run: |
@@ -45,10 +45,10 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: erlef/setup-beam@v1
         with:
-          version: v2024.11.7
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          elixir-version: '1.17.2'
+          otp-version: '27.0'
       
       - name: Install mix dependencies
         run: |
@@ -75,10 +75,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: erlef/setup-beam@v1
         with:
-          version: v2024.11.7
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          elixir-version: '1.17.2'
+          otp-version: '27.0'
       
       - name: Install mix dependencies
         run: |
@@ -94,10 +94,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jdx/mise-action@v2
+      - uses: erlef/setup-beam@v1
         with:
-          version: v2024.11.7
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          elixir-version: '1.17.2'
+          otp-version: '27.0'
       
       - name: Install mix dependencies
         run: |
