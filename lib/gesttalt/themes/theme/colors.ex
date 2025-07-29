@@ -5,8 +5,10 @@ defmodule Gesttalt.Themes.Theme.Colors do
 
   use TypedStruct
 
+  alias Gesttalt.Themes.JsonSchemaPlugin
+
   typedstruct do
-    plugin(Gesttalt.Themes.JsonSchemaPlugin)
+    plugin(JsonSchemaPlugin)
 
     @typedoc "Theme colors following Theme UI spec"
 

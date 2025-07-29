@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+alias Swoosh.Adapters.Local
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
@@ -24,7 +26,7 @@ config :esbuild,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :gesttalt, Gesttalt.Mailer, adapter: Swoosh.Adapters.Local
+config :gesttalt, Gesttalt.Mailer, adapter: Local
 
 # Configures the endpoint
 config :gesttalt, GesttaltWeb.Endpoint,

@@ -31,10 +31,11 @@ defmodule Gesttalt.Themes.Theme do
   use TypedStruct
 
   alias __MODULE__.{Colors, Fonts, FontWeights, LineHeights}
+  alias Gesttalt.Themes.JsonSchemaPlugin
 
   # Main theme structure
   typedstruct do
-    plugin(Gesttalt.Themes.JsonSchemaPlugin, camel_case: true)
+    plugin(JsonSchemaPlugin, camel_case: true)
 
     @typedoc """
     The main theme structure following Theme UI specification.
@@ -46,8 +47,7 @@ defmodule Gesttalt.Themes.Theme do
     # Typography
     field :fonts, Fonts.t(), default: %Fonts{}
 
-    field :font_sizes, list(String.t()),
-      default: ["12px", "14px", "16px", "20px", "24px", "32px", "48px", "64px"]
+    field :font_sizes, list(String.t()), default: ["12px", "14px", "16px", "20px", "24px", "32px", "48px", "64px"]
 
     field :font_weights, FontWeights.t(), default: %FontWeights{}
     field :line_heights, LineHeights.t(), default: %LineHeights{}
@@ -60,8 +60,7 @@ defmodule Gesttalt.Themes.Theme do
       }
 
     # Spacing
-    field :space, list(String.t()),
-      default: ["0", "4px", "8px", "16px", "32px", "64px", "128px", "256px"]
+    field :space, list(String.t()), default: ["0", "4px", "8px", "16px", "32px", "64px", "128px", "256px"]
 
     # Sizing
     field :sizes, map(),

@@ -1,12 +1,19 @@
 defmodule Gesttalt.Themes.JsonSchemaPluginTest do
   use ExUnit.Case, async: true
 
+  alias Gesttalt.Themes.JsonSchemaPlugin
+  alias Gesttalt.Themes.Theme
+  alias Gesttalt.Themes.Theme.Colors
+  alias Gesttalt.Themes.Theme.Fonts
+  alias Gesttalt.Themes.Theme.FontWeights
+  alias Gesttalt.Themes.Theme.LineHeights
+
   # Test modules for to_json generation
   defmodule SimpleJsonStruct do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin)
+      plugin(JsonSchemaPlugin)
 
       field :name, String.t()
       field :count, integer()
@@ -18,7 +25,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin, camel_case: true)
+      plugin(JsonSchemaPlugin, camel_case: true)
 
       field :first_name, String.t()
       field :last_name, String.t()
@@ -30,7 +37,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin)
+      plugin(JsonSchemaPlugin)
 
       field :value, String.t()
     end
@@ -40,7 +47,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin)
+      plugin(JsonSchemaPlugin)
 
       field :inner, NestedInner.t()
       field :name, String.t()
@@ -51,7 +58,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin)
+      plugin(JsonSchemaPlugin)
 
       field :config, map()
       field :options, %{optional(atom()) => String.t()}
@@ -62,7 +69,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin)
+      plugin(JsonSchemaPlugin)
 
       field :value, String.t()
     end
@@ -72,7 +79,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     use TypedStruct
 
     typedstruct do
-      plugin(Gesttalt.Themes.JsonSchemaPlugin)
+      plugin(JsonSchemaPlugin)
 
       field :name, String.t()
       field :optional, String.t()
@@ -86,7 +93,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :name, String.t()
           field :age, integer()
@@ -111,7 +118,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :required_field, String.t(), enforce: true
           field :optional_field, String.t()
@@ -128,7 +135,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :int, integer()
           field :pos_int, pos_integer()
@@ -155,7 +162,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :strings, list(String.t())
           field :numbers, list(integer())
@@ -181,7 +188,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :simple_map, map()
           field :string_map, %{optional(atom()) => String.t()}
@@ -203,9 +210,9 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
-          field :colors, Gesttalt.Themes.Theme.Colors.t()
+          field :colors, Colors.t()
         end
       end
 
@@ -223,7 +230,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :atom_field, atom()
           field :binary_field, binary()
@@ -242,7 +249,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :first, String.t()
           field :second, integer()
@@ -262,7 +269,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
           field :field_a, String.t()
         end
       end
@@ -271,7 +278,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
           field :field_b, integer()
         end
       end
@@ -291,7 +298,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
         use TypedStruct
 
         typedstruct do
-          plugin(Gesttalt.Themes.JsonSchemaPlugin)
+          plugin(JsonSchemaPlugin)
 
           field :string_default, String.t(), default: "hello"
           field :number_default, integer(), default: 42
@@ -377,7 +384,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
 
   describe "integration with Theme modules" do
     test "Colors module generates correct schema" do
-      schema = Gesttalt.Themes.Theme.Colors.__json_schema__()
+      schema = Colors.__json_schema__()
 
       assert schema["type"] == "object"
       assert schema["title"] == "Colors"
@@ -390,7 +397,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     end
 
     test "Fonts module generates correct schema" do
-      schema = Gesttalt.Themes.Theme.Fonts.__json_schema__()
+      schema = Fonts.__json_schema__()
 
       assert schema["type"] == "object"
       assert schema["title"] == "Fonts"
@@ -402,7 +409,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     end
 
     test "FontWeights module generates correct schema" do
-      schema = Gesttalt.Themes.Theme.FontWeights.__json_schema__()
+      schema = FontWeights.__json_schema__()
 
       assert schema["type"] == "object"
       assert schema["title"] == "FontWeights"
@@ -415,7 +422,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     end
 
     test "LineHeights module generates correct schema" do
-      schema = Gesttalt.Themes.Theme.LineHeights.__json_schema__()
+      schema = LineHeights.__json_schema__()
 
       assert schema["type"] == "object"
       assert schema["title"] == "LineHeights"
@@ -426,8 +433,8 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     end
 
     test "main Theme module generates complete schema" do
-      raw_schema = Gesttalt.Themes.Theme.__json_schema__()
-      complete_schema = Gesttalt.Themes.Theme.json_schema()
+      raw_schema = Theme.__json_schema__()
+      complete_schema = Theme.json_schema()
 
       # Raw schema should have snake_case properties
       assert Map.has_key?(raw_schema["properties"], "font_sizes")
@@ -445,7 +452,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
 
     test "Theme module generates working to_json with camelCase" do
       theme = Gesttalt.Themes.default()
-      json = Gesttalt.Themes.Theme.to_json(theme)
+      json = Theme.to_json(theme)
 
       # Check camelCase conversion
       assert Map.has_key?(json, "fontSizes")

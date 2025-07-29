@@ -38,8 +38,7 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
   @impl true
   def field(name, type, opts, _env) do
     quote do
-      @json_schema_fields {unquote(name), unquote(Macro.escape(type)),
-                           unquote(Macro.escape(opts))}
+      @json_schema_fields {unquote(name), unquote(Macro.escape(type)), unquote(Macro.escape(opts))}
     end
   end
 

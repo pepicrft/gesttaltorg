@@ -5,8 +5,10 @@ defmodule Gesttalt.Themes.Theme.FontWeights do
 
   use TypedStruct
 
+  alias Gesttalt.Themes.JsonSchemaPlugin
+
   typedstruct do
-    plugin(Gesttalt.Themes.JsonSchemaPlugin)
+    plugin(JsonSchemaPlugin)
 
     @typedoc "Font weight definitions"
 
