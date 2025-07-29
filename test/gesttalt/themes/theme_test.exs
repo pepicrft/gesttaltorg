@@ -129,4 +129,3 @@ defmodule Gesttalt.Themes.ThemeTest do
     end
   end
 end
-

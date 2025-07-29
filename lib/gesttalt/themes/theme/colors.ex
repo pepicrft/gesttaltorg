@@ -28,4 +28,3 @@ defmodule Gesttalt.Themes.Theme.Colors do
     field :modes, %{optional(atom()) => map()}, default: %{}
   end
 end
-

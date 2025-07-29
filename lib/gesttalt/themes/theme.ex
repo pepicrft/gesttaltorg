@@ -161,4 +161,3 @@ defmodule Gesttalt.Themes.Theme do
     }
   end
 end
-

@@ -178,4 +178,3 @@ defmodule Gesttalt.ThemesTest do
     end
   end
 end
-

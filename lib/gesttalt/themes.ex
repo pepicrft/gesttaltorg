@@ -476,4 +476,3 @@ defmodule Gesttalt.Themes do
     end)
   end
 end
-

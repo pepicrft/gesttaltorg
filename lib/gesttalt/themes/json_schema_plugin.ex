@@ -268,4 +268,3 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
     end
   end
 end
-
