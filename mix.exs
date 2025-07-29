@@ -53,7 +53,8 @@ defmodule Gesttalt.MixProject do
       {:bandit, "~> 1.5"},
       {:quokka, "~> 2.9", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.31", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+      {:tidewave, "~> 0.2.0"}
     ]
   end
 
@@ -81,7 +82,7 @@ defmodule Gesttalt.MixProject do
   defp docs do
     [
       main: "readme",
-      source_url: "https://github.com/tuist/gesttalt",
+      source_url: "https://github.com/pepicrft/gesttalt",
       homepage_url: "https://gesttalt.org",
       extras: ["README.md"]
     ]

@@ -1,10 +1,45 @@
-# CLAUDE.md
+# AGENT.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI agents (like Claude Code) when working with code in this repository.
 
 ## Project Overview
 
-Gesttalt is a Phoenix Framework web application built with Elixir. It uses PostgreSQL as the database, Phoenix LiveView for real-time UI updates, and CSS with the EnduringCSS methodology for styling.
+Gesttalt is a Phoenix Framework web application built with Elixir. It's a content organization platform that helps users capture, connect, and share ideas across the web, drawing inspiration from Are.na. It uses PostgreSQL as the database, Phoenix LiveView for real-time UI updates, and CSS with the EnduringCSS methodology for styling.
+
+## AI Agent Capabilities
+
+### Website Reference and Inspiration
+
+When developing features for Gesttalt, the AI agent can use the Playwright MCP server to fetch and analyze websites for reference and raw inspiration. For example:
+- **Are.na** (https://are.na) - The primary inspiration for Gesttalt's design and functionality
+- Other content organization platforms for UI/UX patterns
+- Design systems and style guides for visual inspiration
+
+This capability allows the agent to understand the look, feel, and functionality of reference sites to better implement similar features in Gesttalt while maintaining its unique identity.
+
+### Tidewave MCP Integration
+
+Gesttalt includes Tidewave, an AI assistant that understands the web application through the Model Context Protocol (MCP). When running in development:
+
+- **MCP Endpoint**: Available at `http://localhost:4000/tidewave/mcp`
+- **MCP Proxy**: The `mcp-proxy-rust` tool is installed via Mise to connect STDIO-based MCP clients to Tidewave's HTTP/SSE endpoint
+- **Usage**: Configure your AI editor (like Claude Desktop) to connect to the MCP endpoint for real-time application context
+
+To use Tidewave with Claude Desktop:
+```json
+{
+  "mcpServers": {
+    "gesttalt": {
+      "command": "mcp-proxy",
+      "args": ["http://localhost:4000/tidewave/mcp"]
+    }
+  }
+}
+```
+
+Note: The `mcp-proxy` command will be available after running `mise install`.
+
+This gives the AI assistant direct access to understand the application's runtime state, database structure, and routes.
 
 ## Key Commands
 
