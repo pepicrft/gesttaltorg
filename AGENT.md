@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Gesttalt is a Phoenix Framework web application built with Elixir. It uses PostgreSQL as the database, Phoenix LiveView for real-time UI updates, and Tailwind CSS for styling.
+Gesttalt is a Phoenix Framework web application built with Elixir. It uses PostgreSQL as the database, Phoenix LiveView for real-time UI updates, and CSS with the EnduringCSS methodology for styling.
 
 ## Key Commands
 
@@ -87,17 +87,19 @@ Automation should be implemented using [Mise file tasks](https://mise.jdx.dev/ta
 
 ### Styling Philosophy
 
-Gesttalt follows an HTML-first approach to web design:
+Gesttalt follows an HTML-first approach to web design with CSS using the EnduringCSS methodology:
 
 - **Semantic HTML**: Focus on using proper semantic elements (`<article>`, `<nav>`, `<section>`, etc.)
 - **Text-First Design**: Content and readability are the primary concerns
 - **Minimal Styling**: Clean, functional design inspired by [sourcehut.org](https://sourcehut.org/) and [ampcode.com](https://ampcode.com/how-to-build-an-agent)
-- **EnduringCSS Convention**: Use namespace-based selectors following the EnduringCSS methodology:
-  - Component namespaces: `.ns-Component {}`
-  - Component modifiers: `.ns-Component--modifier {}`
-  - Component children: `.ns-Component_child {}`
-  - State classes: `.is-state {}`
-  - Example: `.gst-Header {}`, `.gst-Header--compact {}`, `.gst-Header_logo {}`
+- **EnduringCSS Methodology**: A CSS architecture designed for maintainability and scalability:
+  - Namespace-based component architecture prevents style conflicts
+  - Component namespaces: `.ns-Component {}` (e.g., `.gst-Home {}`)
+  - Component modifiers: `.ns-Component--modifier {}` (e.g., `.gst-Header--compact {}`)
+  - Component children: `.ns-Component_child {}` (e.g., `.gst-Home_title {}`)
+  - State classes: `.is-state {}` (e.g., `.is-active {}`)
+  - All CSS is written in `assets/css/app.css` without preprocessors
+  - No utility-first frameworks - each component has purposeful, semantic styles
 
 ### Application Structure
 

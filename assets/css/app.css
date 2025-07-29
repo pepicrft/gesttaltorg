@@ -1,1 +1,111 @@
 /* This file is for your main application CSS */
+
+/* Gesttalt Home Page Styles - EnduringCSS Convention */
+
+/* Component namespace: gst-Home */
+.gst-Home {
+  max-width: 65ch;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Component children */
+.gst-Home_header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.gst-Home_title {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+}
+
+.gst-Home_tagline {
+  font-size: 1.25rem;
+  color: #666;
+  margin: 0;
+}
+
+.gst-Home_intro {
+  font-size: 1.125rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.gst-Home_features,
+.gst-Home_getting-started,
+.gst-Home_links {
+  margin-bottom: 3rem;
+}
+
+.gst-Home_features h2,
+.gst-Home_getting-started h2,
+.gst-Home_links h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.gst-Home_features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gst-Home_features li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.gst-Home_features li:last-child {
+  border-bottom: none;
+}
+
+.gst-Home_getting-started pre {
+  background: #f6f8fa;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.gst-Home_getting-started code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 0.875rem;
+}
+
+.gst-Home_links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gst-Home_links li {
+  padding: 0.5rem 0;
+}
+
+.gst-Home_links a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.gst-Home_links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gst-Home_title {
+    font-size: 2.5rem;
+  }
+  
+  .gst-Home_tagline {
+    font-size: 1.125rem;
+  }
+}

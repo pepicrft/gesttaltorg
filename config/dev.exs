@@ -25,8 +25,7 @@ config :gesttalt, GesttaltWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "6+tGyF5ohhgBqEfF5/jtyUUDL6Sx5C31DXMSQLYY6nQaHV7H0BY8NoamO11kwoJj",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:gesttalt, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:gesttalt, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:gesttalt, ~w(--sourcemap=inline --watch)]}
   ]
 
 # Watch static and templates for browser reloading.

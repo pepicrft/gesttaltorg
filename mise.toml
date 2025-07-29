@@ -3,6 +3,7 @@
     erlang = "28.0.2"
     "npm:@anthropic-ai/claude-code" = "1.0.61"
     "ubi:superfly/flyctl" = "0.3.161"
+    "ubi:svenstaro/miniserve" = "latest"
 
 [hooks]
     postinstall = "mise run install"

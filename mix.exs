@@ -9,7 +9,8 @@ defmodule Gesttalt.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -42,13 +43,6 @@ defmodule Gesttalt.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:heroicons,
-       github: "tailwindlabs/heroicons",
-       tag: "v2.1.1",
-       sparse: "optimized",
-       app: false,
-       compile: false,
-       depth: 1},
       {:swoosh, "~> 1.5"},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 1.0"},
@@ -58,7 +52,8 @@ defmodule Gesttalt.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:quokka, "~> 2.9", only: [:dev, :test], runtime: false},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false}
     ]
   end
 
@@ -80,6 +75,15 @@ defmodule Gesttalt.MixProject do
         "esbuild gesttalt --minify",
         "phx.digest"
       ]
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      source_url: "https://github.com/tuist/gesttalt",
+      homepage_url: "https://gesttalt.org",
+      extras: ["README.md"]
     ]
   end
 end
