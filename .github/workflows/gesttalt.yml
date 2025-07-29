@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Install mix dependencies
         run: |
@@ -43,6 +45,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Install mix dependencies
         run: |
@@ -70,6 +74,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Install mix dependencies
         run: |
@@ -86,6 +92,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: jdx/mise-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Install mix dependencies
         run: |
