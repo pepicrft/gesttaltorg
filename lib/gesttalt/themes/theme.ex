@@ -34,7 +34,7 @@ defmodule Gesttalt.Themes.Theme do
   
   # Main theme structure
   typedstruct do
-    plugin Gesttalt.Themes.JsonSchemaPlugin
+    plugin Gesttalt.Themes.JsonSchemaPlugin, camel_case: true
     
     @typedoc """
     The main theme structure following Theme UI specification.
@@ -144,31 +144,6 @@ defmodule Gesttalt.Themes.Theme do
     }
   end
   
-  @doc """
-  Converts the theme struct to a JSON-compatible map.
-  Uses camelCase keys to match Theme UI convention.
-  """
-  def to_json(%__MODULE__{} = theme) do
-    %{
-      "colors" => colors_to_json(theme.colors),
-      "fonts" => fonts_to_json(theme.fonts),
-      "fontSizes" => theme.font_sizes,
-      "fontWeights" => font_weights_to_json(theme.font_weights),
-      "lineHeights" => line_heights_to_json(theme.line_heights),
-      "letterSpacings" => atomize_keys_to_strings(theme.letter_spacings),
-      "space" => theme.space,
-      "sizes" => atomize_keys_to_strings(theme.sizes),
-      "radii" => atomize_keys_to_strings(theme.radii),
-      "borders" => atomize_keys_to_strings(theme.borders),
-      "borderWidths" => atomize_keys_to_strings(theme.border_widths),
-      "borderStyles" => atomize_keys_to_strings(theme.border_styles),
-      "shadows" => atomize_keys_to_strings(theme.shadows),
-      "transitions" => atomize_keys_to_strings(theme.transitions),
-      "zIndices" => atomize_keys_to_strings(theme.z_indices),
-      "variants" => theme.variants,
-      "styles" => theme.styles
-    }
-  end
   
   @doc """
   Validates a theme JSON against the schema.
@@ -190,56 +165,6 @@ defmodule Gesttalt.Themes.Theme do
   def validate_json(_), do: {:error, "Theme must be a map"}
   
   # Private helper functions
-  
-  defp atomize_keys_to_strings(map) when is_map(map) do
-    map
-    |> Enum.map(fn {k, v} ->
-      key = if is_atom(k), do: Atom.to_string(k), else: k
-      {key, v}
-    end)
-    |> Enum.into(%{})
-  end
-  
-  defp colors_to_json(%Colors{} = colors) do
-    %{
-      "text" => colors.text,
-      "background" => colors.background,
-      "primary" => colors.primary,
-      "secondary" => colors.secondary,
-      "accent" => colors.accent,
-      "highlight" => colors.highlight,
-      "muted" => colors.muted,
-      "success" => colors.success,
-      "info" => colors.info,
-      "warning" => colors.warning,
-      "danger" => colors.danger,
-      "modes" => colors.modes
-    }
-  end
-  
-  defp fonts_to_json(%Fonts{} = fonts) do
-    %{
-      "body" => fonts.body,
-      "heading" => fonts.heading,
-      "monospace" => fonts.monospace
-    }
-  end
-  
-  defp font_weights_to_json(%FontWeights{} = weights) do
-    %{
-      "body" => weights.body,
-      "heading" => weights.heading,
-      "bold" => weights.bold,
-      "light" => weights.light
-    }
-  end
-  
-  defp line_heights_to_json(%LineHeights{} = heights) do
-    %{
-      "body" => heights.body,
-      "heading" => heights.heading
-    }
-  end
   
   defp validate_colors(nil), do: :ok
   defp validate_colors(colors) when is_map(colors), do: :ok

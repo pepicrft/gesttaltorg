@@ -1,6 +1,85 @@
 defmodule Gesttalt.Themes.JsonSchemaPluginTest do
   use ExUnit.Case, async: true
 
+  # Test modules for to_json generation
+  defmodule SimpleJsonStruct do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin
+
+      field :name, String.t()
+      field :count, integer()
+      field :active, boolean(), default: true
+    end
+  end
+
+  defmodule CamelCaseStruct do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin, camel_case: true
+
+      field :first_name, String.t()
+      field :last_name, String.t()
+      field :is_active, boolean()
+    end
+  end
+
+  defmodule NestedInner do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin
+
+      field :value, String.t()
+    end
+  end
+
+  defmodule NestedOuter do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin
+
+      field :inner, NestedInner.t()
+      field :name, String.t()
+    end
+  end
+
+  defmodule MapConversionStruct do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin
+
+      field :config, map()
+      field :options, %{optional(atom()) => String.t()}
+    end
+  end
+
+  defmodule NilInnerStruct do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin
+
+      field :value, String.t()
+    end
+  end
+
+  defmodule NilHandlingStruct do
+    use TypedStruct
+
+    typedstruct do
+      plugin Gesttalt.Themes.JsonSchemaPlugin
+
+      field :name, String.t()
+      field :optional, String.t()
+      field :nested, NilInnerStruct.t()
+    end
+  end
+
   describe "JSON schema generation" do
     test "generates schema for simple struct" do
       defmodule SimpleStruct do
@@ -233,6 +312,67 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
     end
   end
 
+  describe "to_json generation" do
+    test "generates to_json function for simple struct" do
+      struct = %SimpleJsonStruct{name: "test", count: 42, active: false}
+      json = SimpleJsonStruct.to_json(struct)
+
+      assert json == %{
+               "name" => "test",
+               "count" => 42,
+               "active" => false
+             }
+    end
+
+    test "generates to_json with camelCase option" do
+      struct = %CamelCaseStruct{first_name: "John", last_name: "Doe", is_active: true}
+      json = CamelCaseStruct.to_json(struct)
+
+      assert json == %{
+               "firstName" => "John",
+               "lastName" => "Doe",
+               "isActive" => true
+             }
+    end
+
+    test "handles nested structs with to_json" do
+      struct = %NestedOuter{
+        inner: %NestedInner{value: "nested"},
+        name: "outer"
+      }
+      json = NestedOuter.to_json(struct)
+
+      assert json == %{
+               "inner" => %{"value" => "nested"},
+               "name" => "outer"
+             }
+    end
+
+    test "converts atom keys in maps to strings" do
+      struct = %MapConversionStruct{
+        config: %{key: "value", another: "test"},
+        options: %{option1: "a", option2: "b"}
+      }
+      json = MapConversionStruct.to_json(struct)
+
+      assert json == %{
+               "config" => %{"key" => "value", "another" => "test"},
+               "options" => %{"option1" => "a", "option2" => "b"}
+             }
+    end
+
+    test "handles nil values correctly" do
+      struct = %NilHandlingStruct{name: "test", optional: nil, nested: nil}
+      json = NilHandlingStruct.to_json(struct)
+
+      assert json == %{
+               "name" => "test",
+               "optional" => nil,
+               "nested" => nil
+             }
+    end
+  end
+
   describe "integration with Theme modules" do
     test "Colors module generates correct schema" do
       schema = Gesttalt.Themes.Theme.Colors.__json_schema__()
@@ -299,6 +439,29 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
       assert complete_schema["$schema"] == "http://json-schema.org/draft-07/schema#"
       assert complete_schema["title"] == "Gesttalt Theme"
       assert complete_schema["description"] == "Theme structure following Theme UI specification"
+    end
+
+    test "Theme module generates working to_json with camelCase" do
+      theme = Gesttalt.Themes.default()
+      json = Gesttalt.Themes.Theme.to_json(theme)
+
+      # Check camelCase conversion
+      assert Map.has_key?(json, "fontSizes")
+      assert Map.has_key?(json, "fontWeights")
+      assert Map.has_key?(json, "lineHeights")
+      assert Map.has_key?(json, "letterSpacings")
+      assert Map.has_key?(json, "borderWidths")
+      assert Map.has_key?(json, "borderStyles")
+      assert Map.has_key?(json, "zIndices")
+
+      # Check nested struct conversion
+      assert is_map(json["colors"])
+      assert json["colors"]["text"] == "#000000"
+      assert json["colors"]["background"] == "#ffffff"
+
+      # Check that maps have string keys
+      assert is_map(json["letterSpacings"])
+      assert json["letterSpacings"]["normal"] == "normal"
     end
   end
 end

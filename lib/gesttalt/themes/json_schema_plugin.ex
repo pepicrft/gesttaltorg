@@ -26,9 +26,11 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
   use TypedStruct.Plugin
   
   @impl true
-  defmacro init(_opts) do
+  defmacro init(opts) do
     quote do
       Module.register_attribute(__MODULE__, :json_schema_fields, accumulate: true)
+      Module.register_attribute(__MODULE__, :json_schema_options, persist: true)
+      Module.put_attribute(__MODULE__, :json_schema_options, unquote(opts))
       @before_compile Gesttalt.Themes.JsonSchemaPlugin
     end
   end
@@ -49,7 +51,9 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
   
   defmacro __before_compile__(env) do
     fields = Module.get_attribute(env.module, :json_schema_fields, [])
+    options = Module.get_attribute(env.module, :json_schema_options, [])
     schema = build_schema(env.module, fields)
+    to_json_ast = build_to_json_function(fields, options)
     
     quote do
       @doc """
@@ -58,6 +62,14 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
       """
       def __json_schema__ do
         unquote(Macro.escape(schema))
+      end
+      
+      @doc """
+      Converts the struct to a JSON-compatible map.
+      Generated at compile time from the TypedStruct definition.
+      """
+      def to_json(%__MODULE__{} = struct) do
+        unquote(to_json_ast)
       end
     end
   end
@@ -156,5 +168,97 @@ defmodule Gesttalt.Themes.JsonSchemaPlugin do
   defp type_to_json_schema(_type) do
     # IO.inspect(_type, label: "Unhandled type")
     %{"type" => "string"}
+  end
+  
+  # Build the to_json function body
+  defp build_to_json_function(fields, options) do
+    field_conversions = 
+      fields
+      |> Enum.reverse()  # Fields are accumulated in reverse order
+      |> Enum.map(&build_field_conversion(&1, options))
+    
+    # Generate the map construction
+    {:%{}, [], field_conversions}
+  end
+  
+  defp build_field_conversion({name, type, _opts}, options) do
+    json_key = if Keyword.get(options, :camel_case, false) do
+      to_json_key(name)
+    else
+      Atom.to_string(name)
+    end
+    
+    field_access = quote do: struct.unquote(name)
+    
+    # Determine if we need special conversion based on type
+    converted_value = convert_field_value(field_access, type)
+    
+    {json_key, converted_value}
+  end
+  
+  # Convert snake_case atom to camelCase string
+  defp to_json_key(atom) when is_atom(atom) do
+    atom
+    |> Atom.to_string()
+    |> to_camel_case()
+  end
+  
+  defp to_camel_case(string) do
+    case String.split(string, "_") do
+      [first | rest] ->
+        Enum.join([first | Enum.map(rest, &String.capitalize/1)], "")
+      [] ->
+        string
+    end
+  end
+  
+  # Convert field values based on their type
+  defp convert_field_value(field_access, type) do
+    case type do
+      # Handle struct types
+      {{:., _, [{:__aliases__, _, _module_parts}, :t]}, _, _} ->
+        # If it's a struct type, recursively call to_json on it
+        quote do
+          case unquote(field_access) do
+            nil -> nil
+            %{__struct__: _} = value -> value.__struct__.to_json(value)
+            value -> value
+          end
+        end
+      
+      # Handle all map types - always convert atom keys to strings
+      {:%{}, _, _} ->
+        quote do
+          case unquote(field_access) do
+            nil -> nil
+            map when is_map(map) ->
+              map
+              |> Enum.map(fn {k, v} -> 
+                key = if is_atom(k), do: Atom.to_string(k), else: k
+                {key, v}
+              end)
+              |> Enum.into(%{})
+          end
+        end
+      
+      # Maps without specific types
+      {:map, _, _} ->
+        quote do
+          case unquote(field_access) do
+            nil -> nil
+            map when is_map(map) ->
+              map
+              |> Enum.map(fn {k, v} -> 
+                key = if is_atom(k), do: Atom.to_string(k), else: k
+                {key, v}
+              end)
+              |> Enum.into(%{})
+          end
+        end
+        
+      # Everything else passes through as-is
+      _ ->
+        field_access
+    end
   end
 end
