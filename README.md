@@ -1,18 +1,18 @@
 # 🌱 Gesttalt
 
-A free-software tool for developers to build a digital garden and express themselves on the Internet 🌐
+A free-software platform to capture, connect, and share content on the Internet 🌐
 
 ## 🚀 About
 
-Gesttalt is a powerful digital garden platform that empowers developers to create their own personal space on the web. Built with ❤️ by the [Tuist team](https://tuist.dev), Gesttalt is designed to follow the standards and principles of the social web, ensuring your content remains open, accessible, and interconnected.
+Gesttalt is a content organization platform that helps you capture, connect, and share ideas across the web. Drawing inspiration from [Are.na](https://are.na), Gesttalt provides a space for collecting and organizing digital content into meaningful connections. Built with ❤️ by [Pedro Piñera](https://github.com/pepicrft), Gesttalt is designed to follow the standards and principles of the social web, ensuring your content remains open, accessible, and interconnected.
 
 ### ✨ Features
 
-- 🌿 **Digital Garden Philosophy**: Cultivate your ideas and let them grow organically
-- 🛠️ **Developer-Friendly**: Built by developers, for developers
+- 📌 **Capture Anything**: Save links, images, text, and files from across the web
+- 🔗 **Connect Ideas**: Create meaningful relationships between different pieces of content
 - 🌍 **Social Web Standards**: Follows open web principles for better connectivity
 - ⚡ **Powered by Elixir**: Fast, reliable, and scalable using the Phoenix Framework
-- 🎨 **Customizable**: Express yourself with flexible theming and content organization
+- 🎨 **Visual Organization**: Arrange and visualize your content in flexible ways
 
 ### 🌐 Hosted Instances
 
