@@ -221,7 +221,7 @@ defmodule Gesttalt.Themes.JsonSchemaPluginTest do
 
       assert properties["colors"] == %{
                "type" => "object",
-               "$ref" => "#/definitions/Gesttalt.Themes.Theme.Colors"
+               "$ref" => "#/definitions/Colors"
              }
     end
 
