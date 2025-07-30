@@ -25,12 +25,6 @@ defmodule GesttaltWeb.Router do
     get "/assets/theme.css", ThemeCSSController, :show
   end
 
-  scope "/api", GesttaltWeb do
-    pipe_through :api
-
-    post "/theme", ThemeController, :toggle
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", GesttaltWeb do
   #   pipe_through :api

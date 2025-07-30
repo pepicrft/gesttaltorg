@@ -118,36 +118,3 @@ body {
   }
 }
 
-/* Theme Toggle Component - EnduringCSS Convention */
-.gst-ThemeToggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-}
-
-.gst-ThemeToggle_button {
-  background: var(--color-muted);
-  border: 1px solid var(--color-highlight);
-  border-radius: var(--radii-default);
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 0.875rem;
-  color: var(--color-text);
-  transition: var(--transitions-default);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.gst-ThemeToggle_button:hover {
-  background: var(--color-highlight);
-  box-shadow: var(--shadows-small);
-}
-
-.gst-ThemeToggle_icon {
-  width: 1rem;
-  height: 1rem;
-  fill: currentColor;
-}

@@ -23,39 +23,9 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-
-// Theme toggle hook
-let Hooks = {}
-Hooks.ThemeToggle = {
-  mounted() {
-    this.el.addEventListener("click", () => {
-      const html = document.documentElement
-      const currentTheme = html.getAttribute("data-theme") || "light"
-      const newTheme = currentTheme === "light" ? "dark" : "light"
-      
-      // Update the theme immediately for instant feedback
-      html.setAttribute("data-theme", newTheme)
-      
-      // Persist the theme preference
-      fetch("/api/theme", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfToken
-        },
-        body: JSON.stringify({ theme: newTheme })
-      }).then(() => {
-        // Reload the page to update server-side theme
-        window.location.reload()
-      })
-    })
-  }
-}
-
 let liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
-  params: {_csrf_token: csrfToken},
-  hooks: Hooks
+  params: {_csrf_token: csrfToken}
 })
 
 // Show progress bar on live navigation and form submits
