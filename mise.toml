@@ -1,15 +1,16 @@
 [tools]
+    "cargo:mcp-proxy" = "latest"
     elixir = "1.18.4"
-    erlang = "27.2.1"
+    erlang = "27.3.4"
     "node" = "24.4.1"
     "npm:@anthropic-ai/claude-code" = "1.0.61"
     "npm:@playwright/mcp" = "0.0.32"
     "ubi:superfly/flyctl" = "0.3.161"
     "ubi:svenstaro/miniserve" = "latest"
-    "ubi:tidewave-ai/mcp_proxy_rust" = "latest"
 
 [hooks]
     postinstall = "mise run install"
 
 [settings]
     lockfile = true
+    sops.strict = false
