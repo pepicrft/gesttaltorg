@@ -1,6 +1,6 @@
 [tools]
     elixir = "1.18.4"
-    erlang = "28.0.2"
+    erlang = "27.2.1"
     "node" = "24.4.1"
     "npm:@anthropic-ai/claude-code" = "1.0.61"
     "npm:@playwright/mcp" = "0.0.32"
