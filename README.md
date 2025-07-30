@@ -1,18 +1,18 @@
 # 🌱 Gesttalt
 
-A free-software platform to capture, connect, and share content on the Internet 🌐
+A tool of expression on the Internet 🌐
 
 ## 🚀 About
 
-Gesttalt is a content organization platform that helps you capture, connect, and share ideas across the web. Drawing inspiration from [Are.na](https://are.na), Gesttalt provides a space for collecting and organizing digital content into meaningful connections. Built with ❤️ by [Pedro Piñera](https://github.com/pepicrft), Gesttalt is designed to follow the standards and principles of the social web, ensuring your content remains open, accessible, and interconnected.
+Gesttalt is a tool of expression on the Internet that empowers you to capture, connect, and share your ideas in meaningful ways. Drawing inspiration from [Are.na](https://are.na), Gesttalt provides a creative space where your digital expressions can flourish and interconnect. Built with ❤️ by [Pedro Piñera](https://github.com/pepicrft), Gesttalt is designed to follow the standards and principles of the social web, ensuring your expressions remain open, accessible, and authentically yours.
 
 ### ✨ Features
 
-- 📌 **Capture Anything**: Save links, images, text, and files from across the web
-- 🔗 **Connect Ideas**: Create meaningful relationships between different pieces of content
-- 🌍 **Social Web Standards**: Follows open web principles for better connectivity
-- ⚡ **Powered by Elixir**: Fast, reliable, and scalable using the Phoenix Framework
-- 🎨 **Visual Organization**: Arrange and visualize your content in flexible ways
+- 📌 **Express Freely**: Capture and manifest your thoughts through links, images, text, and files
+- 🔗 **Connect Meaningfully**: Weave relationships between ideas to create your own narrative
+- 🌍 **Share Openly**: Built on open web principles for authentic connection and expression
+- ⚡ **Experience Fluidly**: Fast, reliable, and scalable powered by Elixir and Phoenix
+- 🎨 **Visualize Creatively**: Shape and arrange your expressions in ways that resonate with you
 
 ### 🌐 Hosted Instances
 

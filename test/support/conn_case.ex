@@ -20,6 +20,7 @@ defmodule GesttaltWeb.ConnCase do
   using do
     quote do
       use GesttaltWeb, :verified_routes
+
       import GesttaltWeb.ConnCase
       import Phoenix.ConnTest
       import Plug.Conn

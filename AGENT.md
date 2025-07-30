@@ -170,3 +170,26 @@ Tests use ExUnit and are organized by:
 - `test/support/` - Test helpers and factories
   - `conn_case.ex` - Helper for controller/view tests
   - `data_case.ex` - Helper for schema/context tests
+
+## Development Workflow
+
+### Before Committing Code
+
+Always verify your changes before committing:
+
+1. **Compile the code** to check for syntax errors:
+   ```bash
+   mix compile
+   ```
+
+2. **Run tests** to ensure nothing is broken:
+   ```bash
+   mix test
+   ```
+
+3. **Format the code** using the project's formatter:
+   ```bash
+   mise run lint --fix
+   ```
+
+These steps help maintain code quality and consistency across the codebase. The CI pipeline will run these same checks, so running them locally first saves time and ensures your commits will pass CI.

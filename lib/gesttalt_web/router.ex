@@ -1,6 +1,8 @@
 defmodule GesttaltWeb.Router do
   use GesttaltWeb, :router
 
+  alias Plug.Swoosh.MailboxPreview
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule GesttaltWeb.Router do
     plug :put_root_layout, html: {GesttaltWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug GesttaltWeb.ThemeLoaderPlug
   end
 
   pipeline :api do
@@ -18,6 +21,7 @@ defmodule GesttaltWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/assets/theme.css", ThemeCSSController, :show
   end
 
   # Other scopes may use custom stacks.
@@ -38,7 +42,7 @@ defmodule GesttaltWeb.Router do
       pipe_through :browser
 
       live_dashboard "/dashboard", metrics: GesttaltWeb.Telemetry
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
+      forward "/mailbox", MailboxPreview
     end
   end
 end
