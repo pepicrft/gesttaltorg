@@ -18,10 +18,7 @@ jobs:
         with:
           version: latest
       
-      - name: Install dependencies through Mise
-        run: mise install
-      
       - name: Deploy to Fly.io
-        run: mise exec -- flyctl deploy --remote-only
+        run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
