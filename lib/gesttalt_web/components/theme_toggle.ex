@@ -3,8 +3,8 @@ defmodule GesttaltWeb.ThemeToggle do
 
   def theme_toggle(assigns) do
     ~H"""
-    <div class="gst-ThemeToggle" id="theme-toggle">
-      <button type="button" class="gst-ThemeToggle_button" phx-hook="ThemeToggle">
+    <div class="gst-ThemeToggle">
+      <button type="button" class="gst-ThemeToggle_button" id="theme-toggle" phx-hook="ThemeToggle">
         <svg class="gst-ThemeToggle_icon" viewBox="0 0 24 24" aria-hidden="true">
           <%= if assigns[:theme] == "dark" do %>
             <!-- Sun icon for dark mode -->
