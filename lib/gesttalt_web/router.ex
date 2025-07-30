@@ -10,7 +10,6 @@ defmodule GesttaltWeb.Router do
     plug :put_root_layout, html: {GesttaltWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug GesttaltWeb.ThemePlug
     plug GesttaltWeb.ThemeLoaderPlug
   end
 
