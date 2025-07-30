@@ -11,6 +11,7 @@ defmodule GesttaltWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug GesttaltWeb.ThemePlug
+    plug GesttaltWeb.ThemeLoaderPlug
   end
 
   pipeline :api do
@@ -21,6 +22,7 @@ defmodule GesttaltWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/assets/theme.css", ThemeCSSController, :show
   end
 
   scope "/api", GesttaltWeb do

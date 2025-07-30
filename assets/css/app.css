@@ -1,35 +1,10 @@
 /* This file is for your main application CSS */
-
-/* Theme Variables */
-:root {
-  /* Light theme (default) */
-  --color-background: #ffffff;
-  --color-background-secondary: #f6f8fa;
-  --color-text-primary: #333333;
-  --color-text-secondary: #666666;
-  --color-border: #e5e5e5;
-  --color-border-light: #f0f0f0;
-  --color-link: #0066cc;
-  --color-link-hover: #0052a3;
-}
-
-/* Dark theme */
-[data-theme="dark"] {
-  --color-background: #1a1a1a;
-  --color-background-secondary: #2d2d2d;
-  --color-text-primary: #e0e0e0;
-  --color-text-secondary: #a0a0a0;
-  --color-border: #404040;
-  --color-border-light: #333333;
-  --color-link: #5599ff;
-  --color-link-hover: #77aaff;
-}
+/* Theme variables are loaded dynamically from /assets/theme.css */
 
 /* Base styles */
 body {
   background-color: var(--color-background);
-  color: var(--color-text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--color-text);
 }
 
 /* Gesttalt Home Page Styles - EnduringCSS Convention */
@@ -41,7 +16,7 @@ body {
   padding: 2rem 1rem;
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  color: var(--color-text-primary);
+  color: var(--color-text);
 }
 
 /* Component children */
@@ -59,7 +34,7 @@ body {
 
 .gst-Home_tagline {
   font-size: 1.25rem;
-  color: var(--color-text-secondary);
+  color: var(--color-secondary);
   margin: 0;
 }
 
@@ -67,7 +42,7 @@ body {
   font-size: 1.125rem;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-highlight);
 }
 
 .gst-Home_features,
@@ -92,7 +67,7 @@ body {
 
 .gst-Home_features li {
   padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-muted);
 }
 
 .gst-Home_features li:last-child {
@@ -100,7 +75,7 @@ body {
 }
 
 .gst-Home_getting-started pre {
-  background: var(--color-background-secondary);
+  background: var(--color-muted);
   padding: 1rem;
   border-radius: 0.25rem;
   overflow-x: auto;
@@ -123,12 +98,12 @@ body {
 }
 
 .gst-Home_links a {
-  color: var(--color-link);
+  color: var(--color-primary);
   text-decoration: none;
 }
 
 .gst-Home_links a:hover {
-  color: var(--color-link-hover);
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
@@ -152,22 +127,23 @@ body {
 }
 
 .gst-ThemeToggle_button {
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: 0.25rem;
+  background: var(--color-muted);
+  border: 1px solid var(--color-highlight);
+  border-radius: var(--radii-default);
   padding: 0.5rem 0.75rem;
   cursor: pointer;
   font-family: inherit;
   font-size: 0.875rem;
-  color: var(--color-text-primary);
-  transition: all 0.2s ease;
+  color: var(--color-text);
+  transition: var(--transitions-default);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .gst-ThemeToggle_button:hover {
-  background: var(--color-border-light);
+  background: var(--color-highlight);
+  box-shadow: var(--shadows-small);
 }
 
 .gst-ThemeToggle_icon {
