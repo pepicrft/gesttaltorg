@@ -526,112 +526,121 @@ defmodule Gesttalt.Themes do
   defp generate_mode_css(theme, mode) do
     # Get colors for the mode
     colors =
-      if mode == "dark" do
-        dark_colors = get_in(theme, [:colors, :modes, "dark"]) || %{}
+      if mode == "dark" && theme.colors.modes && is_map(theme.colors.modes) do
+        dark_colors = Map.get(theme.colors.modes, "dark", %{})
 
-        theme.colors
-        |> Map.from_struct()
-        |> Map.delete(:modes)
-        |> Map.merge(dark_colors)
+        if dark_colors == %{} do
+          # No dark colors defined, use light colors
+          theme.colors |> Map.from_struct() |> Map.delete(:modes)
+          # Convert string keys to atoms for merging
+        else
+          dark_colors_atoms =
+            dark_colors
+            |> Map.new(fn {k, v} -> {String.to_atom(k), v} end)
+
+          theme.colors
+          |> Map.from_struct()
+          |> Map.delete(:modes)
+          |> Map.merge(dark_colors_atoms)
+        end
       else
         theme.colors |> Map.from_struct() |> Map.delete(:modes)
       end
 
-    # Convert theme data to CSS variables
-    css_vars = []
+    # Build all CSS variables
+    all_vars = [
+      # Color variables
+      Enum.map(colors, fn {key, value} ->
+        "  --color-#{key}: #{value};"
+      end),
 
-    # Add color variables
-    css_vars =
-      css_vars ++
-        Enum.map(colors, fn {key, value} ->
-          "  --color-#{key}: #{value};"
+      # Font variables
+      if theme.fonts do
+        theme.fonts
+        |> Map.from_struct()
+        |> Enum.map(fn {key, value} ->
+          "  --fonts-#{key}: #{value};"
         end)
+      else
+        []
+      end,
 
-    # Add font variables
-    if theme.fonts do
-      fonts = Map.from_struct(theme.fonts)
+      # Font weight variables
+      if theme.font_weights do
+        theme.font_weights
+        |> Map.from_struct()
+        |> Enum.map(fn {key, value} ->
+          "  --font-weights-#{key}: #{value};"
+        end)
+      else
+        []
+      end,
 
-      css_vars =
-        css_vars ++
-          Enum.map(fonts, fn {key, value} ->
-            "  --fonts-#{key}: #{value};"
-          end)
-    end
+      # Line height variables
+      if theme.line_heights do
+        theme.line_heights
+        |> Map.from_struct()
+        |> Enum.map(fn {key, value} ->
+          "  --line-heights-#{key}: #{value};"
+        end)
+      else
+        []
+      end,
 
-    # Add font weight variables
-    if theme.font_weights do
-      weights = Map.from_struct(theme.font_weights)
-
-      css_vars =
-        css_vars ++
-          Enum.map(weights, fn {key, value} ->
-            "  --font-weights-#{key}: #{value};"
-          end)
-    end
-
-    # Add line height variables
-    if theme.line_heights do
-      heights = Map.from_struct(theme.line_heights)
-
-      css_vars =
-        css_vars ++
-          Enum.map(heights, fn {key, value} ->
-            "  --line-heights-#{key}: #{value};"
-          end)
-    end
-
-    # Add space variables
-    if theme.space do
-      space_vars =
+      # Space variables
+      if theme.space do
         theme.space
         |> Enum.with_index()
         |> Enum.map(fn {value, index} ->
           "  --space-#{index}: #{value};"
         end)
+      else
+        []
+      end,
 
-      css_vars = css_vars ++ space_vars
-    end
+      # Radii variables
+      if theme.radii do
+        Enum.map(theme.radii, fn {key, value} ->
+          "  --radii-#{key}: #{value};"
+        end)
+      else
+        []
+      end,
 
-    # Add radii variables
-    if theme.radii do
-      css_vars =
-        css_vars ++
-          Enum.map(theme.radii, fn {key, value} ->
-            "  --radii-#{key}: #{value};"
-          end)
-    end
+      # Shadow variables
+      if theme.shadows do
+        Enum.map(theme.shadows, fn {key, value} ->
+          "  --shadows-#{key}: #{value};"
+        end)
+      else
+        []
+      end,
 
-    # Add shadow variables
-    if theme.shadows do
-      css_vars =
-        css_vars ++
-          Enum.map(theme.shadows, fn {key, value} ->
-            "  --shadows-#{key}: #{value};"
-          end)
-    end
+      # Transition variables
+      if theme.transitions do
+        Enum.map(theme.transitions, fn {key, value} ->
+          "  --transitions-#{key}: #{value};"
+        end)
+      else
+        []
+      end,
 
-    # Add transition variables
-    if theme.transitions do
-      css_vars =
-        css_vars ++
-          Enum.map(theme.transitions, fn {key, value} ->
-            "  --transitions-#{key}: #{value};"
-          end)
-    end
+      # Z-index variables
+      if theme.z_indices do
+        Enum.map(theme.z_indices, fn {key, value} ->
+          key_str = key |> to_string() |> String.replace("_", "-")
+          "  --z-indices-#{key_str}: #{value};"
+        end)
+      else
+        []
+      end
+    ]
 
-    # Add z-index variables
-    if theme.z_indices do
-      css_vars =
-        css_vars ++
-          Enum.map(theme.z_indices, fn {key, value} ->
-            key_str = key |> to_string() |> String.replace("_", "-")
-            "  --z-indices-#{key_str}: #{value};"
-          end)
-    end
+    css_vars = all_vars |> List.flatten() |> Enum.join("\n")
 
     """
     :root[data-theme="#{mode}"] {
-    #{Enum.join(css_vars, "\n")}
+    #{css_vars}
     }
     """
   end

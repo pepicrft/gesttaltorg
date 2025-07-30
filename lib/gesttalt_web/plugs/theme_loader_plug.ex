@@ -4,8 +4,6 @@ defmodule GesttaltWeb.ThemeLoaderPlug do
   This sets the theme in the process using Gesttalt.Themes.put_theme/1.
   """
 
-  import Plug.Conn
-
   alias Gesttalt.Themes
 
   def init(default), do: default
