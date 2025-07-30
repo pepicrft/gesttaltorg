@@ -2,61 +2,208 @@
 /* Theme variables are loaded dynamically from /assets/theme.css */
 
 /* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--fonts-body);
+  font-size: var(--font-sizes-3);
+  line-height: var(--line-heights-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Header Component - EnduringCSS Convention */
+.gst-Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-highlight);
+  z-index: var(--z-indices-sticky);
+}
+
+.gst-Header_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gst-Header_logo {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-body);
+}
+
+.gst-Header_logoLink {
+  text-decoration: none;
   color: var(--color-text);
 }
 
-/* Gesttalt Home Page Styles - EnduringCSS Convention */
+.gst-Header_logoLink:hover {
+  color: var(--color-text);
+}
 
-/* Component namespace: gst-Home */
+.gst-Header_nav {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.gst-Header_navLink {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: var(--font-sizes-3);
+}
+
+.gst-Header_navLink:hover {
+  color: var(--color-accent);
+}
+
+/* Main Component */
+.gst-Main {
+  flex: 1;
+  margin-top: 55px;
+  padding: var(--space-8) 0;
+}
+
+.gst-Main_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Footer Component - EnduringCSS Convention */
+.gst-Footer {
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-highlight);
+  padding: var(--space-10) 0 var(--space-8);
+  margin-top: var(--space-13);
+}
+
+.gst-Footer_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+}
+
+.gst-Footer_section {
+  
+}
+
+.gst-Footer_sectionTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-body);
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text);
+}
+
+.gst-Footer_links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gst-Footer_links li {
+  margin-bottom: var(--space-3);
+}
+
+.gst-Footer_link {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: var(--font-sizes-3);
+}
+
+.gst-Footer_link:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.gst-Footer_bottom {
+  max-width: 1200px;
+  margin: var(--space-10) auto 0;
+  padding: var(--space-6) var(--space-4) 0;
+  border-top: 1px solid var(--color-highlight);
+}
+
+.gst-Footer_copyright {
+  font-size: var(--font-sizes-3);
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+/* Home Page Component - EnduringCSS Convention */
 .gst-Home {
   max-width: 65ch;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  color: var(--color-text);
 }
 
-/* Component children */
 .gst-Home_header {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-8);
   text-align: center;
 }
 
 .gst-Home_title {
-  font-size: 3rem;
-  font-weight: 300;
+  font-size: var(--font-sizes-9);
+  font-weight: var(--font-weights-body);
   letter-spacing: -0.02em;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 var(--space-4) 0;
 }
 
 .gst-Home_tagline {
-  font-size: 1.25rem;
+  font-size: var(--font-sizes-5);
   color: var(--color-secondary);
   margin: 0;
 }
 
 .gst-Home_intro {
-  font-size: 1.125rem;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-8);
   border-bottom: 1px solid var(--color-highlight);
+}
+
+.gst-Home_intro p {
+  margin: 0;
+  line-height: var(--line-heights-body);
 }
 
 .gst-Home_features,
 .gst-Home_getting-started,
 .gst-Home_links {
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-8);
 }
 
-.gst-Home_features h2,
-.gst-Home_getting-started h2,
-.gst-Home_links h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0 0 1rem 0;
+.gst-Home_features {
+  margin-bottom: var(--space-10);
 }
 
 .gst-Home_features ul {
@@ -66,25 +213,30 @@ body {
 }
 
 .gst-Home_features li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-muted);
+  padding: var(--space-4) 0;
+  font-size: var(--font-sizes-3);
+  position: relative;
+  padding-left: var(--space-5);
 }
 
-.gst-Home_features li:last-child {
-  border-bottom: none;
+.gst-Home_features li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-secondary);
 }
 
 .gst-Home_getting-started pre {
   background: var(--color-muted);
-  padding: 1rem;
-  border-radius: 0.25rem;
+  padding: var(--space-5);
+  border-radius: var(--radii-default);
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: var(--space-5) 0;
 }
 
 .gst-Home_getting-started code {
-  font-family: ui-monospace, "SF Mono", Consolas, monospace;
-  font-size: 0.875rem;
+  font-family: var(--fonts-monospace);
+  font-size: var(--font-sizes-1);
 }
 
 .gst-Home_links ul {
@@ -94,27 +246,89 @@ body {
 }
 
 .gst-Home_links li {
-  padding: 0.5rem 0;
+  padding: var(--space-3) 0;
 }
 
 .gst-Home_links a {
-  color: var(--color-primary);
-  text-decoration: none;
+  color: var(--color-text);
+  text-decoration: underline;
+  font-size: var(--font-sizes-3);
 }
 
 .gst-Home_links a:hover {
   color: var(--color-accent);
-  text-decoration: underline;
+}
+
+/* CTA Section */
+.gst-Home_cta {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.gst-Home_ctaButton {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  text-decoration: none;
+  border-radius: var(--radii-default);
+  font-size: var(--font-sizes-3);
+  transition: opacity 0.2s ease;
+}
+
+.gst-Home_ctaButton:hover {
+  opacity: 0.8;
+  color: var(--color-background);
+}
+
+.gst-Home_ctaButton--secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+}
+
+.gst-Home_ctaButton--secondary:hover {
+  background-color: var(--color-muted);
+  color: var(--color-text);
+}
+
+/* Flash messages */
+.flash {
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  border-radius: var(--radii-default);
+  font-size: var(--font-sizes-3);
+}
+
+.flash-info {
+  background-color: var(--color-muted);
+  color: var(--color-info);
+  border: 1px solid var(--color-info);
+}
+
+.flash-error {
+  background-color: var(--color-muted);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .gst-Header_nav {
+    gap: var(--space-4);
+  }
+  
   .gst-Home_title {
-    font-size: 2.5rem;
+    font-size: var(--font-sizes-8);
   }
   
   .gst-Home_tagline {
-    font-size: 1.125rem;
+    font-size: var(--font-sizes-4);
+  }
+  
+  .gst-Footer_container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-6);
   }
 }
-

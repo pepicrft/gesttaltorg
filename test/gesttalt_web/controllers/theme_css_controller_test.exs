@@ -20,7 +20,7 @@ defmodule GesttaltWeb.ThemeCSSControllerTest do
       assert response_body =~ "--color-text: #000000;"
       assert response_body =~ "--color-background: #ffffff;"
       assert response_body =~ "--color-primary: #000000;"
-      assert response_body =~ "--color-accent: #0066ff;"
+      assert response_body =~ "--color-accent: #3D46C2;"
     end
 
     test "includes CSS variables for dark theme", %{conn: conn} do
@@ -50,8 +50,8 @@ defmodule GesttaltWeb.ThemeCSSControllerTest do
 
       assert response_body =~ "--font-weights-body: 400;"
       assert response_body =~ "--font-weights-heading: 600;"
-      assert response_body =~ "--line-heights-body: 1.6;"
-      assert response_body =~ "--line-heights-heading: 1.2;"
+      assert response_body =~ "--line-heights-body: 1.45;"
+      assert response_body =~ "--line-heights-heading: 1.25;"
     end
 
     test "includes spacing variables", %{conn: conn} do
@@ -59,8 +59,8 @@ defmodule GesttaltWeb.ThemeCSSControllerTest do
       response_body = response(conn, 200)
 
       assert response_body =~ "--space-0: 0;"
-      assert response_body =~ "--space-1: 4px;"
-      assert response_body =~ "--space-2: 8px;"
+      assert response_body =~ "--space-1: 2px;"
+      assert response_body =~ "--space-2: 5px;"
     end
 
     test "includes radii and shadow variables", %{conn: conn} do

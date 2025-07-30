@@ -28,36 +28,47 @@ defmodule Gesttalt.Themes do
         text: "#000000",
         background: "#ffffff",
         primary: "#000000",
-        secondary: "#666666",
-        accent: "#0066ff",
-        highlight: "#f0f0f0",
-        muted: "#f8f8f8",
-        success: "#00a86b",
-        info: "#0066ff",
+        secondary: "#333333",
+        accent: "#3D46C2",
+        highlight: "#DEDEDE",
+        muted: "#FAFAFA",
+        success: "#238020",
+        info: "#3D46C2",
         warning: "#ff9500",
-        danger: "#ff3b30",
+        danger: "#B93D3D",
         modes: %{
           dark: %{
             "text" => "#ffffff",
             "background" => "#000000",
             "primary" => "#ffffff",
-            "secondary" => "#999999",
-            "accent" => "#0066ff",
+            "secondary" => "#DEDEDE",
+            "accent" => "#3D46C2",
             "highlight" => "#1a1a1a",
             "muted" => "#0a0a0a",
-            "success" => "#00a86b",
-            "info" => "#0066ff",
+            "success" => "#238020",
+            "info" => "#3D46C2",
             "warning" => "#ff9500",
-            "danger" => "#ff3b30"
+            "danger" => "#B93D3D"
           }
         }
       },
       fonts: %Theme.Fonts{
-        body: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
-        heading: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
-        monospace: "Monaco, Consolas, 'Lucida Console', monospace"
+        body: "Arial, Helvetica, sans-serif",
+        heading: "Arial, Helvetica, sans-serif",
+        monospace: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
       },
-      font_sizes: ["11px", "13px", "15px", "17px", "21px", "27px", "35px", "59px"],
+      font_sizes: [
+        "0.78125rem",
+        "0.875rem",
+        "0.9rem",
+        "1rem",
+        "1.125rem",
+        "1.25rem",
+        "1.5rem",
+        "2rem",
+        "2.5rem",
+        "3rem"
+      ],
       font_weights: %Theme.FontWeights{
         body: 400,
         heading: 600,
@@ -65,15 +76,31 @@ defmodule Gesttalt.Themes do
         light: 300
       },
       line_heights: %Theme.LineHeights{
-        body: 1.6,
-        heading: 1.2
+        body: 1.45,
+        heading: 1.25
       },
       letter_spacings: %{
         normal: "normal",
         tracked: "0.02em",
         tight: "-0.02em"
       },
-      space: ["0", "4px", "8px", "12px", "16px", "24px", "32px", "48px", "64px", "96px"],
+      space: [
+        "0",
+        "2px",
+        "5px",
+        "10px",
+        "15px",
+        "20px",
+        "25px",
+        "30px",
+        "35px",
+        "40px",
+        "50px",
+        "60px",
+        "80px",
+        "100px",
+        "130px"
+      ],
       sizes: %{
         container: "1200px",
         narrow: "800px",
@@ -100,7 +127,7 @@ defmodule Gesttalt.Themes do
       },
       shadows: %{
         small: "0 1px 2px rgba(0, 0, 0, 0.05)",
-        default: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        default: "0px 0px 20px 0px rgba(0, 0, 0, 0.08)",
         large: "0 8px 16px rgba(0, 0, 0, 0.1)",
         inset: "inset 0 2px 4px rgba(0, 0, 0, 0.06)"
       },
@@ -180,36 +207,36 @@ defmodule Gesttalt.Themes do
           "fontFamily" => "body",
           "lineHeight" => "body",
           "fontWeight" => "body",
-          "fontSize" => 2
+          "fontSize" => 3
         },
         h1: %{
           "fontFamily" => "heading",
-          "fontWeight" => "heading",
+          "fontWeight" => "body",
           "lineHeight" => "heading",
-          "fontSize" => 6,
+          "fontSize" => 3,
           "mt" => 0,
-          "mb" => 3
+          "mb" => 4
         },
         h2: %{
           "fontFamily" => "heading",
-          "fontWeight" => "heading",
+          "fontWeight" => "body",
           "lineHeight" => "heading",
-          "fontSize" => 5,
+          "fontSize" => 3,
           "mt" => 0,
-          "mb" => 3
+          "mb" => 4
         },
         h3: %{
           "fontFamily" => "heading",
-          "fontWeight" => "heading",
+          "fontWeight" => "body",
           "lineHeight" => "heading",
-          "fontSize" => 4,
+          "fontSize" => 3,
           "mt" => 0,
-          "mb" => 3
+          "mb" => 4
         },
         p: %{
           "lineHeight" => "body",
           "mt" => 0,
-          "mb" => 3
+          "mb" => 4
         },
         a: %{
           "color" => "primary",
@@ -221,7 +248,7 @@ defmodule Gesttalt.Themes do
         pre: %{
           "fontFamily" => "monospace",
           "bg" => "muted",
-          "p" => 3,
+          "p" => 4,
           "borderRadius" => "default",
           "overflowX" => "auto"
         },
@@ -536,7 +563,7 @@ defmodule Gesttalt.Themes do
         else
           dark_colors_atoms =
             dark_colors
-            |> Map.new(fn {k, v} -> {String.to_atom(k), v} end)
+            |> Map.new(fn {k, v} -> {String.to_existing_atom(k), v} end)
 
           theme.colors
           |> Map.from_struct()

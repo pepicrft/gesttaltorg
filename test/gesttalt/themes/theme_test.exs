@@ -22,7 +22,7 @@ defmodule Gesttalt.Themes.ThemeTest do
 
       assert colors.text == "#000000"
       assert colors.background == "#ffffff"
-      assert colors.primary == "#0066cc"
+      assert colors.primary == "#000000"
       assert colors.modes == %{}
     end
 

@@ -3,6 +3,6 @@ defmodule GesttaltWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Capture, connect, and share content on the Internet"
+    assert html_response(conn, 200) =~ "A tool of expression on the Internet"
   end
 end

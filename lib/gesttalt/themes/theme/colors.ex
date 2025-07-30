@@ -14,17 +14,17 @@ defmodule Gesttalt.Themes.Theme.Colors do
 
     field :text, String.t(), default: "#000000"
     field :background, String.t(), default: "#ffffff"
-    field :primary, String.t(), default: "#0066cc"
-    field :secondary, String.t(), default: "#6c757d"
-    field :accent, String.t(), default: "#609"
-    field :highlight, String.t(), default: "#e8f4f8"
-    field :muted, String.t(), default: "#f6f6f6"
+    field :primary, String.t(), default: "#000000"
+    field :secondary, String.t(), default: "#333333"
+    field :accent, String.t(), default: "#3D46C2"
+    field :highlight, String.t(), default: "#DEDEDE"
+    field :muted, String.t(), default: "#FAFAFA"
 
     # Additional semantic colors
-    field :success, String.t(), default: "#28a745"
-    field :info, String.t(), default: "#17a2b8"
-    field :warning, String.t(), default: "#ffc107"
-    field :danger, String.t(), default: "#dc3545"
+    field :success, String.t(), default: "#238020"
+    field :info, String.t(), default: "#3D46C2"
+    field :warning, String.t(), default: "#ff9500"
+    field :danger, String.t(), default: "#B93D3D"
 
     # Color modes can be added as nested maps
     field :modes, %{optional(atom()) => map()}, default: %{}

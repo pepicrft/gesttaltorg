@@ -1,32 +1,65 @@
-<header class="px-4 sm:px-6 lg:px-8">
-  <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
-    <div class="flex items-center gap-4">
-      <a href="/">
-        <img src={~p"/images/logo.svg"} width="36" />
-      </a>
-      <p class="bg-brand/5 text-brand rounded-full px-2 font-medium leading-6">
-        v{Application.spec(:phoenix, :vsn)}
-      </p>
+<header class="gst-Header">
+  <div class="gst-Header_container">
+    <div class="gst-Header_logo">
+      <a href="/" class="gst-Header_logoLink">Gesttalt</a>
     </div>
-    <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href="https://twitter.com/elixirphoenix" class="hover:text-zinc-700">
-        @elixirphoenix
-      </a>
-      <a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
-        GitHub
-      </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
-    </div>
+    <nav class="gst-Header_nav">
+      <a href="/about" class="gst-Header_navLink">About</a>
+      <a href="/explore" class="gst-Header_navLink">Explore</a>
+      <a href="/sign-in" class="gst-Header_navLink">Sign in</a>
+    </nav>
   </div>
 </header>
-<main class="px-4 py-20 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-2xl">
+
+<main class="gst-Main">
+  <div class="gst-Main_container">
     <.flash_group flash={@flash} />
     {@inner_content}
   </div>
 </main>
+
+<footer class="gst-Footer">
+  <div class="gst-Footer_container">
+    <div class="gst-Footer_section">
+      <h4 class="gst-Footer_sectionTitle">Mobile</h4>
+      <ul class="gst-Footer_links">
+        <li><a href="/ios" class="gst-Footer_link">iOS App</a></li>
+        <li><a href="/android" class="gst-Footer_link">Android App</a></li>
+      </ul>
+    </div>
+
+    <div class="gst-Footer_section">
+      <h4 class="gst-Footer_sectionTitle">Developers</h4>
+      <ul class="gst-Footer_links">
+        <li><a href="/extensions" class="gst-Footer_link">Browser Extensions</a></li>
+        <li><a href="/api" class="gst-Footer_link">API</a></li>
+        <li>
+          <a href="https://github.com/pepicrft/gesttalt" class="gst-Footer_link">Source Code</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="gst-Footer_section">
+      <h4 class="gst-Footer_sectionTitle">Resources</h4>
+      <ul class="gst-Footer_links">
+        <li><a href="/blog" class="gst-Footer_link">Blog</a></li>
+        <li><a href="/help" class="gst-Footer_link">Help & Support</a></li>
+        <li><a href="/community" class="gst-Footer_link">Community</a></li>
+      </ul>
+    </div>
+
+    <div class="gst-Footer_section">
+      <h4 class="gst-Footer_sectionTitle">Info</h4>
+      <ul class="gst-Footer_links">
+        <li><a href="/about" class="gst-Footer_link">About</a></li>
+        <li><a href="/terms" class="gst-Footer_link">Terms</a></li>
+        <li><a href="/privacy" class="gst-Footer_link">Privacy</a></li>
+        <li><a href="/contact" class="gst-Footer_link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gst-Footer_bottom">
+    <p class="gst-Footer_copyright">© 2024 Gesttalt</p>
+  </div>
+</footer>

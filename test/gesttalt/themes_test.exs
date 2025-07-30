@@ -11,8 +11,8 @@ defmodule Gesttalt.ThemesTest do
       assert %Theme{} = theme
       assert theme.colors.text == "#000000"
       assert theme.colors.background == "#ffffff"
-      assert theme.fonts.body =~ "system"
-      assert length(theme.font_sizes) == 8
+      assert theme.fonts.body =~ "Arial"
+      assert length(theme.font_sizes) == 10
       assert theme.colors.modes.dark["text"] == "#ffffff"
     end
   end
@@ -57,7 +57,7 @@ defmodule Gesttalt.ThemesTest do
       assert theme.colors.text == "#333"
       assert theme.colors.background == "#f0f0f0"
       # Other colors should have defaults
-      assert theme.colors.primary == "#0066cc"
+      assert theme.colors.primary == "#000000"
     end
 
     test "creates theme with custom fonts" do
@@ -137,7 +137,7 @@ defmodule Gesttalt.ThemesTest do
       assert css =~ "--colors-text: #000000;"
       assert css =~ "--colors-background: #ffffff;"
       assert css =~ "--fonts-body:"
-      assert css =~ "--fontsizes-0: 11px;"
+      assert css =~ "--fontsizes-0: 0.78125rem;"
       assert css =~ "--space-0: 0;"
     end
   end
@@ -173,7 +173,7 @@ defmodule Gesttalt.ThemesTest do
       assert json["colors"]["text"] == "#000000"
       assert json["fontSizes"] == theme.font_sizes
       assert json["fontWeights"]["body"] == 400
-      assert json["lineHeights"]["body"] == 1.6
+      assert json["lineHeights"]["body"] == 1.45
       assert json["letterSpacings"]["normal"] == "normal"
     end
   end
