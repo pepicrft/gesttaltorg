@@ -10,6 +10,7 @@ defmodule GesttaltWeb.Router do
     plug :put_root_layout, html: {GesttaltWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug GesttaltWeb.ThemePlug
   end
 
   pipeline :api do
@@ -20,6 +21,12 @@ defmodule GesttaltWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+  end
+
+  scope "/api", GesttaltWeb do
+    pipe_through :api
+    
+    post "/theme", ThemeController, :toggle
   end
 
   # Other scopes may use custom stacks.
