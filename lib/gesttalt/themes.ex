@@ -624,7 +624,8 @@ defmodule Gesttalt.Themes do
       css_vars =
         css_vars ++
           Enum.map(theme.z_indices, fn {key, value} ->
-            "  --z-indices-#{String.replace(key, "_", "-")}: #{value};"
+            key_str = key |> to_string() |> String.replace("_", "-")
+            "  --z-indices-#{key_str}: #{value};"
           end)
     end
 
