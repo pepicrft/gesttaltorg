@@ -12,5 +12,6 @@
     postinstall = "mise run install"
 
 [settings]
+    experimental = true
     lockfile = true
     sops.strict = false
