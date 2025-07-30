@@ -25,7 +25,7 @@ defmodule GesttaltWeb.Router do
 
   scope "/api", GesttaltWeb do
     pipe_through :api
-    
+
     post "/theme", ThemeController, :toggle
   end
 

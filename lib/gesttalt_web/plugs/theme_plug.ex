@@ -1,4 +1,8 @@
 defmodule GesttaltWeb.ThemePlug do
+  @moduledoc """
+  A plug that reads the user's theme preference from cookies and assigns it to the connection.
+  """
+
   import Plug.Conn
 
   def init(default), do: default
