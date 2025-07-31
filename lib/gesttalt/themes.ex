@@ -308,6 +308,11 @@ defmodule Gesttalt.Themes do
             "danger" => "#A0522D"
           }
         }
+      },
+      fonts: %Theme.Fonts{
+        body: "Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif",
+        heading: "inherit",
+        monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
       }
     }
   end
@@ -345,6 +350,11 @@ defmodule Gesttalt.Themes do
             "danger" => "#FF6B6B"
           }
         }
+      },
+      fonts: %Theme.Fonts{
+        body: "Avenir Next, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif",
+        heading: "inherit",
+        monospace: "'SF Mono', Monaco, 'Inconsolata', 'Fira Code', monospace"
       }
     }
   end
@@ -382,6 +392,11 @@ defmodule Gesttalt.Themes do
             "danger" => "#FF1744"
           }
         }
+      },
+      fonts: %Theme.Fonts{
+        body: "Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif",
+        heading: "inherit",
+        monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
       }
     }
   end
@@ -419,6 +434,11 @@ defmodule Gesttalt.Themes do
             "danger" => "#DDDDDD"
           }
         }
+      },
+      fonts: %Theme.Fonts{
+        body: "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
+        heading: "inherit", 
+        monospace: "'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace"
       }
     }
   end
