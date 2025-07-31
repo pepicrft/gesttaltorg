@@ -335,8 +335,19 @@ a:hover {
 
 .gst-Home_pricingSubtitle {
   font-size: var(--font-sizes-3);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-secondary);
+}
+
+.gst-Home_pricingSelfHost {
+  font-size: var(--font-sizes-3);
   margin: 0 0 var(--space-6) 0;
   color: var(--color-secondary);
+}
+
+.gst-Home_pricingSelfHost a {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 .gst-Home_pricingOptions {
