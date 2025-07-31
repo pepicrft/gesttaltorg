@@ -85,7 +85,7 @@ a:hover {
 }
 
 .gst-Header_logoText {
-  font-weight: var(--font-weights-body);
+  font-weight: var(--font-weights-heading);
 }
 
 .gst-Header_nav {
