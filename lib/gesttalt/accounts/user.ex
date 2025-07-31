@@ -1,4 +1,10 @@
 defmodule Gesttalt.Accounts.User do
+  @moduledoc """
+  User schema for the Gesttalt application.
+  
+  This module defines the user structure and handles user-related
+  changesets for registration, email/password updates, and authentication.
+  """
   use Ecto.Schema
 
   import Ecto.Changeset

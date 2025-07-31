@@ -1,4 +1,10 @@
 defmodule Gesttalt.Accounts.UserNotifier do
+  @moduledoc """
+  Handles email notifications for user accounts.
+  
+  This module sends various email notifications including account
+  confirmation instructions and password reset instructions.
+  """
   import Swoosh.Email
 
   alias Gesttalt.Mailer

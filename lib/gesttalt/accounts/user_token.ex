@@ -1,4 +1,10 @@
 defmodule Gesttalt.Accounts.UserToken do
+  @moduledoc """
+  Schema for user authentication tokens.
+  
+  This module manages session and reset password tokens for users,
+  including token generation, validation, and cleanup.
+  """
   use Ecto.Schema
 
   import Ecto.Query

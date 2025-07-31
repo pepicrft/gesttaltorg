@@ -1,4 +1,10 @@
 defmodule GesttaltWeb.UserAuth do
+  @moduledoc """
+  Handles user authentication for the Gesttalt web application.
+  
+  This module provides functions for logging in users, logging them out,
+  and requiring authentication for certain routes.
+  """
   use GesttaltWeb, :verified_routes
 
   import Phoenix.Controller
