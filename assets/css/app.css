@@ -335,9 +335,9 @@ a:hover {
 
 .gst-Home_pricingOptions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--space-4);
-  max-width: 600px;
+  max-width: 800px;
 }
 
 .gst-Home_pricingOption {
@@ -345,6 +345,7 @@ a:hover {
   border-radius: var(--radii-default);
   background-color: var(--color-background);
   padding: var(--space-6);
+  flex: 1;
 }
 
 .gst-Home_pricingContent {
@@ -562,6 +563,10 @@ a:hover {
   
   .gst-Home_tagline {
     font-size: var(--font-sizes-3);
+  }
+  
+  .gst-Home_pricingOptions {
+    flex-direction: column;
   }
   
   .gst-Home_pricingContent {
