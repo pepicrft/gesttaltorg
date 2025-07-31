@@ -41,7 +41,15 @@ config :gesttalt, GesttaltWeb.Endpoint,
 
 config :gesttalt,
   ecto_repos: [Gesttalt.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [
+    timestamp_type: :utc_datetime,
+    binary_id: true
+  ]
+
+# Configure Ecto to use UUIDv7 for primary keys
+config :gesttalt, Gesttalt.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
 
 # Configures Elixir's Logger
 config :logger, :console,

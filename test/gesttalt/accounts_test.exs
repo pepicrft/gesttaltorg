@@ -37,7 +37,7 @@ defmodule Gesttalt.AccountsTest do
 
   describe "get_user!/1" do
     test "raises if id is invalid" do
-      assert_raise Ecto.NoResultsError, fn ->
+      assert_raise Ecto.Query.CastError, fn ->
         Accounts.get_user!(-1)
       end
     end

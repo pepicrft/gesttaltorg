@@ -5,12 +5,12 @@ defmodule Gesttalt.Accounts.User do
   This module defines the user structure and handles user-related
   changesets for registration, email/password updates, and authentication.
   """
-  use Ecto.Schema
+  use Gesttalt.Schema
 
   import Ecto.Changeset
 
   alias Gesttalt.Accounts.User
-
+  
   schema "users" do
     field :email, :string
     field :handle, :string

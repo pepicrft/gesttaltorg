@@ -15,4 +15,18 @@ defmodule GesttaltWeb.UserProfileController do
         render(conn, :show, user: user, page_title: "@#{user.handle}")
     end
   end
+
+  def manage(conn, %{"handle" => handle}) do
+    current_user = conn.assigns.current_user
+    
+    # Ensure user can only manage their own profile
+    if current_user && current_user.handle == handle do
+      render(conn, :manage, user: current_user, page_title: "Manage @#{current_user.handle}")
+    else
+      conn
+      |> put_status(:forbidden)
+      |> put_view(GesttaltWeb.ErrorHTML)
+      |> render(:"403")
+    end
+  end
 end

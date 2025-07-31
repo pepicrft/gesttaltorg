@@ -1,112 +1,24 @@
 <article class="gst-Home">
   <header class="gst-Home_header">
-    <.h1 class="gst-Home_title">Gesttalt</.h1>
-    <p class="gst-Home_tagline">A tool of expression on the Internet</p>
+    <.h1 class="gst-Home_title">Your Garden</.h1>
+    <p class="gst-Home_subtitle">Welcome back, @<%= @current_user.handle %></p>
   </header>
 
-  <section class="gst-Home_intro">
-    <p>
-      Gesttalt is a tool of expression on the Internet that empowers you to collect, author, publish, and share
-      your ideas in meaningful ways. Drawing inspiration from <a href="https://are.na">Are.na</a>, Gesttalt provides
-      a creative space where your digital expressions can flourish and interconnect.
-    </p>
-  </section>
-
-  <section class="gst-Home_features">
-    <ul>
-      <li>Collect links, images, text, and files from across the web</li>
-      <li>Author and publish your own original content</li>
-      <li>Connect ideas and build relationships between them</li>
-      <li>Create channels to organize your thoughts</li>
-      <li>Share your collections and publications with others</li>
-      <li>Follow interesting people and discover new perspectives</li>
-    </ul>
-  </section>
-
-  <section class="gst-Home_story">
-    <.h2 class="gst-Home_storyTitle">Why Gesttalt?</.h2>
-
-    <div class="gst-Home_storyContent">
-      <p>
-        Our digital identities have become fragmented, scattered across platforms that wall off our content
-        behind proprietary systems closed to integration. We express ourselves through Instagram stories,
-        social media threads, blog posts, and countless other formats—each locked in its own silo.
+  <section class="gst-Home_feed">
+    <div class="gst-Home_emptyState">
+      <div class="gst-Home_emptyIcon">🌱</div>
+      <p class="gst-Home_emptyTitle">Your feed is ready to bloom</p>
+      <p class="gst-Home_emptyDescription">
+        Start following other gardeners or plant your first seed to see content here.
       </p>
-
-      <p>
-        While publishing once meant blogging, today we share a rich tapestry of content: quick thoughts,
-        long-form essays, images, code snippets, audio recordings, and everything in between. Traditional
-        blogging engines weren't built for this diversity of expression.
-      </p>
-
-      <p>
-        I wanted to concentrate my online presence in one place that would embrace the principles and values
-        of the social web. A space that speaks RSS for syndication, integrates with the Fediverse for
-        connection, and remains open for interoperability. A platform that doesn't trap your content but
-        lets it flow freely across the internet.
-      </p>
-
-      <p>
-        At the same time, it needed to be developer-oriented. Native clients should be able to publish from
-        anywhere—your terminal, your phone, your favorite editor. APIs should be first-class citizens, not
-        afterthoughts.
-      </p>
-
-      <p>
-        This vision gave birth to Gesttalt, named after the German concept of <em>Gestalt</em>—the idea that
-        the whole is greater than the sum of its parts. Just as our scattered digital fragments form a
-        complete identity when brought together, Gesttalt unifies your online presence into something more
-        meaningful than its individual pieces.
-      </p>
-    </div>
-  </section>
-
-  <section class="gst-Home_pricing">
-    <.h2 class="gst-Home_pricingTitle">Simple, transparent pricing</.h2>
-    <p class="gst-Home_pricingSubtitle">
-      Free up to 10 nodes on hosted version. Pricing covers infrastructure costs.
-    </p>
-    <div class="gst-Home_pricingOptions">
-      <div class="gst-Home_pricingOption">
-        <div class="gst-Home_pricingContent">
-          <div class="gst-Home_pricingPrice">Self-host</div>
-          <div class="gst-Home_pricingDescription">
-            Free forever<br>
-            MPL-2.0 license
-          </div>
-        </div>
-      </div>
-      <div class="gst-Home_pricingOption">
-        <div class="gst-Home_pricingContent">
-          <div class="gst-Home_pricingPrice">
-            $6<span class="gst-Home_pricingPeriod">/month</span>
-          </div>
-          <div class="gst-Home_pricingDescription">
-            Hosted version<br>
-            Unlimited nodes
-          </div>
-        </div>
-      </div>
-      <div class="gst-Home_pricingOption">
-        <div class="gst-Home_pricingContent">
-          <div class="gst-Home_pricingPrice">
-            $60<span class="gst-Home_pricingPeriod">/year</span>
-          </div>
-          <div class="gst-Home_pricingDescription">
-            Hosted version<br>
-            Save $12 annually
-          </div>
-        </div>
+      <div class="gst-Home_emptyActions">
+        <a href={"/@" <> @current_user.handle <> "/manage"} class="gst-Home_emptyAction">
+          🌱 Plant Your First Seed
+        </a>
+        <a href="/explore" class="gst-Home_emptyAction gst-Home_emptyAction--secondary">
+          🌿 Explore Gardens
+        </a>
       </div>
     </div>
-  </section>
-
-  <section class="gst-Home_cta">
-    <%= if @current_user do %>
-      <a href={"/" <> @current_user.handle} class="gst-Home_ctaButton">Go to Profile</a>
-    <% else %>
-      <a href="/users/register" class="gst-Home_ctaButton">Sign up</a>
-      <a href="/users/log_in" class="gst-Home_ctaButton gst-Home_ctaButton--secondary">Log in</a>
-    <% end %>
   </section>
 </article>

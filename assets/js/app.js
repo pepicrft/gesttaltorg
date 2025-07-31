@@ -87,4 +87,61 @@ document.addEventListener('DOMContentLoaded', function() {
   if (savedTheme) {
     document.documentElement.setAttribute('data-theme', savedTheme);
   }
+  
+  // Initialize heading anchors
+  initializeHeadingAnchors();
+});
+
+// Heading anchor functionality
+function initializeHeadingAnchors() {
+  const headings = document.querySelectorAll('[data-heading="true"]');
+  
+  headings.forEach(function(heading) {
+    const content = heading.querySelector('.gst-Heading_content');
+    const anchor = heading.querySelector('.gst-Heading_anchor');
+    
+    if (content && anchor) {
+      // Generate ID from text content
+      const text = content.textContent || content.innerText;
+      const id = generateHeadingId(text);
+      
+      // Set the heading ID
+      heading.id = id;
+      
+      // Update anchor href
+      anchor.href = '#' + id;
+      
+      // Add click handler for smooth scrolling
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Update URL without triggering page reload
+        if (history.pushState) {
+          history.pushState(null, null, '#' + id);
+        } else {
+          window.location.hash = '#' + id;
+        }
+        
+        // Smooth scroll to element
+        heading.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    }
+  });
+}
+
+function generateHeadingId(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+}
+
+// Re-initialize anchors for dynamically loaded content (LiveView)
+window.addEventListener('phx:update', function() {
+  initializeHeadingAnchors();
 });

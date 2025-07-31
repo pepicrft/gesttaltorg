@@ -1,0 +1,143 @@
+<article class="gst-Home">
+  <header class="gst-Home_header">
+    <.h1 class="gst-Home_title">Gesttalt</.h1>
+    <p class="gst-Home_tagline">Plant seeds of ideas. Cultivate gardens of knowledge. Grow a better society together.</p>
+  </header>
+
+  <section class="gst-Home_intro">
+    <p>
+      Gesttalt is a platform for cultivating knowledge through the simple act of planting <strong>seeds</strong> and tending <strong>gardens</strong>. 
+      Every thought, link, image, or idea you share becomes a seed that can grow into something meaningful. These seeds flourish in 
+      your curated gardens—spaces where related ideas connect, cross-pollinate, and inspire new growth.
+    </p>
+    <p>
+      When we share our intellectual gardens with others, we create opportunities for serendipitous connections that spark 
+      innovation, empathy, and understanding. By connecting our individual gardens of knowledge, we cultivate a richer, 
+      more thoughtful society where ideas can cross boundaries and grow beyond what any single mind could imagine.
+    </p>
+  </section>
+
+  <section class="gst-Home_features">
+    <ul>
+      <li><strong>Plant Seeds:</strong> Capture thoughts, links, images, and files from across the web as seeds of inspiration</li>
+      <li><strong>Cultivate Gardens:</strong> Organize and nurture your seeds in themed gardens where ideas can grow and connect</li>
+      <li><strong>Cross-Pollinate:</strong> Discover how seeds from different gardens create unexpected connections and insights</li>
+      <li><strong>Share Harvests:</strong> Let your gardens inspire and nourish others through open web principles</li>
+      <li><strong>Tend Together:</strong> Collaborate in shared gardens where communities can co-create and learn</li>
+      <li><strong>Bloom Naturally:</strong> Watch your ideas flourish in their own organic patterns</li>
+    </ul>
+  </section>
+
+  <section class="gst-Home_story">
+    <.h2 class="gst-Home_storyTitle">Why Gesttalt?</.h2>
+
+    <div class="gst-Home_storyContent">
+      <p>
+        Our digital identities have become fragmented, scattered across platforms that wall off our content
+        behind proprietary systems closed to integration. We express ourselves through Instagram stories,
+        social media threads, blog posts, and countless other formats—each locked in its own silo.
+      </p>
+
+      <p>
+        While publishing once meant blogging, today we share a rich tapestry of content: quick thoughts,
+        long-form essays, images, code snippets, audio recordings, and everything in between. Traditional
+        blogging engines weren't built for this diversity of expression.
+      </p>
+
+      <p>
+        I wanted to concentrate my online presence in one place that would embrace the principles and values
+        of the social web. A space that speaks RSS for syndication, integrates with the Fediverse for
+        connection, and remains open for interoperability. A platform that doesn't trap your content but
+        lets it flow freely across the internet.
+      </p>
+
+      <p>
+        At the same time, it needed to be developer-oriented. Native clients should be able to publish from
+        anywhere—your terminal, your phone, your favorite editor. APIs should be first-class citizens, not
+        afterthoughts.
+      </p>
+
+      <p>
+        This vision gave birth to Gesttalt, named after the German concept of <em>Gestalt</em>—the idea that
+        the whole is greater than the sum of its parts. Just as seeds grow into flourishing gardens when nurtured 
+        with care and connection, Gesttalt transforms your scattered digital fragments into thriving ecosystems 
+        of knowledge. Each seed you plant contributes to a larger garden of human understanding, where individual 
+        ideas combine to create insights more profound than any could achieve alone.
+      </p>
+    </div>
+  </section>
+
+  <section class="gst-Home_commitment">
+    <.h2 class="gst-Home_commitmentTitle">Our Commitment to Free Software</.h2>
+    
+    <div class="gst-Home_commitmentContent">
+      <p>
+        Gesttalt is developed with the assistance of Large Language Models (LLMs), technologies made possible by the 
+        countless hours of work from open source contributors and maintainers around the world. Their code, documentation, 
+        and knowledge have been instrumental in training these AI systems that now help us build software more efficiently.
+      </p>
+      
+      <p>
+        We feel morally obligated to honor their contributions by releasing Gesttalt under a free software license 
+        (MPL-2.0). We cannot conceive of Gesttalt as a proprietary solution when it stands on the shoulders of so many 
+        who freely shared their work with the world. This is our way of giving back to the community that made 
+        these innovations possible and ensuring that the knowledge gardens we're building remain open for all to tend 
+        and harvest.
+      </p>
+      
+      <p>
+        Free software isn't just about code—it's about preserving the collaborative spirit that allows knowledge 
+        to flourish and cross-pollinate across boundaries, just like the gardens we're cultivating together.
+      </p>
+    </div>
+  </section>
+
+  <section class="gst-Home_pricing">
+    <.h2 class="gst-Home_pricingTitle">Choose your greenhouse</.h2>
+    <p class="gst-Home_pricingSubtitle">
+      Like Mastodon instances, Gesttalt greenhouses are independently operated spaces where multiple gardeners cultivate their individual gardens. Join our managed greenhouse or become your own groundskeeper.
+    </p>
+    <div class="gst-Home_pricingOptions">
+      <div class="gst-Home_pricingOption">
+        <div class="gst-Home_pricingContent">
+          <div class="gst-Home_pricingPrice">Your Greenhouse</div>
+          <div class="gst-Home_pricingDescription">
+            Be your own groundskeeper<br>
+            Free forever • MPL-2.0 license
+          </div>
+        </div>
+      </div>
+      <div class="gst-Home_pricingOption">
+        <div class="gst-Home_pricingContent">
+          <div class="gst-Home_pricingPrice">
+            $6<span class="gst-Home_pricingPeriod">/month</span>
+          </div>
+          <div class="gst-Home_pricingDescription">
+            Managed greenhouse<br>
+            Professional groundskeeping
+          </div>
+        </div>
+      </div>
+      <div class="gst-Home_pricingOption">
+        <div class="gst-Home_pricingContent">
+          <div class="gst-Home_pricingPrice">
+            $60<span class="gst-Home_pricingPeriod">/year</span>
+          </div>
+          <div class="gst-Home_pricingDescription">
+            Managed greenhouse<br>
+            Save $12 annually
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gst-Home_cta">
+    <%= if @current_user do %>
+      <a href={"/@" <> @current_user.handle} class="gst-Home_ctaButton">Visit Your Garden</a>
+    <% else %>
+      <a href="/users/register" class="gst-Home_ctaButton">Start Gardening</a>
+      <a href="/users/log_in" class="gst-Home_ctaButton gst-Home_ctaButton--secondary">Tend Your Garden</a>
+    <% end %>
+  </section>
+</article>

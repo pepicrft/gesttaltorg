@@ -33,13 +33,15 @@ defmodule GesttaltWeb.UserSessionControllerTest do
       assert redirected_to(conn) == ~p"/"
 
       # Now do a logged in request and assert on the menu
+      # Authenticated users are redirected to /home, so follow the redirect
       conn = get(conn, ~p"/")
+      assert redirected_to(conn) == ~p"/home"
+      
+      # Follow redirect to /home and check the content
+      conn = get(conn, ~p"/home")
       response = html_response(conn, 200)
-      # The home page now includes the app layout with header navigation
-      assert response =~ "Go to Profile"
-      assert response =~ "@#{user.handle}"
-      assert response =~ "Settings"
-      assert response =~ "Log out"
+      assert response =~ "Your Garden"
+      assert response =~ "Welcome back, @#{user.handle}"
     end
 
     test "logs the user in with remember me", %{conn: conn, user: user} do

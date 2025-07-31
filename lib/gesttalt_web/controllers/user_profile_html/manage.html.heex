@@ -1,0 +1,71 @@
+<article class="gst-UserManage">
+  <header class="gst-UserManage_header">
+    <.h1 class="gst-UserManage_title">Manage Your Garden</.h1>
+    <p class="gst-UserManage_subtitle">@<%= @user.handle %></p>
+  </header>
+
+  <section class="gst-UserManage_overview">
+    <.h2 class="gst-UserManage_sectionTitle">Garden Overview</.h2>
+    <div class="gst-UserManage_stats">
+      <div class="gst-UserManage_stat">
+        <div class="gst-UserManage_statValue">0</div>
+        <div class="gst-UserManage_statLabel">Seeds Planted</div>
+      </div>
+      <div class="gst-UserManage_stat">
+        <div class="gst-UserManage_statValue">0</div>
+        <div class="gst-UserManage_statLabel">Gardens Cultivated</div>
+      </div>
+      <div class="gst-UserManage_stat">
+        <div class="gst-UserManage_statValue">0</div>
+        <div class="gst-UserManage_statLabel">Cross-Pollinations</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gst-UserManage_actions">
+    <.h2 class="gst-UserManage_sectionTitle">Quick Actions</.h2>
+    <div class="gst-UserManage_actionGrid">
+      <a href="#" class="gst-UserManage_action">
+        <div class="gst-UserManage_actionIcon">🌱</div>
+        <div class="gst-UserManage_actionTitle">Plant New Seed</div>
+        <div class="gst-UserManage_actionDescription">Add a new piece of content to your garden</div>
+      </a>
+      <a href="#" class="gst-UserManage_action">
+        <div class="gst-UserManage_actionIcon">🌿</div>
+        <div class="gst-UserManage_actionTitle">Create Garden</div>
+        <div class="gst-UserManage_actionDescription">Start a new collection for your seeds</div>
+      </a>
+      <a href="#" class="gst-UserManage_action">
+        <div class="gst-UserManage_actionIcon">🔗</div>
+        <div class="gst-UserManage_actionTitle">Cross-Pollinate</div>
+        <div class="gst-UserManage_actionDescription">Connect seeds across different gardens</div>
+      </a>
+      <a href={"/users/settings"} class="gst-UserManage_action">
+        <div class="gst-UserManage_actionIcon">⚙️</div>
+        <div class="gst-UserManage_actionTitle">Garden Settings</div>
+        <div class="gst-UserManage_actionDescription">Manage your account and preferences</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="gst-UserManage_recent">
+    <.h2 class="gst-UserManage_sectionTitle">Recent Activity</.h2>
+    <div class="gst-UserManage_emptyState">
+      <div class="gst-UserManage_emptyIcon">🌱</div>
+      <p class="gst-UserManage_emptyTitle">Your garden is ready to grow</p>
+      <p class="gst-UserManage_emptyDescription">
+        Start by planting your first seed or creating a garden to organize your ideas.
+      </p>
+    </div>
+  </section>
+
+  <section class="gst-UserManage_publicView">
+    <.h2 class="gst-UserManage_sectionTitle">Public Garden</.h2>
+    <p class="gst-UserManage_description">
+      This is how others see your garden when they visit your public profile.
+    </p>
+    <a href={"/@#{@user.handle}"} class="gst-UserManage_viewPublic">
+      View Public Garden
+    </a>
+  </section>
+</article>

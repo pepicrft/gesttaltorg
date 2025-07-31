@@ -24,11 +24,18 @@ defmodule GesttaltWeb.Router do
   scope "/", GesttaltWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", PageController, :index
     get "/debug", DebugController, :show
     get "/assets/theme.css", ThemeCSSController, :show
     post "/theme", ThemeController, :update
     get "/docs/api", ApiDocsController, :show
+  end
+
+  # Authenticated user routes
+  scope "/", GesttaltWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/home", PageController, :home
   end
 
   # API routes
@@ -98,6 +105,13 @@ defmodule GesttaltWeb.Router do
   scope "/", GesttaltWeb do
     pipe_through [:browser]
 
-    get "/:handle", UserProfileController, :show
+    get "/@:handle", UserProfileController, :show
+  end
+
+  # User management routes (authenticated users only)
+  scope "/", GesttaltWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/@:handle/manage", UserProfileController, :manage
   end
 end
