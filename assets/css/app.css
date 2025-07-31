@@ -576,8 +576,8 @@ a:hover {
 }
 
 .gst-ThemeSwitcher_toggle {
-  width: 56px;
-  height: 56px;
+  width: var(--font-sizes-3);
+  height: var(--font-sizes-3);
   border-radius: 50%;
   background-color: var(--color-primary);
   color: var(--color-background);
@@ -595,17 +595,13 @@ a:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-.gst-ThemeSwitcher_icon {
-  font-size: 24px;
-  line-height: 1;
-}
-
 .gst-ThemeSwitcher_options {
   position: absolute;
   bottom: 0;
-  right: 70px;
+  right: calc(var(--font-sizes-3) + var(--space-3));
   display: flex;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  align-items: center;
   opacity: 0;
   visibility: hidden;
   transform: translateX(20px);
@@ -623,8 +619,8 @@ a:hover {
 }
 
 .gst-ThemeSwitcher_option {
-  width: 40px;
-  height: 40px;
+  width: calc(var(--font-sizes-3) * 0.8);
+  height: calc(var(--font-sizes-3) * 0.8);
   border-radius: 50%;
   border: 2px solid transparent;
   cursor: pointer;
@@ -647,19 +643,5 @@ a:hover {
   .gst-ThemeSwitcher {
     bottom: var(--space-4);
     right: var(--space-4);
-  }
-  
-  .gst-ThemeSwitcher_toggle {
-    width: 48px;
-    height: 48px;
-  }
-  
-  .gst-ThemeSwitcher_icon {
-    font-size: 20px;
-  }
-  
-  .gst-ThemeSwitcher_option {
-    width: 36px;
-    height: 36px;
   }
 }
