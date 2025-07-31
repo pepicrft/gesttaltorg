@@ -8,11 +8,9 @@ defmodule GesttaltWeb.ThemeController do
     if Map.has_key?(Themes.all_themes(), theme_name) do
       conn
       |> put_resp_cookie("theme", theme_name, max_age: 60 * 60 * 24 * 365) # 1 year
-      |> put_flash(:info, "Theme changed to #{theme_name}")
       |> redirect(to: get_return_path(conn))
     else
       conn
-      |> put_flash(:error, "Invalid theme")
       |> redirect(to: get_return_path(conn))
     end
   end
