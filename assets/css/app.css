@@ -315,6 +315,67 @@ a:hover {
   color: var(--color-accent);
 }
 
+/* Pricing Section */
+.gst-Home_pricing {
+  margin-bottom: var(--space-10);
+  padding: var(--space-8) 0;
+}
+
+.gst-Home_pricingTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  text-align: center;
+  margin: 0 0 var(--space-8) 0;
+  color: var(--color-text);
+}
+
+.gst-Home_pricingOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-6);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.gst-Home_pricingOption {
+  text-align: center;
+  padding: var(--space-6);
+  border: 1px solid var(--color-highlight);
+  border-radius: var(--radii-default);
+  background-color: var(--color-background);
+}
+
+.gst-Home_pricingOption--featured {
+  border-color: var(--color-primary);
+  position: relative;
+}
+
+.gst-Home_pricingOptionName {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-body);
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-secondary);
+}
+
+.gst-Home_pricingPrice {
+  font-size: var(--font-sizes-6);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text);
+}
+
+.gst-Home_pricingPeriod {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-body);
+  color: var(--color-secondary);
+}
+
+.gst-Home_pricingDescription {
+  font-size: var(--font-sizes-3);
+  color: var(--color-secondary);
+  margin: 0;
+}
+
 /* CTA Section */
 .gst-Home_cta {
   display: flex;
@@ -506,6 +567,11 @@ a:hover {
   
   .gst-Home_tagline {
     font-size: var(--font-sizes-3);
+  }
+  
+  .gst-Home_pricingOptions {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
   
   .gst-Footer_container {
