@@ -64,10 +64,28 @@ a:hover {
 .gst-Header_logoLink {
   text-decoration: none;
   color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .gst-Header_logoLink:hover {
   color: var(--color-text);
+}
+
+.gst-Header_logoLink:hover .gst-Header_logoSymbol {
+  color: var(--color-primary);
+}
+
+.gst-Header_logoSymbol {
+  font-size: var(--font-sizes-4);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  transition: color 0.2s ease;
+}
+
+.gst-Header_logoText {
+  font-weight: var(--font-weights-body);
 }
 
 .gst-Header_nav {
