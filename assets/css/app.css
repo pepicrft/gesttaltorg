@@ -8,6 +8,7 @@
 
 html {
   height: 100%;
+  scroll-padding-top: 75px; /* Header height (55px) + padding (20px) */
 }
 
 body {
@@ -129,7 +130,7 @@ a:hover {
   margin: 0 auto;
   padding: 0 var(--space-6);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-8);
 }
 
@@ -343,8 +344,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   gap: var(--space-6);
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .gst-Home_pricingOption {
@@ -387,6 +387,334 @@ a:hover {
   color: var(--color-secondary);
   line-height: var(--line-heights-body);
   margin-top: var(--space-2);
+}
+
+/* API Documentation Component - EnduringCSS Convention */
+.gst-ApiDocs {
+  max-width: var(--sizes-container);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_header {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-highlight);
+}
+
+.gst-ApiDocs_title {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_description {
+  font-size: var(--font-sizes-3);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-secondary);
+}
+
+.gst-ApiDocs_version {
+  font-size: var(--font-sizes-3);
+  margin: 0;
+  color: var(--color-secondary);
+}
+
+.gst-ApiDocs_sectionTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: var(--space-8) 0 var(--space-4) 0;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_overview,
+.gst-ApiDocs_authentication {
+  margin-bottom: var(--space-6);
+}
+
+.gst-ApiDocs_baseUrl {
+  margin: 0;
+  font-size: var(--font-sizes-3);
+}
+
+.gst-ApiDocs_authScheme {
+  margin-bottom: var(--space-4);
+}
+
+.gst-ApiDocs_authName {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_authType,
+.gst-ApiDocs_authDescription,
+.gst-ApiDocs_noAuth {
+  font-size: var(--font-sizes-3);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-secondary);
+}
+
+.gst-ApiDocs_endpoint {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-highlight);
+}
+
+.gst-ApiDocs_endpointPath {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text);
+  font-family: var(--fonts-mono);
+}
+
+.gst-ApiDocs_operation {
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  border: 1px solid var(--color-highlight);
+  border-radius: var(--radii-default);
+}
+
+.gst-ApiDocs_operationHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.gst-ApiDocs_method {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radii-small);
+  font-size: var(--font-sizes-2);
+  font-weight: var(--font-weights-heading);
+  font-family: var(--fonts-mono);
+  color: var(--color-background);
+}
+
+.gst-ApiDocs_method--get {
+  background-color: #28a745;
+}
+
+.gst-ApiDocs_method--post {
+  background-color: #007bff;
+}
+
+.gst-ApiDocs_method--put {
+  background-color: #ffc107;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_method--delete {
+  background-color: #dc3545;
+}
+
+.gst-ApiDocs_operationSummary {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_operationDescription {
+  font-size: var(--font-sizes-3);
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-secondary);
+}
+
+.gst-ApiDocs_parameters,
+.gst-ApiDocs_requestBody,
+.gst-ApiDocs_responses {
+  margin-bottom: var(--space-4);
+}
+
+.gst-ApiDocs_parameterType,
+.gst-ApiDocs_requestBodyTitle,
+.gst-ApiDocs_responsesTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_parameterList,
+.gst-ApiDocs_schemaProperties {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gst-ApiDocs_parameter,
+.gst-ApiDocs_schemaProperty {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-sizes-3);
+}
+
+.gst-ApiDocs_parameterName,
+.gst-ApiDocs_propertyName {
+  font-family: var(--fonts-mono);
+  background-color: var(--color-highlight);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radii-small);
+  font-size: var(--font-sizes-2);
+}
+
+.gst-ApiDocs_parameterDetails,
+.gst-ApiDocs_propertyType {
+  color: var(--color-secondary);
+  font-size: var(--font-sizes-3);
+}
+
+.gst-ApiDocs_requestBodyType,
+.gst-ApiDocs_responseType,
+.gst-ApiDocs_schemaType {
+  font-size: var(--font-sizes-3);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-secondary);
+}
+
+.gst-ApiDocs_response {
+  margin-bottom: var(--space-3);
+}
+
+.gst-ApiDocs_responseStatus {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.gst-ApiDocs_statusCode {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radii-small);
+  font-size: var(--font-sizes-2);
+  font-family: var(--fonts-mono);
+  color: var(--color-background);
+}
+
+.gst-ApiDocs_statusCode--2 {
+  background-color: #28a745;
+}
+
+.gst-ApiDocs_statusCode--4 {
+  background-color: #ffc107;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_statusCode--5 {
+  background-color: #dc3545;
+}
+
+.gst-ApiDocs_examples {
+  margin-top: var(--space-8);
+}
+
+.gst-ApiDocs_example {
+  margin-bottom: var(--space-6);
+}
+
+.gst-ApiDocs_exampleTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-text);
+}
+
+.gst-ApiDocs_exampleDescription {
+  font-size: var(--font-sizes-3);
+  margin: var(--space-3) 0 var(--space-2) 0;
+  color: var(--color-secondary);
+}
+
+.gst-ApiDocs_code {
+  background-color: var(--color-highlight);
+  padding: var(--space-3);
+  border-radius: var(--radii-default);
+  font-family: var(--fonts-mono);
+  font-size: var(--font-sizes-2);
+  line-height: var(--line-heights-code);
+  overflow-x: auto;
+  margin: 0;
+  white-space: pre-wrap;
+  color: var(--color-text);
+}
+
+/* Heading Component - EnduringCSS Convention */
+.gst-Heading {
+  position: relative;
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0;
+  color: var(--color-text);
+}
+
+.gst-Heading--h1 {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-6);
+}
+
+.gst-Heading--h2 {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.gst-Heading--h3 {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.gst-Heading--h4 {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.gst-Heading--h5 {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.gst-Heading--h6 {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.gst-Heading_anchor {
+  position: absolute;
+  left: -1.5em; /* Position in left margin */
+  color: var(--color-secondary);
+  text-decoration: none;
+  opacity: 0.3;
+  font-weight: var(--font-weights-body);
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.gst-Heading:hover .gst-Heading_anchor {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.gst-Heading_anchor:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+.gst-Heading_content {
+  /* Content stays in normal flow, aligned with other content */
+}
+
+/* Hide anchors for headings inside API endpoint boxes */
+.gst-ApiDocs_operation .gst-Heading_anchor {
+  display: none;
 }
 
 /* CTA Section */
@@ -588,7 +916,7 @@ a:hover {
   }
   
   .gst-Footer_container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
   }
   

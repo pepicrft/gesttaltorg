@@ -8,7 +8,8 @@
     </div>
     <nav class="gst-Header_nav">
       <%= if @current_user do %>
-        <span class="gst-Header_navLink">@{@current_user.handle}</span>
+        <a href={"/" <> @current_user.handle} class="gst-Header_navLink">@{@current_user.handle}</a>
+        <a href="/docs/api" class="gst-Header_navLink">API</a>
         <a href="/users/settings" class="gst-Header_navLink">Settings</a>
         <.link href="/users/log_out" method="delete" class="gst-Header_navLink">
           Log out
@@ -16,6 +17,7 @@
       <% else %>
         <a href="/about" class="gst-Header_navLink">About</a>
         <a href="/explore" class="gst-Header_navLink">Explore</a>
+        <a href="/docs/api" class="gst-Header_navLink">API</a>
         <a href="/users/log_in" class="gst-Header_navLink">Log in</a>
         <a href="/users/register" class="gst-Header_navLink">Sign up</a>
       <% end %>
@@ -44,7 +46,7 @@
       <h4 class="gst-Footer_sectionTitle">Developers</h4>
       <ul class="gst-Footer_links">
         <li><a href="/extensions" class="gst-Footer_link">Browser Extensions</a></li>
-        <li><a href="/api" class="gst-Footer_link">API</a></li>
+        <li><a href="/docs/api" class="gst-Footer_link">API</a></li>
         <li>
           <a href="https://github.com/pepicrft/gesttalt" class="gst-Footer_link">Source Code</a>
         </li>
@@ -111,4 +113,61 @@
       switcher.classList.remove('gst-ThemeSwitcher--open');
     }
   });
+
+  // Generate IDs and handle anchor functionality for headings
+  function initializeHeadings() {
+    const headings = document.querySelectorAll('[data-heading="true"]');
+    
+    headings.forEach(heading => {
+      const content = heading.querySelector('.gst-Heading_content');
+      const anchor = heading.querySelector('.gst-Heading_anchor');
+      
+      if (content && anchor) {
+        // Generate ID from text content
+        const text = content.textContent.trim();
+        const id = text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '') // Remove special characters
+          .replace(/\s+/g, '-')     // Replace spaces with hyphens
+          .replace(/-+/g, '-')      // Replace multiple hyphens with single
+          .replace(/^-|-$/g, '');   // Remove leading/trailing hyphens
+        
+        // Set the ID on the heading
+        heading.id = id;
+        
+        // Update the anchor href
+        anchor.href = `#${id}`;
+        
+        // Add click handler for smooth scrolling
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          heading.scrollIntoView({ behavior: 'smooth' });
+          // Update URL without triggering navigation
+          window.history.replaceState(null, null, `#${id}`);
+        });
+      }
+    });
+  }
+
+  // Handle direct navigation to hash on page load
+  function handleInitialHash() {
+    if (window.location.hash) {
+      setTimeout(() => {
+        const element = document.querySelector(window.location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // Small delay to ensure elements are rendered
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeHeadings();
+    handleInitialHash();
+  });
+  
+  // Also initialize after LiveView updates (for dynamic content)
+  document.addEventListener('phx:update', initializeHeadings);
+
 </script>

@@ -1,0 +1,152 @@
+<article class="gst-ApiDocs">
+  <header class="gst-ApiDocs_header">
+    <.h1 class="gst-ApiDocs_title"><%= @spec.info.title %></.h1>
+    <p class="gst-ApiDocs_description"><%= @spec.info.description %></p>
+    <p class="gst-ApiDocs_version">Version: <%= @spec.info.version %></p>
+  </header>
+
+  <section class="gst-ApiDocs_overview">
+    <.h2 class="gst-ApiDocs_sectionTitle">Base URL</.h2>
+    <%= for server <- @spec.servers do %>
+      <p class="gst-ApiDocs_baseUrl"><code><%= server.url %></code></p>
+    <% end %>
+  </section>
+
+  <section class="gst-ApiDocs_authentication">
+    <.h2 class="gst-ApiDocs_sectionTitle">Authentication</.h2>
+    <%= if Map.get(@spec.components, :securitySchemes) do %>
+      <%= for {name, scheme} <- @spec.components.securitySchemes do %>
+        <div class="gst-ApiDocs_authScheme">
+          <.h3 class="gst-ApiDocs_authName"><%= String.capitalize(to_string(name)) %></.h3>
+          <p class="gst-ApiDocs_authType">Type: <%= scheme.type %> (<%= scheme.scheme %>)</p>
+          <p class="gst-ApiDocs_authDescription">
+            Include the bearer token in the Authorization header: <code>Authorization: Bearer &lt;token&gt;</code>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="gst-ApiDocs_noAuth">No authentication required for current endpoints.</p>
+    <% end %>
+  </section>
+
+  <section class="gst-ApiDocs_endpoints">
+    <.h2 class="gst-ApiDocs_sectionTitle">Endpoints</.h2>
+    
+    <%= for {path, path_item} <- @spec.paths do %>
+      <div class="gst-ApiDocs_endpoint">
+        <.h3 class="gst-ApiDocs_endpointPath"><%= path %></.h3>
+        
+        <%= for {method, operation} <- extract_operations(path_item) do %>
+          <div class="gst-ApiDocs_operation">
+            <div class="gst-ApiDocs_operationHeader">
+              <span class={"gst-ApiDocs_method gst-ApiDocs_method--#{method}"}><%= String.upcase(to_string(method)) %></span>
+              <span class="gst-ApiDocs_operationSummary"><%= operation.summary %></span>
+            </div>
+            
+            <%= if operation.description do %>
+              <p class="gst-ApiDocs_operationDescription"><%= operation.description %></p>
+            <% end %>
+
+            <%= if operation.parameters && length(operation.parameters) > 0 do %>
+              <div class="gst-ApiDocs_parameters">
+                <%= if length(format_path_parameters(operation.parameters)) > 0 do %>
+                  <.h4 class="gst-ApiDocs_parameterType">Path Parameters</.h4>
+                  <ul class="gst-ApiDocs_parameterList">
+                    <%= for param <- format_path_parameters(operation.parameters) do %>
+                      <li class="gst-ApiDocs_parameter">
+                        <code class="gst-ApiDocs_parameterName"><%= param.name %></code>
+                        <span class="gst-ApiDocs_parameterDetails">
+                          (<%= param.type %><%= if param.required, do: ", required" %>)
+                          <%= if param.description, do: " - #{param.description}" %>
+                        </span>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+
+                <%= if length(format_query_parameters(operation.parameters)) > 0 do %>
+                  <.h4 class="gst-ApiDocs_parameterType">Query Parameters</.h4>
+                  <ul class="gst-ApiDocs_parameterList">
+                    <%= for param <- format_query_parameters(operation.parameters) do %>
+                      <li class="gst-ApiDocs_parameter">
+                        <code class="gst-ApiDocs_parameterName"><%= param.name %></code>
+                        <span class="gst-ApiDocs_parameterDetails">
+                          (<%= param.type %><%= if param.required, do: ", required" %>)
+                          <%= if param.description, do: " - #{param.description}" %>
+                        </span>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+
+            <%= if format_request_body(operation.requestBody) do %>
+              <div class="gst-ApiDocs_requestBody">
+                <.h4 class="gst-ApiDocs_requestBodyTitle">Request Body</.h4>
+                <p class="gst-ApiDocs_requestBodyType">Content-Type: <code>application/json</code></p>
+                <% request_schema = format_request_body(operation.requestBody) %>
+                <%= if Map.get(request_schema, :properties) do %>
+                  <ul class="gst-ApiDocs_schemaProperties">
+                    <%= for {prop_name, prop} <- request_schema.properties do %>
+                      <li class="gst-ApiDocs_schemaProperty">
+                        <code class="gst-ApiDocs_propertyName"><%= prop_name %></code>
+                        <span class="gst-ApiDocs_propertyType">(<%= prop.type %>)</span>
+                        <%= if prop.description, do: " - #{prop.description}" %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p class="gst-ApiDocs_schemaType"><%= request_schema.type %>: <%= request_schema.description %></p>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="gst-ApiDocs_responses">
+              <.h4 class="gst-ApiDocs_responsesTitle">Responses</.h4>
+              <%= for {status, response} <- format_responses(operation.responses) do %>
+                <div class="gst-ApiDocs_response">
+                  <.h5 class="gst-ApiDocs_responseStatus">
+                    <span class={"gst-ApiDocs_statusCode gst-ApiDocs_statusCode--#{div(status, 100)}"}><%= status %></span>
+                    <%= response.description %>
+                  </.h5>
+                  <%= if response.schema do %>
+                    <p class="gst-ApiDocs_responseType">Content-Type: <code>application/json</code></p>
+                    <%= if Map.get(response.schema, :properties) do %>
+                      <ul class="gst-ApiDocs_schemaProperties">
+                        <%= for {prop_name, prop} <- response.schema.properties do %>
+                          <li class="gst-ApiDocs_schemaProperty">
+                            <code class="gst-ApiDocs_propertyName"><%= prop_name %></code>
+                            <span class="gst-ApiDocs_propertyType">(<%= prop.type %>)</span>
+                            <%= if prop.description, do: " - #{prop.description}" %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <p class="gst-ApiDocs_schemaType"><%= response.schema.type %>: <%= response.schema.description %></p>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="gst-ApiDocs_examples">
+    <.h2 class="gst-ApiDocs_sectionTitle">Example Usage</.h2>
+    
+    <div class="gst-ApiDocs_example">
+      <.h3 class="gst-ApiDocs_exampleTitle">Health Check</.h3>
+      <pre class="gst-ApiDocs_code">curl -X GET <%= List.first(@spec.servers).url %>/api/health</pre>
+      
+      <p class="gst-ApiDocs_exampleDescription">Response:</p>
+      <pre class="gst-ApiDocs_code"><%= raw(~s|{
+  "status": "ok",
+  "timestamp": "2024-01-01T00:00:00Z"
+}|) %></pre>
+    </div>
+  </section>
+</article>

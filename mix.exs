@@ -56,7 +56,8 @@ defmodule Gesttalt.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:tidewave, "~> 0.2.0"},
-      {:typed_struct, "~> 0.3.0", runtime: false}
+      {:typed_struct, "~> 0.3.0", runtime: false},
+      {:open_api_spex, "~> 3.6"}
     ]
   end
 

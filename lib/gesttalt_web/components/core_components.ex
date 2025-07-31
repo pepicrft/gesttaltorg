@@ -672,4 +672,89 @@ defmodule GesttaltWeb.CoreComponents do
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
+
+  @doc """
+  Renders a heading with an auto-generated anchor link.
+
+  The ID is automatically generated from the text content client-side.
+  The # anchor appears on the left side without indenting the title.
+
+  ## Examples
+
+      <.h1>Introduction</.h1>
+      <.h2>Getting Started</.h2>
+      <.h3>API Overview</.h3>
+
+  """
+  attr :class, :string, default: nil
+  slot :inner_block, required: true
+
+  def h1(assigns) do
+    ~H"""
+    <h1 class={["gst-Heading gst-Heading--h1", @class]} data-heading="true">
+      <a href="#" class="gst-Heading_anchor" aria-label="Link to this section">#</a>
+      <span class="gst-Heading_content"><%= render_slot(@inner_block) %></span>
+    </h1>
+    """
+  end
+
+  attr :class, :string, default: nil
+  slot :inner_block, required: true
+
+  def h2(assigns) do
+    ~H"""
+    <h2 class={["gst-Heading gst-Heading--h2", @class]} data-heading="true">
+      <a href="#" class="gst-Heading_anchor" aria-label="Link to this section">#</a>
+      <span class="gst-Heading_content"><%= render_slot(@inner_block) %></span>
+    </h2>
+    """
+  end
+
+  attr :class, :string, default: nil
+  slot :inner_block, required: true
+
+  def h3(assigns) do
+    ~H"""
+    <h3 class={["gst-Heading gst-Heading--h3", @class]} data-heading="true">
+      <a href="#" class="gst-Heading_anchor" aria-label="Link to this section">#</a>
+      <span class="gst-Heading_content"><%= render_slot(@inner_block) %></span>
+    </h3>
+    """
+  end
+
+  attr :class, :string, default: nil
+  slot :inner_block, required: true
+
+  def h4(assigns) do
+    ~H"""
+    <h4 class={["gst-Heading gst-Heading--h4", @class]} data-heading="true">
+      <a href="#" class="gst-Heading_anchor" aria-label="Link to this section">#</a>
+      <span class="gst-Heading_content"><%= render_slot(@inner_block) %></span>
+    </h4>
+    """
+  end
+
+  attr :class, :string, default: nil
+  slot :inner_block, required: true
+
+  def h5(assigns) do
+    ~H"""
+    <h5 class={["gst-Heading gst-Heading--h5", @class]} data-heading="true">
+      <a href="#" class="gst-Heading_anchor" aria-label="Link to this section">#</a>
+      <span class="gst-Heading_content"><%= render_slot(@inner_block) %></span>
+    </h5>
+    """
+  end
+
+  attr :class, :string, default: nil
+  slot :inner_block, required: true
+
+  def h6(assigns) do
+    ~H"""
+    <h6 class={["gst-Heading gst-Heading--h6", @class]} data-heading="true">
+      <a href="#" class="gst-Heading_anchor" aria-label="Link to this section">#</a>
+      <span class="gst-Heading_content"><%= render_slot(@inner_block) %></span>
+    </h6>
+    """
+  end
 end

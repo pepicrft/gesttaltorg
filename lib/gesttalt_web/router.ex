@@ -18,6 +18,7 @@ defmodule GesttaltWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug OpenApiSpex.Plug.PutApiSpec, module: GesttaltWeb.ApiSpec
   end
 
   scope "/", GesttaltWeb do
@@ -27,12 +28,21 @@ defmodule GesttaltWeb.Router do
     get "/debug", DebugController, :show
     get "/assets/theme.css", ThemeCSSController, :show
     post "/theme", ThemeController, :update
+    get "/docs/api", ApiDocsController, :show
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", GesttaltWeb do
-  #   pipe_through :api
-  # end
+  # API routes
+  scope "/api" do
+    pipe_through :api
+    get "/openapi", OpenApiSpex.Plug.RenderSpec, []
+  end
+
+  scope "/api", GesttaltWeb do
+    pipe_through :api
+
+    # Health check endpoint
+    get "/health", Api.HealthController, :check
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:gesttalt, :dev_routes) do
