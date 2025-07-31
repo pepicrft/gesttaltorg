@@ -13,7 +13,7 @@ defmodule Gesttalt.ThemesTest do
       assert theme.colors.background == "#ffffff"
       assert theme.fonts.body =~ "Arial"
       assert length(theme.font_sizes) == 10
-      assert theme.colors.modes.dark["text"] == "#ffffff"
+      assert theme.colors.modes.dark["text"] == "#F5F5F5"
     end
   end
 
@@ -57,7 +57,7 @@ defmodule Gesttalt.ThemesTest do
       assert theme.colors.text == "#333"
       assert theme.colors.background == "#f0f0f0"
       # Other colors should have defaults
-      assert theme.colors.primary == "#00CED1"
+      assert theme.colors.primary == "#0969DA"
     end
 
     test "creates theme with custom fonts" do
