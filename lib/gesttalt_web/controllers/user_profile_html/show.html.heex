@@ -6,6 +6,11 @@
       <span class="gst-UserProfile_status gst-UserProfile_status--confirmed">Confirmed</span>
     <% else %>
       <span class="gst-UserProfile_status gst-UserProfile_status--unconfirmed">Unconfirmed</span>
+      <%= if Application.get_env(:gesttalt, :dev_routes) do %>
+        <div class="gst-UserProfile_devLink">
+          <a href="/dev/mailbox" target="_blank">📧 Check mailbox for confirmation email</a>
+        </div>
+      <% end %>
     <% end %>
   </header>
 

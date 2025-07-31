@@ -269,12 +269,13 @@ a:hover {
 
 .gst-Home_ctaButton {
   display: inline-block;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-2) var(--space-4);
   background-color: var(--color-primary);
   color: var(--color-background);
   text-decoration: none;
   border-radius: var(--radii-default);
   font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-body);
   transition: all 0.2s ease;
 }
 
@@ -344,8 +345,8 @@ a:hover {
   display: inline-block;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--border-radius);
-  font-size: var(--font-sizes-2);
-  font-weight: var(--font-weights-medium);
+  font-size: var(--font-sizes-1);
+  font-weight: var(--font-weights-body);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -358,6 +359,16 @@ a:hover {
 .gst-UserProfile_status--unconfirmed {
   background-color: var(--color-warning);
   color: var(--color-bg);
+}
+
+.gst-UserProfile_devLink {
+  margin-top: var(--space-2);
+  font-size: var(--font-sizes-1);
+}
+
+.gst-UserProfile_devLink a {
+  color: var(--color-accent);
+  text-decoration: underline;
 }
 
 .gst-UserProfile_content {
@@ -400,12 +411,12 @@ a:hover {
 
 .gst-UserProfile_actionButton {
   display: inline-block;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-2) var(--space-4);
   background-color: var(--color-primary);
   color: var(--color-bg);
   text-decoration: none;
   border-radius: var(--border-radius);
-  font-weight: var(--font-weights-medium);
+  font-weight: var(--font-weights-body);
   font-size: var(--font-sizes-3);
   transition: background-color 0.2s ease;
 }
@@ -413,6 +424,7 @@ a:hover {
 .gst-UserProfile_actionButton:hover {
   background-color: var(--color-primary);
   filter: brightness(0.85);
+  color: var(--color-background);
 }
 
 .gst-UserProfile_actionButton--secondary {
