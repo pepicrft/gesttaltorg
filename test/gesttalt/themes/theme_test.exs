@@ -20,12 +20,12 @@ defmodule Gesttalt.Themes.ThemeTest do
 
       assert theme.colors.text == "#000000"
       assert theme.colors.background == "#ffffff"
-      assert theme.colors.primary == "#00CED1"
+      assert theme.colors.primary == "#0969DA"
 
       # Check dark mode colors
       assert theme.colors.modes.dark["text"] == "#F5F5F5"
       assert theme.colors.modes.dark["background"] == "#0A0A0A"
-      assert theme.colors.modes.dark["primary"] == "#00E5E8"
+      assert theme.colors.modes.dark["primary"] == "#2F81F7"
     end
   end
 
@@ -35,7 +35,7 @@ defmodule Gesttalt.Themes.ThemeTest do
 
       assert colors.text == "#000000"
       assert colors.background == "#ffffff"
-      assert colors.primary == "#00CED1"
+      assert colors.primary == "#0969DA"
       assert colors.modes == %{}
     end
 

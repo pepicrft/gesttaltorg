@@ -19,7 +19,7 @@ defmodule GesttaltWeb.ThemeCSSControllerTest do
       assert response_body =~ ":root {"
       assert response_body =~ "--color-text: #000000;"
       assert response_body =~ "--color-background: #ffffff;"
-      assert response_body =~ "--color-primary: #00CED1;"
+      assert response_body =~ "--color-primary: #0969DA;"
       assert response_body =~ "--color-accent: #0066CC;"
     end
 

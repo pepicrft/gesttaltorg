@@ -47,9 +47,9 @@ a:hover {
 }
 
 .gst-Header_container {
-  max-width: 1200px;
+  max-width: var(--sizes-container);
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-6);
   height: 100%;
   display: flex;
   align-items: center;
@@ -93,9 +93,9 @@ a:hover {
 }
 
 .gst-Main_container {
-  max-width: 1200px;
+  max-width: var(--sizes-container);
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-6);
 }
 
 /* Footer Component - EnduringCSS Convention */
@@ -106,9 +106,9 @@ a:hover {
 }
 
 .gst-Footer_container {
-  max-width: 1200px;
+  max-width: var(--sizes-container);
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-6);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-8);
@@ -120,7 +120,7 @@ a:hover {
 
 .gst-Footer_sectionTitle {
   font-size: var(--font-sizes-3);
-  font-weight: var(--font-weights-body);
+  font-weight: var(--font-weights-heading);
   margin: 0 0 var(--space-4) 0;
   color: var(--color-bg);
 }
@@ -149,9 +149,9 @@ a:hover {
 }
 
 .gst-Footer_bottom {
-  max-width: 1200px;
+  max-width: var(--sizes-container);
   margin: var(--space-10) auto 0;
-  padding: var(--space-6) var(--space-4) 0;
+  padding: var(--space-6) var(--space-6) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -164,8 +164,7 @@ a:hover {
 
 /* Home Page Component - EnduringCSS Convention */
 .gst-Home {
-  max-width: 65ch;
-  margin: 0 auto;
+  /* Content inherits container width from .gst-Main_container */
 }
 
 .gst-Home_header {
@@ -174,14 +173,14 @@ a:hover {
 }
 
 .gst-Home_title {
-  font-size: var(--font-sizes-9);
-  font-weight: var(--font-weights-body);
-  letter-spacing: -0.02em;
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  letter-spacing: -0.01em;
   margin: 0 0 var(--space-4) 0;
 }
 
 .gst-Home_tagline {
-  font-size: var(--font-sizes-5);
+  font-size: var(--font-sizes-3);
   color: var(--color-secondary);
   margin: 0;
 }
@@ -318,9 +317,7 @@ a:hover {
 
 /* User Profile Styles */
 .gst-UserProfile {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-8) var(--space-6);
+  /* Content inherits container width from .gst-Main_container */
 }
 
 .gst-UserProfile_header {
@@ -331,14 +328,14 @@ a:hover {
 }
 
 .gst-UserProfile_handle {
-  font-size: var(--font-sizes-9);
-  font-weight: var(--font-weights-medium);
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
   color: var(--color-primary);
   margin: 0 0 var(--space-3) 0;
 }
 
 .gst-UserProfile_email {
-  font-size: var(--font-sizes-4);
+  font-size: var(--font-sizes-3);
   color: var(--color-secondary);
   margin: 0 0 var(--space-4) 0;
 }
@@ -369,8 +366,8 @@ a:hover {
 }
 
 .gst-UserProfile_welcome h2 {
-  font-size: var(--font-sizes-6);
-  font-weight: var(--font-weights-medium);
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
   color: var(--color-primary);
   margin: 0 0 var(--space-4) 0;
 }
@@ -436,11 +433,11 @@ a:hover {
   }
   
   .gst-Home_title {
-    font-size: var(--font-sizes-8);
+    font-size: var(--font-sizes-3);
   }
   
   .gst-Home_tagline {
-    font-size: var(--font-sizes-4);
+    font-size: var(--font-sizes-3);
   }
   
   .gst-Footer_container {
@@ -449,7 +446,7 @@ a:hover {
   }
   
   .gst-UserProfile_handle {
-    font-size: var(--font-sizes-8);
+    font-size: var(--font-sizes-3);
   }
   
   .gst-UserProfile_actions {
