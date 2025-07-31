@@ -7,6 +7,16 @@
       </a>
     </div>
     <nav class="gst-Header_nav">
+      <div class="gst-Header_themeSwitcher">
+        <form action="/theme" method="post" class="gst-Header_themeForm">
+          <input type="hidden" name="_csrf_token" value={get_csrf_token()} />
+          <select name="theme" class="gst-Header_themeSelect" onchange="this.form.submit()">
+            <%= for {name, _theme} <- Gesttalt.Themes.all_themes() do %>
+              <option value={name} selected={name == @current_theme}>{String.capitalize(name)}</option>
+            <% end %>
+          </select>
+        </form>
+      </div>
       <%= if @current_user do %>
         <span class="gst-Header_navLink">@{@current_user.handle}</span>
         <a href="/users/settings" class="gst-Header_navLink">Settings</a>

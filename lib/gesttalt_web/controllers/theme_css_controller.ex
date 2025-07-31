@@ -8,7 +8,7 @@ defmodule GesttaltWeb.ThemeCSSController do
   alias Gesttalt.Themes
 
   def show(conn, _params) do
-    # Get the current theme from the process
+    # Get the current theme from the process (set by ThemeLoaderPlug)
     theme = Themes.get_theme()
 
     # Generate CSS using the Themes module

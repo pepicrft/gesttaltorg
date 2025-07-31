@@ -26,6 +26,7 @@ defmodule GesttaltWeb.Router do
     get "/", PageController, :home
     get "/debug", DebugController, :show
     get "/assets/theme.css", ThemeCSSController, :show
+    post "/theme", ThemeController, :update
   end
 
   # Other scopes may use custom stacks.
