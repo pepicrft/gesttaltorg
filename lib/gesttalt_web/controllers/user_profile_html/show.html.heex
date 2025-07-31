@@ -1,0 +1,36 @@
+<article class="gst-UserProfile">
+  <header class="gst-UserProfile_header">
+    <h1 class="gst-UserProfile_handle">@{@user.handle}</h1>
+    <p class="gst-UserProfile_email">{@user.email}</p>
+    <%= if @user.confirmed_at do %>
+      <span class="gst-UserProfile_status gst-UserProfile_status--confirmed">Confirmed</span>
+    <% else %>
+      <span class="gst-UserProfile_status gst-UserProfile_status--unconfirmed">Unconfirmed</span>
+    <% end %>
+  </header>
+
+  <section class="gst-UserProfile_content">
+    <div class="gst-UserProfile_welcome">
+      <h2>Welcome to your profile!</h2>
+      <p>This is your personal space on Gesttalt. From here you can:</p>
+      <ul>
+        <li>Create and manage your channels</li>
+        <li>Collect links, images, text, and files</li>
+        <li>Connect ideas and build relationships between them</li>
+        <li>Share your collections with others</li>
+        <li>Follow interesting people and discover new perspectives</li>
+      </ul>
+    </div>
+
+    <div class="gst-UserProfile_actions">
+      <a href="/users/settings" class="gst-UserProfile_actionButton">Account Settings</a>
+      <.link
+        href="/users/log_out"
+        method="delete"
+        class="gst-UserProfile_actionButton gst-UserProfile_actionButton--secondary"
+      >
+        Log out
+      </.link>
+    </div>
+  </section>
+</article>

@@ -27,28 +27,28 @@ defmodule Gesttalt.Themes do
       colors: %Theme.Colors{
         text: "#000000",
         background: "#ffffff",
-        primary: "#000000",
-        secondary: "#333333",
-        accent: "#3D46C2",
-        highlight: "#DEDEDE",
-        muted: "#FAFAFA",
-        success: "#238020",
-        info: "#3D46C2",
-        warning: "#ff9500",
-        danger: "#B93D3D",
+        primary: "#00CED1",
+        secondary: "#666666",
+        accent: "#0066CC",
+        highlight: "#E5E5E5",
+        muted: "#F5F5F5",
+        success: "#22C55E",
+        info: "#0066CC",
+        warning: "#FF9500",
+        danger: "#EF4444",
         modes: %{
           dark: %{
-            "text" => "#ffffff",
-            "background" => "#000000",
-            "primary" => "#ffffff",
-            "secondary" => "#DEDEDE",
-            "accent" => "#3D46C2",
-            "highlight" => "#1a1a1a",
-            "muted" => "#0a0a0a",
-            "success" => "#238020",
-            "info" => "#3D46C2",
-            "warning" => "#ff9500",
-            "danger" => "#B93D3D"
+            "text" => "#F5F5F5",
+            "background" => "#0A0A0A",
+            "primary" => "#00E5E8",
+            "secondary" => "#A0A0A0",
+            "accent" => "#3B82F6",
+            "highlight" => "#1F1F1F",
+            "muted" => "#141414",
+            "success" => "#10B981",
+            "info" => "#3B82F6",
+            "warning" => "#F59E0B",
+            "danger" => "#F87171"
           }
         }
       },
@@ -382,17 +382,35 @@ defmodule Gesttalt.Themes do
   styling rules that use those variables.
   """
   def theme_to_css(%Theme{} = theme) do
-    # Generate CSS for both light and dark modes
-    light_css = generate_mode_css(theme, "light")
-    dark_css = generate_mode_css(theme, "dark")
+    # Generate CSS variables for light mode (default)
+    light_vars = generate_css_vars(theme, "light")
+    # Generate CSS variables for dark mode
+    dark_vars = generate_css_vars(theme, "dark")
 
     """
     /* Dynamically generated theme CSS */
     /* Generated at: #{DateTime.utc_now() |> DateTime.to_string()} */
 
-    #{light_css}
+    /* Light mode (default) */
+    :root {
+    #{light_vars}
+    }
 
-    #{dark_css}
+    /* Dark mode - automatically applied based on browser/OS preference */
+    @media (prefers-color-scheme: dark) {
+      :root {
+    #{dark_vars}
+      }
+    }
+
+    /* Support for manual theme override via data-theme attribute */
+    :root[data-theme="light"] {
+    #{light_vars}
+    }
+
+    :root[data-theme="dark"] {
+    #{dark_vars}
+    }
 
     /* Additional theme-specific styles */
     body {
@@ -550,125 +568,114 @@ defmodule Gesttalt.Themes do
     end)
   end
 
-  defp generate_mode_css(theme, mode) do
-    # Get colors for the mode
-    colors =
-      if mode == "dark" && theme.colors.modes && is_map(theme.colors.modes) do
-        dark_colors = Map.get(theme.colors.modes, "dark", %{})
+  defp get_mode_colors(theme, mode) do
+    if mode == "dark" && theme.colors.modes && is_map(theme.colors.modes) do
+      # Try both atom and string keys for flexibility
+      dark_colors = Map.get(theme.colors.modes, :dark) || Map.get(theme.colors.modes, "dark") || %{}
 
-        if dark_colors == %{} do
-          # No dark colors defined, use light colors
-          theme.colors |> Map.from_struct() |> Map.delete(:modes)
-          # Convert string keys to atoms for merging
-        else
-          dark_colors_atoms =
-            dark_colors
-            |> Map.new(fn {k, v} -> {String.to_existing_atom(k), v} end)
-
-          theme.colors
-          |> Map.from_struct()
-          |> Map.delete(:modes)
-          |> Map.merge(dark_colors_atoms)
-        end
-      else
+      if dark_colors == %{} do
+        # No dark colors defined, use light colors
         theme.colors |> Map.from_struct() |> Map.delete(:modes)
-      end
+      else
+        # Convert string keys to atoms and merge with base colors
+        dark_colors_atoms =
+          dark_colors
+          |> Map.new(fn
+            {k, v} when is_binary(k) -> {String.to_existing_atom(k), v}
+            {k, v} when is_atom(k) -> {k, v}
+          end)
 
-    # Build all CSS variables
+        theme.colors
+        |> Map.from_struct()
+        |> Map.delete(:modes)
+        |> Map.merge(dark_colors_atoms)
+      end
+    else
+      theme.colors |> Map.from_struct() |> Map.delete(:modes)
+    end
+  end
+
+  defp generate_css_vars(theme, mode) do
+    # Get colors for the specified mode
+    colors = get_mode_colors(theme, mode)
+
     all_vars = [
       # Color variables
       Enum.map(colors, fn {key, value} ->
-        "  --color-#{key}: #{value};"
+        "--color-#{key}: #{value}"
       end),
-
       # Font variables
-      if theme.fonts do
-        theme.fonts
-        |> Map.from_struct()
-        |> Enum.map(fn {key, value} ->
-          "  --fonts-#{key}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Font weight variables
-      if theme.font_weights do
-        theme.font_weights
-        |> Map.from_struct()
-        |> Enum.map(fn {key, value} ->
-          "  --font-weights-#{key}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Line height variables
-      if theme.line_heights do
-        theme.line_heights
-        |> Map.from_struct()
-        |> Enum.map(fn {key, value} ->
-          "  --line-heights-#{key}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Space variables
-      if theme.space do
-        theme.space
-        |> Enum.with_index()
-        |> Enum.map(fn {value, index} ->
-          "  --space-#{index}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Radii variables
-      if theme.radii do
-        Enum.map(theme.radii, fn {key, value} ->
-          "  --radii-#{key}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Shadow variables
-      if theme.shadows do
-        Enum.map(theme.shadows, fn {key, value} ->
-          "  --shadows-#{key}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Transition variables
-      if theme.transitions do
-        Enum.map(theme.transitions, fn {key, value} ->
-          "  --transitions-#{key}: #{value};"
-        end)
-      else
-        []
-      end,
-
-      # Z-index variables
-      if theme.z_indices do
-        Enum.map(theme.z_indices, fn {key, value} ->
-          key_str = key |> to_string() |> String.replace("_", "-")
-          "  --z-indices-#{key_str}: #{value};"
-        end)
-      else
-        []
-      end
+      [
+        "--fonts-body: #{theme.fonts.body}",
+        "--fonts-heading: #{theme.fonts.heading}",
+        "--fonts-monospace: #{theme.fonts.monospace}"
+      ],
+      # Font sizes
+      theme.font_sizes
+      |> Enum.with_index()
+      |> Enum.map(fn {size, idx} -> "--font-sizes-#{idx}: #{size}" end),
+      # Font weights
+      [
+        "--font-weights-body: #{theme.font_weights.body}",
+        "--font-weights-heading: #{theme.font_weights.heading}",
+        "--font-weights-bold: #{theme.font_weights.bold}",
+        "--font-weights-light: #{theme.font_weights.light}",
+        "--font-weights-medium: #{theme.font_weights.heading}"
+      ],
+      # Line heights
+      [
+        "--line-heights-body: #{theme.line_heights.body}",
+        "--line-heights-heading: #{theme.line_heights.heading}"
+      ],
+      # Letter spacings
+      Enum.map(theme.letter_spacings, fn {key, value} ->
+        "--letter-spacings-#{key}: #{value}"
+      end),
+      # Space scale
+      theme.space
+      |> Enum.with_index()
+      |> Enum.map(fn {space, idx} -> "--space-#{idx}: #{space}" end),
+      # Other theme properties
+      Enum.map(theme.sizes, fn {key, value} ->
+        "--sizes-#{key}: #{value}"
+      end),
+      Enum.map(theme.radii, fn {key, value} ->
+        "--radii-#{key}: #{value}"
+      end),
+      Enum.map(theme.borders, fn {key, value} ->
+        "--borders-#{key}: #{value}"
+      end),
+      Enum.map(theme.border_widths, fn {key, value} ->
+        "--border-widths-#{key}: #{value}"
+      end),
+      Enum.map(theme.border_styles, fn {key, value} ->
+        "--border-styles-#{key}: #{value}"
+      end),
+      Enum.map(theme.shadows, fn {key, value} ->
+        "--shadows-#{key}: #{value}"
+      end),
+      Enum.map(theme.transitions, fn {key, value} ->
+        "--transitions-#{key}: #{value}"
+      end),
+      # Z-indices (convert underscores to hyphens)
+      Enum.map(theme.z_indices, fn {key, value} ->
+        key_str = key |> to_string() |> String.replace("_", "-")
+        "--z-indices-#{key_str}: #{value}"
+      end),
+      # Common aliases
+      [
+        "--color-bg: var(--color-background)",
+        "--max-width: var(--sizes-container)",
+        "--border-radius: var(--radii-default)"
+      ]
     ]
 
-    css_vars = all_vars |> List.flatten() |> Enum.join("\n")
+    vars =
+      all_vars
+      |> List.flatten()
+      |> Enum.join(";\n  ")
 
-    """
-    :root[data-theme="#{mode}"] {
-    #{css_vars}
-    }
-    """
+    # Add final semicolon if vars is not empty
+    if vars == "", do: vars, else: "  #{vars};"
   end
 end

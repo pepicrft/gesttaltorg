@@ -100,8 +100,7 @@ a:hover {
 
 /* Footer Component - EnduringCSS Convention */
 .gst-Footer {
-  background-color: var(--color-background);
-  border-top: 1px solid var(--color-highlight);
+  background-color: var(--color-primary);
   padding: var(--space-10) 0 var(--space-8);
   margin-top: var(--space-13);
 }
@@ -123,7 +122,7 @@ a:hover {
   font-size: var(--font-sizes-3);
   font-weight: var(--font-weights-body);
   margin: 0 0 var(--space-4) 0;
-  color: var(--color-text);
+  color: var(--color-bg);
 }
 
 .gst-Footer_links {
@@ -137,27 +136,30 @@ a:hover {
 }
 
 .gst-Footer_link {
-  color: var(--color-secondary);
+  color: var(--color-bg);
   text-decoration: none;
   font-size: var(--font-sizes-3);
+  opacity: 0.9;
 }
 
 .gst-Footer_link:hover {
-  color: var(--color-text);
+  color: var(--color-bg);
   text-decoration: underline;
+  opacity: 1;
 }
 
 .gst-Footer_bottom {
   max-width: 1200px;
   margin: var(--space-10) auto 0;
   padding: var(--space-6) var(--space-4) 0;
-  border-top: 1px solid var(--color-highlight);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .gst-Footer_copyright {
   font-size: var(--font-sizes-3);
-  color: var(--color-secondary);
+  color: var(--color-bg);
   margin: 0;
+  opacity: 0.9;
 }
 
 /* Home Page Component - EnduringCSS Convention */
@@ -269,28 +271,29 @@ a:hover {
 .gst-Home_ctaButton {
   display: inline-block;
   padding: var(--space-3) var(--space-6);
-  background-color: var(--color-text);
+  background-color: var(--color-primary);
   color: var(--color-background);
   text-decoration: none;
   border-radius: var(--radii-default);
   font-size: var(--font-sizes-3);
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .gst-Home_ctaButton:hover {
-  opacity: 0.8;
+  background-color: var(--color-primary);
+  filter: brightness(0.85);
   color: var(--color-background);
 }
 
 .gst-Home_ctaButton--secondary {
   background-color: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-text);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
 }
 
 .gst-Home_ctaButton--secondary:hover {
-  background-color: var(--color-muted);
-  color: var(--color-text);
+  background-color: var(--color-primary);
+  color: var(--color-background);
 }
 
 /* Flash messages */
@@ -313,6 +316,119 @@ a:hover {
   border: 1px solid var(--color-danger);
 }
 
+/* User Profile Styles */
+.gst-UserProfile {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+}
+
+.gst-UserProfile_header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-highlight);
+}
+
+.gst-UserProfile_handle {
+  font-size: var(--font-sizes-9);
+  font-weight: var(--font-weights-medium);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.gst-UserProfile_email {
+  font-size: var(--font-sizes-4);
+  color: var(--color-secondary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.gst-UserProfile_status {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius);
+  font-size: var(--font-sizes-2);
+  font-weight: var(--font-weights-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gst-UserProfile_status--confirmed {
+  background-color: var(--color-success);
+  color: var(--color-bg);
+}
+
+.gst-UserProfile_status--unconfirmed {
+  background-color: var(--color-warning);
+  color: var(--color-bg);
+}
+
+.gst-UserProfile_content {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.gst-UserProfile_welcome h2 {
+  font-size: var(--font-sizes-6);
+  font-weight: var(--font-weights-medium);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.gst-UserProfile_welcome p {
+  font-size: var(--font-sizes-3);
+  color: var(--color-secondary);
+  line-height: var(--line-heights-body);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.gst-UserProfile_welcome ul {
+  font-size: var(--font-sizes-3);
+  color: var(--color-secondary);
+  line-height: var(--line-heights-body);
+  margin: 0;
+  padding-left: var(--space-6);
+}
+
+.gst-UserProfile_welcome li {
+  margin-bottom: var(--space-2);
+}
+
+.gst-UserProfile_actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gst-UserProfile_actionButton {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: var(--font-weights-medium);
+  font-size: var(--font-sizes-3);
+  transition: background-color 0.2s ease;
+}
+
+.gst-UserProfile_actionButton:hover {
+  background-color: var(--color-primary);
+  filter: brightness(0.85);
+}
+
+.gst-UserProfile_actionButton--secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.gst-UserProfile_actionButton--secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .gst-Header_nav {
@@ -330,5 +446,20 @@ a:hover {
   .gst-Footer_container {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: var(--space-6);
+  }
+  
+  .gst-UserProfile_handle {
+    font-size: var(--font-sizes-8);
+  }
+  
+  .gst-UserProfile_actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .gst-UserProfile_actionButton {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
   }
 }

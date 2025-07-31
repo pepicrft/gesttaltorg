@@ -15,24 +15,23 @@ defmodule GesttaltWeb.ThemeCSSControllerTest do
       conn = get(conn, ~p"/assets/theme.css")
       response_body = response(conn, 200)
 
-      # Check for light theme CSS variables
-      assert response_body =~ ":root[data-theme=\"light\"]"
+      # Check for light theme CSS variables in :root
+      assert response_body =~ ":root {"
       assert response_body =~ "--color-text: #000000;"
       assert response_body =~ "--color-background: #ffffff;"
-      assert response_body =~ "--color-primary: #000000;"
-      assert response_body =~ "--color-accent: #3D46C2;"
+      assert response_body =~ "--color-primary: #00CED1;"
+      assert response_body =~ "--color-accent: #0066CC;"
     end
 
     test "includes CSS variables for dark theme", %{conn: conn} do
       conn = get(conn, ~p"/assets/theme.css")
       response_body = response(conn, 200)
 
-      # Check for dark theme CSS variables section exists
-      assert response_body =~ ":root[data-theme=\"dark\"]"
+      # Check for dark theme using media query
+      assert response_body =~ "@media (prefers-color-scheme: dark)"
 
-      # Dark mode should have white text and black background
-      # when properly configured with dark mode colors
-      assert response_body =~ ":root[data-theme=\"dark\"] {"
+      # Also check for data-theme attribute support
+      assert response_body =~ ":root[data-theme=\"dark\"]"
     end
 
     test "includes font variables", %{conn: conn} do

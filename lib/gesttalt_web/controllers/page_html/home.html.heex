@@ -1,5 +1,3 @@
-<.flash_group flash={@flash} />
-
 <article class="gst-Home">
   <header class="gst-Home_header">
     <h1 class="gst-Home_title">Gesttalt</h1>
@@ -25,7 +23,11 @@
   </section>
 
   <section class="gst-Home_cta">
-    <a href="/sign-up" class="gst-Home_ctaButton">Get Started</a>
-    <a href="/explore" class="gst-Home_ctaButton gst-Home_ctaButton--secondary">Explore</a>
+    <%= if @current_user do %>
+      <a href={"/" <> @current_user.handle} class="gst-Home_ctaButton">Go to Profile</a>
+    <% else %>
+      <a href="/users/register" class="gst-Home_ctaButton">Sign up</a>
+      <a href="/users/log_in" class="gst-Home_ctaButton gst-Home_ctaButton--secondary">Log in</a>
+    <% end %>
   </section>
 </article>

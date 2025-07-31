@@ -4,9 +4,18 @@
       <a href="/" class="gst-Header_logoLink">Gesttalt</a>
     </div>
     <nav class="gst-Header_nav">
-      <a href="/about" class="gst-Header_navLink">About</a>
-      <a href="/explore" class="gst-Header_navLink">Explore</a>
-      <a href="/sign-in" class="gst-Header_navLink">Sign in</a>
+      <%= if @current_user do %>
+        <span class="gst-Header_navLink">@{@current_user.handle}</span>
+        <a href="/users/settings" class="gst-Header_navLink">Settings</a>
+        <.link href="/users/log_out" method="delete" class="gst-Header_navLink">
+          Log out
+        </.link>
+      <% else %>
+        <a href="/about" class="gst-Header_navLink">About</a>
+        <a href="/explore" class="gst-Header_navLink">Explore</a>
+        <a href="/users/log_in" class="gst-Header_navLink">Log in</a>
+        <a href="/users/register" class="gst-Header_navLink">Sign up</a>
+      <% end %>
     </nav>
   </div>
 </header>

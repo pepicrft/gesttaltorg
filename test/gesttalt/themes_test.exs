@@ -57,7 +57,7 @@ defmodule Gesttalt.ThemesTest do
       assert theme.colors.text == "#333"
       assert theme.colors.background == "#f0f0f0"
       # Other colors should have defaults
-      assert theme.colors.primary == "#000000"
+      assert theme.colors.primary == "#00CED1"
     end
 
     test "creates theme with custom fonts" do

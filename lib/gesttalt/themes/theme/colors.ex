@@ -14,7 +14,7 @@ defmodule Gesttalt.Themes.Theme.Colors do
 
     field :text, String.t(), default: "#000000"
     field :background, String.t(), default: "#ffffff"
-    field :primary, String.t(), default: "#000000"
+    field :primary, String.t(), default: "#00CED1"
     field :secondary, String.t(), default: "#333333"
     field :accent, String.t(), default: "#3D46C2"
     field :highlight, String.t(), default: "#DEDEDE"

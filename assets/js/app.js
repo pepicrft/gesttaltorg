@@ -44,3 +44,47 @@ liveSocket.connect();
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
+
+// Theme management
+// The theme automatically follows system preferences via CSS media queries,
+// but you can also manually override it using the data-theme attribute.
+// 
+// Example usage:
+// - Set light theme: window.setTheme('light')
+// - Set dark theme: window.setTheme('dark')
+// - Follow system: window.setTheme('auto')
+// - Toggle theme: window.toggleTheme()
+
+window.setTheme = function(theme) {
+  if (theme === 'auto') {
+    // Remove data-theme to follow system preference
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.removeItem('theme');
+  } else {
+    // Set explicit theme
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+};
+
+window.toggleTheme = function() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (!currentTheme) {
+    // Currently following system, toggle to opposite of system preference
+    window.setTheme(systemPrefersDark ? 'light' : 'dark');
+  } else if (currentTheme === 'light') {
+    window.setTheme('dark');
+  } else {
+    window.setTheme('light');
+  }
+};
+
+// Load saved theme preference on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+});

@@ -14,6 +14,19 @@ defmodule Gesttalt.Themes.ThemeTest do
       assert theme.line_heights.body == 1.5
       assert theme.space == ["0", "4px", "8px", "16px", "32px", "64px", "128px", "256px"]
     end
+
+    test "default theme function includes dark mode" do
+      theme = Gesttalt.Themes.default()
+
+      assert theme.colors.text == "#000000"
+      assert theme.colors.background == "#ffffff"
+      assert theme.colors.primary == "#00CED1"
+
+      # Check dark mode colors
+      assert theme.colors.modes.dark["text"] == "#F5F5F5"
+      assert theme.colors.modes.dark["background"] == "#0A0A0A"
+      assert theme.colors.modes.dark["primary"] == "#00E5E8"
+    end
   end
 
   describe "nested structs" do
@@ -22,7 +35,7 @@ defmodule Gesttalt.Themes.ThemeTest do
 
       assert colors.text == "#000000"
       assert colors.background == "#ffffff"
-      assert colors.primary == "#000000"
+      assert colors.primary == "#00CED1"
       assert colors.modes == %{}
     end
 

@@ -1,0 +1,55 @@
+<div class="debug-page">
+  <h1>CSS Debug Page</h1>
+
+  <div style="background-color: var(--color-primary); color: white; padding: 20px; margin: 20px 0;">
+    This should have turquoise background
+  </div>
+
+  <div style="border: 2px solid var(--color-primary); padding: 20px; margin: 20px 0;">
+    This should have turquoise border
+  </div>
+
+  <h2>CSS Variable Values:</h2>
+  <div id="css-values"></div>
+
+  <h2>Computed Styles:</h2>
+  <div id="computed-styles"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const root = document.documentElement;
+      const computed = getComputedStyle(root);
+      
+      const variables = [
+        '--color-primary',
+        '--color-background',
+        '--color-text',
+        '--color-secondary',
+        '--fonts-body',
+        '--space-4'
+      ];
+      
+      const valuesDiv = document.getElementById('css-values');
+      variables.forEach(varName => {
+        const value = computed.getPropertyValue(varName);
+        const p = document.createElement('p');
+        p.innerHTML = `<strong>${varName}:</strong> ${value || 'NOT SET'}`;
+        valuesDiv.appendChild(p);
+      });
+      
+      const stylesDiv = document.getElementById('computed-styles');
+      const bodyComputed = getComputedStyle(document.body);
+      const styles = [
+        ['background-color', bodyComputed.backgroundColor],
+        ['color', bodyComputed.color],
+        ['font-family', bodyComputed.fontFamily]
+      ];
+      
+      styles.forEach(([prop, value]) => {
+        const p = document.createElement('p');
+        p.innerHTML = `<strong>${prop}:</strong> ${value}`;
+        stylesDiv.appendChild(p);
+      });
+    });
+  </script>
+</div>
