@@ -65,7 +65,7 @@ defmodule Gesttalt.Themes do
           }
         }
       },
-      fonts: %Theme.Fonts{
+        fonts: %Theme.Fonts{
         body: "Arial, Helvetica, sans-serif",
         heading: "Arial, Helvetica, sans-serif",
         monospace: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
@@ -280,8 +280,9 @@ defmodule Gesttalt.Themes do
   """
   def forest do
     theme = default()
-    %{theme | 
-      colors: %Theme.Colors{
+    %{
+      theme
+      | colors: %Theme.Colors{
         text: "#1A1F1A",
         background: "#FAFAF8",
         primary: "#2D5016",
@@ -309,7 +310,7 @@ defmodule Gesttalt.Themes do
           }
         }
       },
-      fonts: %Theme.Fonts{
+        fonts: %Theme.Fonts{
         body: "Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif",
         heading: "inherit",
         monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
@@ -322,8 +323,9 @@ defmodule Gesttalt.Themes do
   """
   def ocean do
     theme = default()
-    %{theme | 
-      colors: %Theme.Colors{
+    %{
+      theme
+      | colors: %Theme.Colors{
         text: "#0C1821",
         background: "#F8FCFF",
         primary: "#005577",
@@ -351,7 +353,7 @@ defmodule Gesttalt.Themes do
           }
         }
       },
-      fonts: %Theme.Fonts{
+        fonts: %Theme.Fonts{
         body: "Avenir Next, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif",
         heading: "inherit",
         monospace: "'SF Mono', Monaco, 'Inconsolata', 'Fira Code', monospace"
@@ -364,8 +366,9 @@ defmodule Gesttalt.Themes do
   """
   def sunset do
     theme = default()
-    %{theme | 
-      colors: %Theme.Colors{
+    %{
+      theme
+      | colors: %Theme.Colors{
         text: "#2D1B00",
         background: "#FFF9F5",
         primary: "#FF6B35",
@@ -393,7 +396,7 @@ defmodule Gesttalt.Themes do
           }
         }
       },
-      fonts: %Theme.Fonts{
+        fonts: %Theme.Fonts{
         body: "Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif",
         heading: "inherit",
         monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
@@ -406,8 +409,9 @@ defmodule Gesttalt.Themes do
   """
   def monochrome do
     theme = default()
-    %{theme | 
-      colors: %Theme.Colors{
+    %{
+      theme
+      | colors: %Theme.Colors{
         text: "#000000",
         background: "#FFFFFF",
         primary: "#333333",
@@ -435,7 +439,7 @@ defmodule Gesttalt.Themes do
           }
         }
       },
-      fonts: %Theme.Fonts{
+        fonts: %Theme.Fonts{
         body: "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
         heading: "inherit", 
         monospace: "'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace"
