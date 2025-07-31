@@ -7,9 +7,12 @@ defmodule GesttaltWeb.ThemeCSSController do
 
   alias Gesttalt.Themes
 
-  def show(conn, _params) do
-    # Get the current theme from the process (set by ThemeLoaderPlug)
-    theme = Themes.get_theme()
+  def show(conn, params) do
+    # Get theme from params or from process (set by ThemeLoaderPlug)
+    theme = case params["theme"] do
+      nil -> Themes.get_theme()
+      theme_name -> Themes.get_theme_by_name(theme_name)
+    end
 
     # Generate CSS using the Themes module
     css_content = Themes.theme_to_css(theme)

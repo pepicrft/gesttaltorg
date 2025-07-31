@@ -7,7 +7,7 @@
     <.live_title default="Gesttalt" suffix=" · Phoenix Framework">
       {assigns[:page_title]}
     </.live_title>
-    <link rel="stylesheet" href={~p"/assets/theme.css?v=#{assigns[:current_theme] || "default"}"} />
+    <link rel="stylesheet" href={~p"/assets/theme.css?theme=#{assigns[:current_theme] || "default"}&t=#{System.system_time(:second)}"} />
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
