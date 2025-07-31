@@ -342,41 +342,51 @@ a:hover {
 .gst-Home_pricingOptions {
   display: flex;
   flex-direction: row;
-  gap: var(--space-4);
-  max-width: 1000px;
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .gst-Home_pricingOption {
   border: 1px solid var(--color-highlight);
   border-radius: var(--radii-default);
   background-color: var(--color-background);
-  padding: var(--space-6);
+  padding: var(--space-8);
   flex: 1;
+  transition: var(--transitions-default);
+}
+
+.gst-Home_pricingOption:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadows-default);
 }
 
 .gst-Home_pricingContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-4);
+  align-items: flex-start;
+  text-align: left;
+  gap: var(--space-3);
 }
 
 .gst-Home_pricingPrice {
-  font-size: var(--font-sizes-3);
+  font-size: var(--font-sizes-6);
   font-weight: var(--font-weights-heading);
   color: var(--color-text);
+  line-height: 1.2;
 }
 
 .gst-Home_pricingPeriod {
-  font-size: var(--font-sizes-3);
+  font-size: var(--font-sizes-2);
   font-weight: var(--font-weights-body);
   color: var(--color-secondary);
 }
 
 .gst-Home_pricingDescription {
-  font-size: var(--font-sizes-3);
+  font-size: var(--font-sizes-2);
   color: var(--color-secondary);
+  line-height: var(--line-heights-body);
+  margin-top: var(--space-2);
 }
 
 /* CTA Section */
