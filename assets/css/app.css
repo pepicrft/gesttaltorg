@@ -341,9 +341,9 @@ a:hover {
 
 .gst-Home_pricingOptions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--space-4);
-  max-width: 600px;
+  max-width: 1000px;
 }
 
 .gst-Home_pricingOption {
@@ -351,12 +351,15 @@ a:hover {
   border-radius: var(--radii-default);
   background-color: var(--color-background);
   padding: var(--space-6);
+  flex: 1;
 }
 
 .gst-Home_pricingContent {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: var(--space-4);
 }
 
 .gst-Home_pricingPrice {
@@ -570,10 +573,8 @@ a:hover {
     font-size: var(--font-sizes-3);
   }
   
-  .gst-Home_pricingContent {
+  .gst-Home_pricingOptions {
     flex-direction: column;
-    gap: var(--space-2);
-    text-align: center;
   }
   
   .gst-Footer_container {
