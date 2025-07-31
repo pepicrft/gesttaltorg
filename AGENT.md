@@ -127,6 +127,7 @@ Gesttalt follows an HTML-first approach to web design with CSS using the Endurin
 - **Semantic HTML**: Focus on using proper semantic elements (`<article>`, `<nav>`, `<section>`, etc.)
 - **Text-First Design**: Content and readability are the primary concerns
 - **Minimal Styling**: Clean, functional design inspired by [sourcehut.org](https://sourcehut.org/) and [ampcode.com](https://ampcode.com/how-to-build-an-agent)
+- **Consistent Typography**: All text uses the same font size (`--font-sizes-3`). Headers and titles are differentiated using font weight (`--font-weights-heading` vs `--font-weights-body`) rather than size
 - **EnduringCSS Methodology**: A CSS architecture designed for maintainability and scalability:
   - Namespace-based component architecture prevents style conflicts
   - Component namespaces: `.ns-Component {}` (e.g., `.gst-Home {}`)
