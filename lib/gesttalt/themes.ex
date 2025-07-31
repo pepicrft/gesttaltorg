@@ -65,7 +65,7 @@ defmodule Gesttalt.Themes do
           }
         }
       },
-        fonts: %Theme.Fonts{
+      fonts: %Theme.Fonts{
         body: "Arial, Helvetica, sans-serif",
         heading: "Arial, Helvetica, sans-serif",
         monospace: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
@@ -280,41 +280,42 @@ defmodule Gesttalt.Themes do
   """
   def forest do
     theme = default()
+
     %{
       theme
       | colors: %Theme.Colors{
-        text: "#1A1F1A",
-        background: "#FAFAF8",
-        primary: "#2D5016",
-        secondary: "#5C7C3E",
-        accent: "#8B5A3C",
-        highlight: "#E8E5D6",
-        muted: "#F5F2E8",
-        success: "#2D5016",
-        info: "#5C7C3E",
-        warning: "#D4A574",
-        danger: "#A0522D",
-        modes: %{
-          dark: %{
-            "text" => "#E8E5D6",
-            "background" => "#0D0F0A",
-            "primary" => "#5C7C3E",
-            "secondary" => "#8B5A3C",
-            "accent" => "#D4A574",
-            "highlight" => "#1A1F1A",
-            "muted" => "#141612",
-            "success" => "#5C7C3E",
-            "info" => "#8B5A3C",
-            "warning" => "#D4A574",
-            "danger" => "#A0522D"
+          text: "#1A1F1A",
+          background: "#FAFAF8",
+          primary: "#2D5016",
+          secondary: "#5C7C3E",
+          accent: "#8B5A3C",
+          highlight: "#E8E5D6",
+          muted: "#F5F2E8",
+          success: "#2D5016",
+          info: "#5C7C3E",
+          warning: "#D4A574",
+          danger: "#A0522D",
+          modes: %{
+            dark: %{
+              "text" => "#E8E5D6",
+              "background" => "#0D0F0A",
+              "primary" => "#5C7C3E",
+              "secondary" => "#8B5A3C",
+              "accent" => "#D4A574",
+              "highlight" => "#1A1F1A",
+              "muted" => "#141612",
+              "success" => "#5C7C3E",
+              "info" => "#8B5A3C",
+              "warning" => "#D4A574",
+              "danger" => "#A0522D"
+            }
           }
-        }
-      },
+        },
         fonts: %Theme.Fonts{
-        body: "Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif",
-        heading: "inherit",
-        monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
-      }
+          body: "Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif",
+          heading: "inherit",
+          monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
+        }
     }
   end
 
@@ -323,41 +324,42 @@ defmodule Gesttalt.Themes do
   """
   def ocean do
     theme = default()
+
     %{
       theme
       | colors: %Theme.Colors{
-        text: "#0C1821",
-        background: "#F8FCFF",
-        primary: "#005577",
-        secondary: "#0088CC",
-        accent: "#00CED1",
-        highlight: "#D6EAF8",
-        muted: "#EBF5FB",
-        success: "#20B2AA",
-        info: "#0088CC",
-        warning: "#FFB347",
-        danger: "#FF6B6B",
-        modes: %{
-          dark: %{
-            "text" => "#D6EAF8",
-            "background" => "#0A0E14",
-            "primary" => "#0088CC",
-            "secondary" => "#00CED1",
-            "accent" => "#20B2AA",
-            "highlight" => "#1A2332",
-            "muted" => "#0F151E",
-            "success" => "#20B2AA",
-            "info" => "#0088CC",
-            "warning" => "#FFB347",
-            "danger" => "#FF6B6B"
+          text: "#0C1821",
+          background: "#F8FCFF",
+          primary: "#005577",
+          secondary: "#0088CC",
+          accent: "#00CED1",
+          highlight: "#D6EAF8",
+          muted: "#EBF5FB",
+          success: "#20B2AA",
+          info: "#0088CC",
+          warning: "#FFB347",
+          danger: "#FF6B6B",
+          modes: %{
+            dark: %{
+              "text" => "#D6EAF8",
+              "background" => "#0A0E14",
+              "primary" => "#0088CC",
+              "secondary" => "#00CED1",
+              "accent" => "#20B2AA",
+              "highlight" => "#1A2332",
+              "muted" => "#0F151E",
+              "success" => "#20B2AA",
+              "info" => "#0088CC",
+              "warning" => "#FFB347",
+              "danger" => "#FF6B6B"
+            }
           }
-        }
-      },
+        },
         fonts: %Theme.Fonts{
-        body: "Avenir Next, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif",
-        heading: "inherit",
-        monospace: "'SF Mono', Monaco, 'Inconsolata', 'Fira Code', monospace"
-      }
+          body: "Avenir Next, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif",
+          heading: "inherit",
+          monospace: "'SF Mono', Monaco, 'Inconsolata', 'Fira Code', monospace"
+        }
     }
   end
 
@@ -366,41 +368,42 @@ defmodule Gesttalt.Themes do
   """
   def sunset do
     theme = default()
+
     %{
       theme
       | colors: %Theme.Colors{
-        text: "#2D1B00",
-        background: "#FFF9F5",
-        primary: "#FF6B35",
-        secondary: "#F7931E",
-        accent: "#FF1744",
-        highlight: "#FFE5D9",
-        muted: "#FFF5F0",
-        success: "#4CAF50",
-        info: "#2196F3",
-        warning: "#F7931E",
-        danger: "#FF1744",
-        modes: %{
-          dark: %{
-            "text" => "#FFE5D9",
-            "background" => "#1A0F0A",
-            "primary" => "#FF6B35",
-            "secondary" => "#F7931E",
-            "accent" => "#FF1744",
-            "highlight" => "#2D1B00",
-            "muted" => "#201308",
-            "success" => "#4CAF50",
-            "info" => "#2196F3",
-            "warning" => "#F7931E",
-            "danger" => "#FF1744"
+          text: "#2D1B00",
+          background: "#FFF9F5",
+          primary: "#FF6B35",
+          secondary: "#F7931E",
+          accent: "#FF1744",
+          highlight: "#FFE5D9",
+          muted: "#FFF5F0",
+          success: "#4CAF50",
+          info: "#2196F3",
+          warning: "#F7931E",
+          danger: "#FF1744",
+          modes: %{
+            dark: %{
+              "text" => "#FFE5D9",
+              "background" => "#1A0F0A",
+              "primary" => "#FF6B35",
+              "secondary" => "#F7931E",
+              "accent" => "#FF1744",
+              "highlight" => "#2D1B00",
+              "muted" => "#201308",
+              "success" => "#4CAF50",
+              "info" => "#2196F3",
+              "warning" => "#F7931E",
+              "danger" => "#FF1744"
+            }
           }
-        }
-      },
+        },
         fonts: %Theme.Fonts{
-        body: "Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif",
-        heading: "inherit",
-        monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
-      }
+          body: "Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif",
+          heading: "inherit",
+          monospace: "'Cascadia Code', 'Source Code Pro', Consolas, 'Courier New', monospace"
+        }
     }
   end
 
@@ -409,51 +412,52 @@ defmodule Gesttalt.Themes do
   """
   def monochrome do
     theme = default()
+
     %{
       theme
       | colors: %Theme.Colors{
-        text: "#000000",
-        background: "#FFFFFF",
-        primary: "#333333",
-        secondary: "#666666",
-        accent: "#999999",
-        highlight: "#E5E5E5",
-        muted: "#F5F5F5",
-        success: "#444444",
-        info: "#555555",
-        warning: "#666666",
-        danger: "#222222",
-        modes: %{
-          dark: %{
-            "text" => "#F5F5F5",
-            "background" => "#0A0A0A",
-            "primary" => "#CCCCCC",
-            "secondary" => "#999999",
-            "accent" => "#666666",
-            "highlight" => "#1F1F1F",
-            "muted" => "#141414",
-            "success" => "#BBBBBB",
-            "info" => "#AAAAAA",
-            "warning" => "#999999",
-            "danger" => "#DDDDDD"
+          text: "#000000",
+          background: "#FFFFFF",
+          primary: "#333333",
+          secondary: "#666666",
+          accent: "#999999",
+          highlight: "#E5E5E5",
+          muted: "#F5F5F5",
+          success: "#444444",
+          info: "#555555",
+          warning: "#666666",
+          danger: "#222222",
+          modes: %{
+            dark: %{
+              "text" => "#F5F5F5",
+              "background" => "#0A0A0A",
+              "primary" => "#CCCCCC",
+              "secondary" => "#999999",
+              "accent" => "#666666",
+              "highlight" => "#1F1F1F",
+              "muted" => "#141414",
+              "success" => "#BBBBBB",
+              "info" => "#AAAAAA",
+              "warning" => "#999999",
+              "danger" => "#DDDDDD"
+            }
           }
-        }
-      },
+        },
         fonts: %Theme.Fonts{
-        body: "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
-        heading: "inherit", 
-        monospace: "'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace"
-      }
+          body: "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
+          heading: "inherit",
+          monospace: "'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace"
+        }
     }
   end
 
   @doc """
   Gets a theme by name.
-  
+
   Returns the theme if found, or the default theme if not found.
-  
+
   ## Examples
-  
+
       theme = Gesttalt.Themes.get_theme_by_name("forest")
   """
   def get_theme_by_name(name) do

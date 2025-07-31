@@ -84,9 +84,9 @@
       <form action="/theme" method="post" class="gst-ThemeSwitcher_form">
         <input type="hidden" name="_csrf_token" value={get_csrf_token()} />
         <input type="hidden" name="theme" value={name} />
-        <button 
-          type="submit" 
-          class={"gst-ThemeSwitcher_option #{if name == @current_theme, do: "gst-ThemeSwitcher_option--active"}"} 
+        <button
+          type="submit"
+          class={"gst-ThemeSwitcher_option #{if name == @current_theme, do: "gst-ThemeSwitcher_option--active"}"}
           style={"background-color: #{theme.colors.primary}"}
           title={String.capitalize(name)}
           aria-label={"Switch to #{name} theme"}
@@ -103,7 +103,7 @@
     const switcher = document.getElementById('theme-switcher');
     switcher.classList.toggle('gst-ThemeSwitcher--open');
   }
-  
+
   // Close theme switcher when clicking outside
   document.addEventListener('click', function(event) {
     const switcher = document.getElementById('theme-switcher');

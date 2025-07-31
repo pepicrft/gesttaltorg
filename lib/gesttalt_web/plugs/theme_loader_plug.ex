@@ -5,6 +5,7 @@ defmodule GesttaltWeb.ThemeLoaderPlug do
   """
 
   import Plug.Conn
+
   alias Gesttalt.Themes
 
   def init(default), do: default
@@ -12,7 +13,7 @@ defmodule GesttaltWeb.ThemeLoaderPlug do
   def call(conn, _default) do
     # Get theme name from cookie, default to "default"
     theme_name = get_theme_from_cookie(conn)
-    
+
     # Load the theme by name
     theme = Themes.get_theme_by_name(theme_name)
 
@@ -23,7 +24,7 @@ defmodule GesttaltWeb.ThemeLoaderPlug do
     conn
     |> assign(:current_theme, theme_name)
   end
-  
+
   defp get_theme_from_cookie(conn) do
     conn
     |> fetch_cookies()
