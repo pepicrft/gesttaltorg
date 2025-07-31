@@ -94,35 +94,6 @@ a:hover {
   align-items: center;
 }
 
-.gst-Header_themeSwitcher {
-  margin-right: var(--space-4);
-}
-
-.gst-Header_themeForm {
-  margin: 0;
-}
-
-.gst-Header_themeSelect {
-  font-size: var(--font-sizes-3);
-  font-family: var(--fonts-body);
-  padding: var(--space-1) var(--space-3);
-  border: 1px solid var(--color-highlight);
-  border-radius: var(--radii-default);
-  background-color: var(--color-background);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: border-color 0.2s ease;
-}
-
-.gst-Header_themeSelect:hover {
-  border-color: var(--color-primary);
-}
-
-.gst-Header_themeSelect:focus {
-  outline: none;
-  border-color: var(--color-primary);
-}
-
 .gst-Header_navLink {
   text-decoration: none;
   color: var(--color-text);
@@ -593,5 +564,102 @@ a:hover {
     width: 100%;
     max-width: 300px;
     text-align: center;
+  }
+}
+
+/* Floating Theme Switcher */
+.gst-ThemeSwitcher {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-indices-sticky);
+}
+
+.gst-ThemeSwitcher_toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gst-ThemeSwitcher_toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gst-ThemeSwitcher_icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.gst-ThemeSwitcher_options {
+  position: absolute;
+  bottom: 0;
+  right: 70px;
+  display: flex;
+  gap: var(--space-3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.gst-ThemeSwitcher--open .gst-ThemeSwitcher_options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.gst-ThemeSwitcher_form {
+  margin: 0;
+}
+
+.gst-ThemeSwitcher_option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gst-ThemeSwitcher_option:hover {
+  transform: scale(1.1);
+  border-color: var(--color-background);
+}
+
+.gst-ThemeSwitcher_option--active {
+  border-color: var(--color-background);
+  transform: scale(1.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .gst-ThemeSwitcher {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+  
+  .gst-ThemeSwitcher_toggle {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .gst-ThemeSwitcher_icon {
+    font-size: 20px;
+  }
+  
+  .gst-ThemeSwitcher_option {
+    width: 36px;
+    height: 36px;
   }
 }

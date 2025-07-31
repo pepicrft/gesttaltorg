@@ -7,16 +7,6 @@
       </a>
     </div>
     <nav class="gst-Header_nav">
-      <div class="gst-Header_themeSwitcher">
-        <form action="/theme" method="post" class="gst-Header_themeForm">
-          <input type="hidden" name="_csrf_token" value={get_csrf_token()} />
-          <select name="theme" class="gst-Header_themeSelect" onchange="this.form.submit()">
-            <%= for {name, _theme} <- Gesttalt.Themes.all_themes() do %>
-              <option value={name} selected={name == @current_theme}>{String.capitalize(name)}</option>
-            <% end %>
-          </select>
-        </form>
-      </div>
       <%= if @current_user do %>
         <span class="gst-Header_navLink">@{@current_user.handle}</span>
         <a href="/users/settings" class="gst-Header_navLink">Settings</a>
@@ -85,3 +75,41 @@
     <p class="gst-Footer_copyright">© 2024 Gesttalt</p>
   </div>
 </footer>
+
+<div class="gst-ThemeSwitcher" id="theme-switcher">
+  <button class="gst-ThemeSwitcher_toggle" onclick="toggleThemes()" aria-label="Change theme">
+    <span class="gst-ThemeSwitcher_icon">🎨</span>
+  </button>
+  <div class="gst-ThemeSwitcher_options" id="theme-options">
+    <%= for {name, theme} <- Gesttalt.Themes.all_themes() do %>
+      <form action="/theme" method="post" class="gst-ThemeSwitcher_form">
+        <input type="hidden" name="_csrf_token" value={get_csrf_token()} />
+        <input type="hidden" name="theme" value={name} />
+        <button 
+          type="submit" 
+          class={"gst-ThemeSwitcher_option #{if name == @current_theme, do: "gst-ThemeSwitcher_option--active"}"} 
+          style={"background-color: #{theme.colors.primary}"}
+          title={String.capitalize(name)}
+          aria-label={"Switch to #{name} theme"}
+        >
+        </button>
+      </form>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function toggleThemes() {
+    const options = document.getElementById('theme-options');
+    const switcher = document.getElementById('theme-switcher');
+    switcher.classList.toggle('gst-ThemeSwitcher--open');
+  }
+  
+  // Close theme switcher when clicking outside
+  document.addEventListener('click', function(event) {
+    const switcher = document.getElementById('theme-switcher');
+    if (!switcher.contains(event.target)) {
+      switcher.classList.remove('gst-ThemeSwitcher--open');
+    }
+  });
+</script>
