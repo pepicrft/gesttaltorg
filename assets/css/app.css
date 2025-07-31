@@ -285,6 +285,41 @@ a:hover {
   color: var(--color-accent);
 }
 
+/* Story Section */
+.gst-Home_story {
+  margin-bottom: var(--space-10);
+  padding: var(--space-8) 0;
+  border-top: 1px solid var(--color-highlight);
+  border-bottom: 1px solid var(--color-highlight);
+}
+
+.gst-Home_storyTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin: 0 0 var(--space-6) 0;
+  color: var(--color-text);
+}
+
+.gst-Home_storyContent {
+  max-width: 65ch;
+}
+
+.gst-Home_storyContent p {
+  font-size: var(--font-sizes-3);
+  line-height: var(--line-heights-body);
+  margin: 0 0 var(--space-5) 0;
+  color: var(--color-text);
+}
+
+.gst-Home_storyContent p:last-child {
+  margin-bottom: 0;
+}
+
+.gst-Home_storyContent em {
+  font-style: italic;
+  color: var(--color-secondary);
+}
+
 /* Pricing Section */
 .gst-Home_pricing {
   margin-bottom: var(--space-10);
