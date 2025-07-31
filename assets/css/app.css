@@ -301,7 +301,7 @@ a:hover {
 }
 
 .gst-Home_storyContent {
-  max-width: 65ch;
+  /* Uses full width of parent container */
 }
 
 .gst-Home_storyContent p {
