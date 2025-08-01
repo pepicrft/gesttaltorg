@@ -36,7 +36,7 @@ defmodule GesttaltWeb.UserSessionControllerTest do
       # Authenticated users are redirected to /home, so follow the redirect
       conn = get(conn, ~p"/")
       assert redirected_to(conn) == ~p"/home"
-      
+
       # Follow redirect to /home and check the content
       conn = get(conn, ~p"/home")
       response = html_response(conn, 200)

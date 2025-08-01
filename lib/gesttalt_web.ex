@@ -86,6 +86,7 @@ defmodule GesttaltWeb do
       # Translation
       use Gettext, backend: GesttaltWeb.Gettext
 
+      import GesttaltWeb.Authorization, only: [authorized?: 3, admin?: 1]
       import GesttaltWeb.CoreComponents
 
       # HTML escaping functionality

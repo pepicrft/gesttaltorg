@@ -1,16 +1,18 @@
 defmodule GesttaltWeb.BlogController do
   use GesttaltWeb, :controller
 
-  alias Gesttalt.Blog
   import GesttaltWeb.MetaTagsPlug
+
+  alias Gesttalt.Blog
 
   def index(conn, _params) do
     posts = Blog.all_posts()
-    
+
     conn
     |> put_meta_tags(%{
       title: "Garden Journal",
-      description: "Stories from our knowledge gardening community, cultivation techniques, and insights from tending digital gardens.",
+      description:
+        "Stories from our knowledge gardening community, cultivation techniques, and insights from tending digital gardens.",
       keywords: "digital garden, knowledge management, ideas, learning, community"
     })
     |> render(:index, posts: posts)
@@ -18,7 +20,7 @@ defmodule GesttaltWeb.BlogController do
 
   def show(conn, %{"id" => id}) do
     post = Blog.get_post_by_id!(id)
-    
+
     conn
     |> put_meta_tags(%{
       title: post.title,
@@ -31,7 +33,7 @@ defmodule GesttaltWeb.BlogController do
 
   def rss(conn, _params) do
     posts = Blog.recent_posts(20)
-    
+
     conn
     |> put_resp_content_type("application/rss+xml")
     |> put_root_layout(false)
@@ -41,7 +43,7 @@ defmodule GesttaltWeb.BlogController do
 
   def atom(conn, _params) do
     posts = Blog.recent_posts(20)
-    
+
     conn
     |> put_resp_content_type("application/atom+xml")
     |> put_root_layout(false)

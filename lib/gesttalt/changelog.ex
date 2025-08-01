@@ -1,7 +1,7 @@
 defmodule Gesttalt.Changelog.Entry do
   @moduledoc """
   A changelog entry.
-  
+
   This module defines the structure for changelog entries parsed from markdown files.
   """
 
@@ -12,19 +12,19 @@ defmodule Gesttalt.Changelog.Entry do
     [year, month_day_version] = filename |> Path.rootname() |> Path.split() |> Enum.take(-2)
     [month, day, version] = String.split(month_day_version, "-", parts: 3)
     date = Date.from_iso8601!("#{year}-#{month}-#{day}")
-    
+
     # Default values
     description = attrs[:description] || extract_description(body)
     categories = attrs[:categories] || ["general"]
 
-    struct!(__MODULE__, [
+    struct!(__MODULE__,
       version: version,
       title: attrs[:title],
       body: body,
       description: description,
       categories: categories,
       date: date
-    ])
+    )
   end
 
   defp extract_description(body) do
@@ -39,18 +39,18 @@ end
 defmodule Gesttalt.Changelog do
   @moduledoc """
   Changelog module for Gesttalt using NimblePublisher.
-  
+
   This module handles changelog entries, including parsing markdown files
   for version updates, feature announcements, and bug fixes.
   """
 
-  alias __MODULE__.Entry
-
   use NimblePublisher,
-    build: Entry,
+    build: __MODULE__.Entry,
     from: Application.app_dir(:gesttalt, "priv/changelog/**/*.md"),
     as: :entries,
     highlighters: [:makeup_elixir, :makeup_erlang]
+
+  alias __MODULE__.Entry
 
   # The @entries variable is first transformed by NimblePublisher.
   # Let's further transform it by sorting all entries by descending date.

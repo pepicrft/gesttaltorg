@@ -8,7 +8,7 @@
       {assigns[:meta_tags][:title] || assigns[:page_title] || "Gesttalt"}
     </.live_title>
     
-    <!-- Meta tags -->
+<!-- Meta tags -->
     <%= if meta = assigns[:meta_tags] do %>
       <%= if meta[:description] do %>
         <meta name="description" content={meta[:description]} />
@@ -17,7 +17,7 @@
         <meta name="keywords" content={meta[:keywords]} />
       <% end %>
       
-      <!-- Open Graph tags -->
+<!-- Open Graph tags -->
       <meta property="og:title" content={meta[:title] || "Gesttalt"} />
       <%= if meta[:description] do %>
         <meta property="og:description" content={meta[:description]} />
@@ -28,7 +28,7 @@
       <meta property="og:type" content={meta[:og_type] || "website"} />
       <meta property="og:site_name" content={meta[:og_site_name] || "Gesttalt"} />
       
-      <!-- Twitter Card tags -->
+<!-- Twitter Card tags -->
       <meta name="twitter:card" content={meta[:twitter_card] || "summary"} />
       <%= if meta[:twitter_site] do %>
         <meta name="twitter:site" content={meta[:twitter_site]} />
@@ -42,10 +42,20 @@
       <% end %>
     <% end %>
     
-    <!-- Feed discovery links -->
-    <link rel="alternate" type="application/rss+xml" title="Gesttalt Garden Journal RSS" href="/blog.xml" />
-    <link rel="alternate" type="application/atom+xml" title="Gesttalt Garden Journal Atom" href="/blog/atom.xml" />
-    
+<!-- Feed discovery links -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Gesttalt Garden Journal RSS"
+      href="/blog.xml"
+    />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="Gesttalt Garden Journal Atom"
+      href="/blog/atom.xml"
+    />
+
     <link
       rel="stylesheet"
       href={

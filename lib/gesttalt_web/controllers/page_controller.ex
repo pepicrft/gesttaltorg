@@ -1,19 +1,14 @@
 defmodule GesttaltWeb.PageController do
   use GesttaltWeb, :controller
-  
+
   import GesttaltWeb.MetaTagsPlug
 
   def index(conn, _params) do
-    # If user is authenticated, redirect to home like Mastodon
+    # Redirect based on authentication status
     if conn.assigns.current_user do
       redirect(conn, to: ~p"/home")
     else
-      conn
-      |> put_meta_tags(%{
-        title: "Welcome to Gesttalt",
-        description: "Cultivate your digital garden, connect ideas, and grow knowledge together in our collaborative platform."
-      })
-      |> render(:index)
+      redirect(conn, to: ~p"/explore")
     end
   end
 

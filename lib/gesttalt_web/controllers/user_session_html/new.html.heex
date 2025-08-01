@@ -10,7 +10,13 @@
     </:subtitle>
   </.header>
 
-  <.simple_form :let={f} for={@conn.params["user"]} as={:user} action={~p"/users/log_in"} class="gst-AuthForm_form">
+  <.simple_form
+    :let={f}
+    for={@conn.params["user"]}
+    as={:user}
+    action={~p"/users/log_in"}
+    class="gst-AuthForm_form"
+  >
     <.error :if={@error_message}>{@error_message}</.error>
 
     <.input field={f[:email]} type="email" label="Email" required />

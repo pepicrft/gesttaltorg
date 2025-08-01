@@ -1,7 +1,7 @@
 defmodule Gesttalt.Blog.Post do
   @moduledoc """
   A blog post.
-  
+
   This module defines the structure for blog posts parsed from markdown files.
   """
 
@@ -12,13 +12,13 @@ defmodule Gesttalt.Blog.Post do
     [year, month_day_id] = filename |> Path.rootname() |> Path.split() |> Enum.take(-2)
     [month, day, id] = String.split(month_day_id, "-", parts: 3)
     date = Date.from_iso8601!("#{year}-#{month}-#{day}")
-    
+
     # Default values
     author = attrs[:author] || "Gesttalt Team"
     description = attrs[:description] || extract_description(body)
     tags = attrs[:tags] || []
 
-    struct!(__MODULE__, [
+    struct!(__MODULE__,
       id: id,
       author: author,
       title: attrs[:title],
@@ -26,7 +26,7 @@ defmodule Gesttalt.Blog.Post do
       description: description,
       tags: tags,
       date: date
-    ])
+    )
   end
 
   defp extract_description(body) do
@@ -41,18 +41,18 @@ end
 defmodule Gesttalt.Blog do
   @moduledoc """
   Blog module for Gesttalt using NimblePublisher.
-  
+
   This module handles blog posts, including parsing markdown files,
   generating RSS/Atom feeds, and providing an interface for the blog.
   """
 
-  alias __MODULE__.Post
-
   use NimblePublisher,
-    build: Post,
+    build: __MODULE__.Post,
     from: Application.app_dir(:gesttalt, "priv/posts/**/*.md"),
     as: :posts,
     highlighters: [:makeup_elixir, :makeup_erlang]
+
+  alias __MODULE__.Post
 
   # The @posts variable is first transformed by NimblePublisher.
   # Let's further transform it by sorting all posts by descending date.

@@ -3,6 +3,8 @@ defmodule GesttaltWeb.Router do
 
   import GesttaltWeb.UserAuth
 
+  alias OpenApiSpex.Plug.PutApiSpec
+  alias OpenApiSpex.Plug.RenderSpec
   alias Plug.Swoosh.MailboxPreview
 
   pipeline :browser do
@@ -19,7 +21,7 @@ defmodule GesttaltWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug OpenApiSpex.Plug.PutApiSpec, module: GesttaltWeb.ApiSpec
+    plug PutApiSpec, module: GesttaltWeb.ApiSpec
   end
 
   pipeline :feeds do
@@ -30,11 +32,12 @@ defmodule GesttaltWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/explore", ExploreController, :index
     get "/debug", DebugController, :show
     get "/assets/theme.css", ThemeCSSController, :show
     post "/theme", ThemeController, :update
     get "/docs/api", ApiDocsController, :show
-    
+
     # Legal pages
     get "/terms", LegalController, :terms
     get "/privacy", LegalController, :privacy
@@ -48,10 +51,17 @@ defmodule GesttaltWeb.Router do
     get "/home", PageController, :home
   end
 
+  # Admin routes
+  scope "/admin", GesttaltWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/", AdminController, :index
+  end
+
   # API routes
   scope "/api" do
     pipe_through :api
-    get "/openapi", OpenApiSpex.Plug.RenderSpec, []
+    get "/openapi", RenderSpec, []
   end
 
   scope "/api", GesttaltWeb do

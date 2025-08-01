@@ -22,8 +22,7 @@ end
 
 # Allow PORT to be set via environment variable in all environments
 if port = System.get_env("PORT") do
-  config :gesttalt, GesttaltWeb.Endpoint,
-    http: [port: String.to_integer(port)]
+  config :gesttalt, GesttaltWeb.Endpoint, http: [port: String.to_integer(port)]
 end
 
 if config_env() == :prod do

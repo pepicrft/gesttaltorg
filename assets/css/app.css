@@ -1664,3 +1664,230 @@ a:hover {
 .gst-Legal_link:hover {
   color: var(--link-hover);
 }
+
+/* Explore Page Component */
+.gst-Explore {
+  padding: var(--space-8) 0;
+}
+
+.gst-Explore_hero {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.gst-Explore_title {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin-bottom: var(--space-4);
+}
+
+.gst-Explore_subtitle {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-muted);
+}
+
+.gst-Explore_content {
+  max-width: var(--sizes-container);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.gst-Explore_section {
+  margin-bottom: var(--space-10);
+}
+
+.gst-Explore_sectionTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin-bottom: var(--space-6);
+}
+
+.gst-Explore_gardens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.gst-Explore_gardenCard {
+  padding: var(--space-6);
+  border: 1px solid var(--color-highlight);
+  border-radius: var(--radii-default);
+}
+
+.gst-Explore_gardenTitle {
+  font-weight: var(--font-weights-heading);
+  margin-bottom: var(--space-2);
+}
+
+.gst-Explore_gardenDescription {
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.gst-Explore_gardenAuthor {
+  color: var(--color-accent);
+  font-size: var(--font-sizes-3);
+}
+
+.gst-Explore_activity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gst-Explore_activityItem {
+  padding: var(--space-4);
+  background: var(--color-muted);
+  border-radius: var(--radii-default);
+}
+
+.gst-Explore_activityUser,
+.gst-Explore_activityTarget {
+  font-weight: var(--font-weights-heading);
+}
+
+.gst-Explore_activityAction {
+  color: var(--text-muted);
+}
+
+.gst-Explore_cta {
+  text-align: center;
+  padding: var(--space-10) 0;
+  border-top: 1px solid var(--color-highlight);
+}
+
+.gst-Explore_ctaText {
+  font-size: var(--font-sizes-3);
+  margin-bottom: var(--space-4);
+}
+
+.gst-Explore_ctaButton {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent);
+  color: var(--color-background);
+  text-decoration: none;
+  border-radius: var(--radii-default);
+  font-weight: var(--font-weights-heading);
+}
+
+.gst-Explore_ctaButton:hover {
+  opacity: 0.9;
+}
+
+.gst-Explore_ctaSubtext {
+  margin-top: var(--space-4);
+  color: var(--text-muted);
+}
+
+.gst-Explore_ctaLink {
+  color: var(--color-accent);
+}
+
+/* Admin Dashboard Component */
+.gst-Admin {
+  padding: var(--space-8) 0;
+  max-width: var(--sizes-container);
+  margin: 0 auto;
+}
+
+.gst-Admin_header {
+  margin-bottom: var(--space-8);
+}
+
+.gst-Admin_title {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin-bottom: var(--space-2);
+}
+
+.gst-Admin_subtitle {
+  color: var(--text-muted);
+}
+
+.gst-Admin_stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.gst-Admin_statCard {
+  padding: var(--space-6);
+  background: var(--color-muted);
+  border-radius: var(--radii-default);
+  text-align: center;
+}
+
+.gst-Admin_statNumber {
+  display: block;
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin-bottom: var(--space-2);
+}
+
+.gst-Admin_statLabel {
+  color: var(--text-muted);
+  font-size: var(--font-sizes-3);
+}
+
+.gst-Admin_section {
+  margin-bottom: var(--space-10);
+}
+
+.gst-Admin_sectionTitle {
+  font-size: var(--font-sizes-3);
+  font-weight: var(--font-weights-heading);
+  margin-bottom: var(--space-6);
+}
+
+.gst-Admin_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gst-Admin_table th {
+  text-align: left;
+  padding: var(--space-3);
+  border-bottom: 2px solid var(--color-highlight);
+  font-weight: var(--font-weights-heading);
+}
+
+.gst-Admin_table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-highlight);
+}
+
+.gst-Admin_userLink {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.gst-Admin_userLink:hover {
+  text-decoration: underline;
+}
+
+.gst-Admin_badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-sizes-3);
+  border-radius: var(--radii-default);
+  background: var(--color-highlight);
+  color: var(--text-muted);
+}
+
+.gst-Admin_badge--success {
+  background: var(--color-success);
+  color: var(--color-background);
+}
+
+.gst-Admin_badge--warning {
+  background: var(--color-warning);
+  color: var(--color-background);
+}
+
+.gst-Admin_badge--primary {
+  background: var(--color-primary);
+  color: var(--color-background);
+}

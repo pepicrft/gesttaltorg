@@ -1,7 +1,7 @@
 defmodule GesttaltWeb.MetaTagsPlug do
   @moduledoc """
   Plug for managing HTML meta tags throughout the application.
-  
+
   This plug initializes default meta tags and provides functions
   to set custom meta tags in controllers.
   """
@@ -20,15 +20,15 @@ defmodule GesttaltWeb.MetaTagsPlug do
       og_site_name: "Gesttalt",
       twitter_card: "summary_large_image"
     }
-    
+
     assign(conn, :meta_tags, default_meta)
   end
 
   @doc """
   Sets meta tags for the current request.
-  
+
   ## Examples
-  
+
       conn
       |> put_meta(:title, "Garden Journal")
       |> put_meta(:description, "Stories from our knowledge gardening community")
@@ -40,9 +40,9 @@ defmodule GesttaltWeb.MetaTagsPlug do
 
   @doc """
   Sets multiple meta tags at once.
-  
+
   ## Examples
-  
+
       conn
       |> put_meta_tags(%{
         title: "Welcome to Gesttalt",

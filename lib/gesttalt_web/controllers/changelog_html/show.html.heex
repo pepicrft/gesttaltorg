@@ -3,16 +3,16 @@
     <nav class="gst-ChangelogEntry_breadcrumb">
       <a href="/changelog" class="gst-ChangelogEntry_breadcrumbLink">← Back to Changelog</a>
     </nav>
-    
+
     <div class="gst-ChangelogEntry_versionBadge gst-ChangelogEntry_versionBadge--large">
       <span class="gst-ChangelogEntry_version">v{@entry.version}</span>
       <time class="gst-ChangelogEntry_date" datetime={@entry.date}>
         {format_date(@entry.date)}
       </time>
     </div>
-    
+
     <h1 class="gst-ChangelogEntry_title">{@entry.title}</h1>
-    
+
     <%= if @entry.categories != [] do %>
       <div class="gst-ChangelogEntry_categories">
         <%= for category <- @entry.categories do %>
@@ -23,11 +23,11 @@
       </div>
     <% end %>
   </header>
-  
+
   <div class="gst-ChangelogEntry_content">
     {raw(@entry.body)}
   </div>
-  
+
   <footer class="gst-ChangelogEntry_footer">
     <nav class="gst-ChangelogEntry_navigation">
       <a href="/changelog" class="gst-ChangelogEntry_backLink">← Back to Changelog</a>

@@ -27,15 +27,18 @@
       </ul>
     </div>
 
-    <div class="gst-UserProfile_actions">
-      <a href="/users/settings" class="gst-UserProfile_actionButton">Account Settings</a>
-      <.link
-        href="/users/log_out"
-        method="delete"
-        class="gst-UserProfile_actionButton gst-UserProfile_actionButton--secondary"
-      >
-        Log out
-      </.link>
-    </div>
+    <%= if @is_own_profile do %>
+      <div class="gst-UserProfile_actions">
+        <a href="/@{@user.handle}/manage" class="gst-UserProfile_actionButton">Edit Profile</a>
+        <a href="/users/settings" class="gst-UserProfile_actionButton">Account Settings</a>
+        <.link
+          href="/users/log_out"
+          method="delete"
+          class="gst-UserProfile_actionButton gst-UserProfile_actionButton--secondary"
+        >
+          Log out
+        </.link>
+      </div>
+    <% end %>
   </section>
 </article>

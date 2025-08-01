@@ -1,7 +1,7 @@
 <article class="gst-UserManage">
   <header class="gst-UserManage_header">
     <.h1 class="gst-UserManage_title">Manage Your Garden</.h1>
-    <p class="gst-UserManage_subtitle">@<%= @user.handle %></p>
+    <p class="gst-UserManage_subtitle">@{@user.handle}</p>
   </header>
 
   <section class="gst-UserManage_overview">
@@ -28,7 +28,9 @@
       <a href="#" class="gst-UserManage_action">
         <div class="gst-UserManage_actionIcon">🌱</div>
         <div class="gst-UserManage_actionTitle">Plant New Seed</div>
-        <div class="gst-UserManage_actionDescription">Add a new piece of content to your garden</div>
+        <div class="gst-UserManage_actionDescription">
+          Add a new piece of content to your garden
+        </div>
       </a>
       <a href="#" class="gst-UserManage_action">
         <div class="gst-UserManage_actionIcon">🌿</div>
@@ -40,7 +42,7 @@
         <div class="gst-UserManage_actionTitle">Cross-Pollinate</div>
         <div class="gst-UserManage_actionDescription">Connect seeds across different gardens</div>
       </a>
-      <a href={"/users/settings"} class="gst-UserManage_action">
+      <a href="/users/settings" class="gst-UserManage_action">
         <div class="gst-UserManage_actionIcon">⚙️</div>
         <div class="gst-UserManage_actionTitle">Garden Settings</div>
         <div class="gst-UserManage_actionDescription">Manage your account and preferences</div>

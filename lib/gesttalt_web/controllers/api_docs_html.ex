@@ -7,7 +7,16 @@ defmodule GesttaltWeb.ApiDocsHTML do
 
   embed_templates "api_docs_html/*"
 
-  def extract_operations(%{get: get, post: post, put: put, delete: delete, patch: patch, head: head, options: options, trace: trace}) do
+  def extract_operations(%{
+        get: get,
+        post: post,
+        put: put,
+        delete: delete,
+        patch: patch,
+        head: head,
+        options: options,
+        trace: trace
+      }) do
     [
       {:get, get},
       {:post, post},
@@ -41,7 +50,7 @@ defmodule GesttaltWeb.ApiDocsHTML do
 
   def format_request_body(request_body) when is_map(request_body) do
     content = Map.get(request_body, :content, %{})
-    
+
     case Map.get(content, "application/json") do
       %{schema: schema} -> format_schema(schema)
       _ -> nil
@@ -52,10 +61,9 @@ defmodule GesttaltWeb.ApiDocsHTML do
 
   def format_responses(responses) when is_map(responses) do
     responses
-    |> Enum.map(fn {status, response} ->
+    |> Map.new(fn {status, response} ->
       {status, format_response(response)}
     end)
-    |> Enum.into(%{})
   end
 
   def format_responses(_), do: %{}
@@ -71,14 +79,15 @@ defmodule GesttaltWeb.ApiDocsHTML do
 
   defp format_response(response) when is_map(response) do
     content = Map.get(response, :content, %{})
-    
+
     case Map.get(content, "application/json") do
-      %{schema: schema} -> 
+      %{schema: schema} ->
         %{
           description: response.description,
           schema: format_schema(schema)
         }
-      _ -> 
+
+      _ ->
         %{description: response.description}
     end
   end
@@ -92,13 +101,12 @@ defmodule GesttaltWeb.ApiDocsHTML do
   end
 
   defp format_schema(%{type: type, properties: properties}) when is_map(properties) do
-    formatted_properties = 
+    formatted_properties =
       properties
-      |> Enum.map(fn {key, prop} ->
+      |> Map.new(fn {key, prop} ->
         {key, %{type: get_type(prop), description: get_description(prop)}}
       end)
-      |> Enum.into(%{})
-    
+
     %{type: type, properties: formatted_properties}
   end
 

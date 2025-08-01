@@ -1,0 +1,62 @@
+<div class="gst-Admin">
+  <div class="gst-Admin_header">
+    <.h1 class="gst-Admin_title">Admin Dashboard</.h1>
+    <p class="gst-Admin_subtitle">Manage your Gesttalt instance</p>
+  </div>
+
+  <div class="gst-Admin_stats">
+    <div class="gst-Admin_statCard">
+      <span class="gst-Admin_statNumber">{@stats.total_users}</span>
+      <span class="gst-Admin_statLabel">Total Users</span>
+    </div>
+
+    <div class="gst-Admin_statCard">
+      <span class="gst-Admin_statNumber">{@stats.confirmed_users}</span>
+      <span class="gst-Admin_statLabel">Confirmed Users</span>
+    </div>
+
+    <div class="gst-Admin_statCard">
+      <span class="gst-Admin_statNumber">{@stats.admin_users}</span>
+      <span class="gst-Admin_statLabel">Admin Users</span>
+    </div>
+  </div>
+
+  <div class="gst-Admin_section">
+    <.h2 class="gst-Admin_sectionTitle">User Management</.h2>
+
+    <table class="gst-Admin_table">
+      <thead>
+        <tr>
+          <th>Handle</th>
+          <th>Email</th>
+          <th>Confirmed</th>
+          <th>Admin</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for user <- @users do %>
+          <tr>
+            <td><a href={"/@#{user.handle}"} class="gst-Admin_userLink">@{user.handle}</a></td>
+            <td>{user.email}</td>
+            <td>
+              <%= if user.confirmed_at do %>
+                <span class="gst-Admin_badge gst-Admin_badge--success">Yes</span>
+              <% else %>
+                <span class="gst-Admin_badge gst-Admin_badge--warning">No</span>
+              <% end %>
+            </td>
+            <td>
+              <%= if user.is_admin do %>
+                <span class="gst-Admin_badge gst-Admin_badge--primary">Admin</span>
+              <% else %>
+                <span class="gst-Admin_badge">User</span>
+              <% end %>
+            </td>
+            <td>{Calendar.strftime(user.inserted_at, "%Y-%m-%d")}</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

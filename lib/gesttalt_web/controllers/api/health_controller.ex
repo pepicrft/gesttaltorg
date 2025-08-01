@@ -23,12 +23,13 @@ defmodule GesttaltWeb.Api.HealthController do
     })
   end
 
-  operation :check,
+  operation(:check,
     summary: "Health Check",
     description: "Returns the health status of the API",
     responses: [
       ok: {"Health status", "application/json", HealthResponse}
     ]
+  )
 
   def check(conn, _params) do
     conn

@@ -1,7 +1,7 @@
 defmodule Gesttalt.Accounts.User do
   @moduledoc """
   User schema for the Gesttalt application.
-  
+
   This module defines the user structure and handles user-related
   changesets for registration, email/password updates, and authentication.
   """
@@ -10,7 +10,7 @@ defmodule Gesttalt.Accounts.User do
   import Ecto.Changeset
 
   alias Gesttalt.Accounts.User
-  
+
   schema "users" do
     field :email, :string
     field :handle, :string
@@ -18,6 +18,7 @@ defmodule Gesttalt.Accounts.User do
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
+    field :is_admin, :boolean, default: false
 
     timestamps(type: :utc_datetime)
   end

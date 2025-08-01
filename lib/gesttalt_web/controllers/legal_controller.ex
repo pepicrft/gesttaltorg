@@ -1,6 +1,6 @@
 defmodule GesttaltWeb.LegalController do
   use GesttaltWeb, :controller
-  
+
   import GesttaltWeb.MetaTagsPlug
 
   def terms(conn, _params) do

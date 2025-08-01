@@ -1,7 +1,7 @@
 defmodule Gesttalt.Accounts.UserToken do
   @moduledoc """
   Schema for user authentication tokens.
-  
+
   This module manages session and reset password tokens for users,
   including token generation, validation, and cleanup.
   """
@@ -21,7 +21,7 @@ defmodule Gesttalt.Accounts.UserToken do
   @confirm_validity_in_days 7
   @change_email_validity_in_days 7
   @session_validity_in_days 60
-  
+
   schema "users_tokens" do
     field :token, :binary
     field :context, :string

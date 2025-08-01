@@ -22,11 +22,11 @@
             <span class="gst-BlogPost_author">by {post.author}</span>
           </div>
         </header>
-        
+
         <div class="gst-BlogPost_description">
           {post.description}
         </div>
-        
+
         <%= if post.tags != [] do %>
           <div class="gst-BlogPost_tags">
             <%= for tag <- post.tags do %>
@@ -34,7 +34,7 @@
             <% end %>
           </div>
         <% end %>
-        
+
         <footer class="gst-BlogPost_footer">
           <a href={"/blog/#{post.id}"} class="gst-BlogPost_readMore">
             Read more →
@@ -43,7 +43,7 @@
       </article>
     <% end %>
   </div>
-  
+
   <aside class="gst-Blog_sidebar">
     <div class="gst-Blog_feeds">
       <h3>Stay Updated</h3>

@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+alias Gesttalt.Accounts.User
+alias Gesttalt.Policy.Checks
 alias Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
@@ -28,6 +30,11 @@ config :esbuild,
 # at the `config/runtime.exs`.
 config :gesttalt, Gesttalt.Mailer, adapter: Local
 
+# Configure Ecto to use UUIDv7 for primary keys
+config :gesttalt, Gesttalt.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :gesttalt, GesttaltWeb.Endpoint,
   url: [host: "localhost"],
@@ -46,23 +53,26 @@ config :gesttalt,
     binary_id: true
   ]
 
-# Configure Ecto to use UUIDv7 for primary keys
-config :gesttalt, Gesttalt.Repo,
-  migration_primary_key: [type: :binary_id],
-  migration_foreign_key: [type: :binary_id]
+# Configure Let Me authorization
+config :let_me,
+  policy: Gesttalt.Policy,
+  check_module: Checks,
+  schemas: %{
+    user: User
+  }
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
-
 # Configure MIME types for RSS and Atom feeds
 config :mime, :types, %{
   "application/rss+xml" => ["rss"],
   "application/atom+xml" => ["atom"]
 }
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
 
 import_config "#{config_env()}.exs"

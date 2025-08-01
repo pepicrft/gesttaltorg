@@ -8,8 +8,13 @@
     </div>
     <nav class="gst-Header_nav">
       <%= if @current_user do %>
-        <a href={"/@" <> @current_user.handle} class="gst-Header_navLink">@{@current_user.handle}</a>
+        <a href={"/@" <> @current_user.handle} class="gst-Header_navLink">
+          @{@current_user.handle}
+        </a>
         <a href={"/@" <> @current_user.handle <> "/manage"} class="gst-Header_navLink">Manage</a>
+        <%= if admin?(@conn) do %>
+          <a href="/admin" class="gst-Header_navLink">Admin</a>
+        <% end %>
         <a href="/docs/api" class="gst-Header_navLink">API</a>
         <a href="/users/settings" class="gst-Header_navLink">Settings</a>
         <.link href="/users/log_out" method="delete" class="gst-Header_navLink">
@@ -47,7 +52,9 @@
       <ul class="gst-Footer_links">
         <li><a href="/docs/api" class="gst-Footer_link">API</a></li>
         <li>
-          <a href="https://github.com/pepicrft/gesttaltorg" class="gst-Footer_link">Source Code</a>
+          <a href="https://github.com/pepicrft/gesttaltorg" class="gst-Footer_link">
+            Source Code
+          </a>
         </li>
       </ul>
     </div>
@@ -56,7 +63,16 @@
       <h4 class="gst-Footer_sectionTitle">Resources</h4>
       <ul class="gst-Footer_links">
         <li><a href="/blog" class="gst-Footer_link">Garden Journal</a></li>
-        <li><a href="https://github.com/pepicrft/gesttalt/issues" class="gst-Footer_link" target="_blank" rel="noopener noreferrer">Issues</a></li>
+        <li>
+          <a
+            href="https://github.com/pepicrft/gesttalt/issues"
+            class="gst-Footer_link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Issues
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -166,5 +182,4 @@
 
   // Also initialize after LiveView updates (for dynamic content)
   document.addEventListener('phx:update', initializeHeadings);
-
 </script>
