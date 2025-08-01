@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Gesttalt Garden Journal</title>
+  <subtitle>Stories from our knowledge gardening community, cultivation techniques, and insights from tending digital gardens.</subtitle>
+  <link href="https://gesttalt.org/blog/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://gesttalt.org/blog" rel="alternate" type="text/html"/>
+  <id>https://gesttalt.org/blog</id>
+  <%= if @posts != [] do %>
+  <updated><%= format_iso8601(hd(@posts).date) %></updated>
+  <% else %>
+  <updated><%= format_iso8601(Date.utc_today()) %></updated>
+  <% end %>
+  <generator uri="https://gesttalt.org">Gesttalt</generator>
+  
+  <%= for post <- @posts do %>
+  <entry>
+    <title><![CDATA[<%= post.title %>]]></title>
+    <summary><![CDATA[<%= post.description %>]]></summary>
+    <link href="https://gesttalt.org/blog/<%= post.id %>" rel="alternate" type="text/html"/>
+    <id>https://gesttalt.org/blog/<%= post.id %></id>
+    <updated><%= format_iso8601(post.date) %></updated>
+    <author>
+      <name><%= post.author %></name>
+      <email>noreply@gesttalt.org</email>
+    </author>
+    <%= for tag <- post.tags do %>
+    <category term="<%= tag %>"/>
+    <% end %>
+  </entry>
+  <% end %>
+</feed>

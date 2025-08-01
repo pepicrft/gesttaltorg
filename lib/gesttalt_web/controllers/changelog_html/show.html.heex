@@ -1,0 +1,36 @@
+<div class="gst-ChangelogEntry gst-ChangelogEntry--full">
+  <header class="gst-ChangelogEntry_header">
+    <nav class="gst-ChangelogEntry_breadcrumb">
+      <a href="/changelog" class="gst-ChangelogEntry_breadcrumbLink">← Back to Changelog</a>
+    </nav>
+    
+    <div class="gst-ChangelogEntry_versionBadge gst-ChangelogEntry_versionBadge--large">
+      <span class="gst-ChangelogEntry_version">v{@entry.version}</span>
+      <time class="gst-ChangelogEntry_date" datetime={@entry.date}>
+        {format_date(@entry.date)}
+      </time>
+    </div>
+    
+    <h1 class="gst-ChangelogEntry_title">{@entry.title}</h1>
+    
+    <%= if @entry.categories != [] do %>
+      <div class="gst-ChangelogEntry_categories">
+        <%= for category <- @entry.categories do %>
+          <span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--{category}">
+            {category_emoji(category)} {String.capitalize(category)}
+          </span>
+        <% end %>
+      </div>
+    <% end %>
+  </header>
+  
+  <div class="gst-ChangelogEntry_content">
+    {raw(@entry.body)}
+  </div>
+  
+  <footer class="gst-ChangelogEntry_footer">
+    <nav class="gst-ChangelogEntry_navigation">
+      <a href="/changelog" class="gst-ChangelogEntry_backLink">← Back to Changelog</a>
+    </nav>
+  </footer>
+</div>

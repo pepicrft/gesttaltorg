@@ -14,11 +14,16 @@ defmodule GesttaltWeb.Router do
     plug :put_secure_browser_headers
     plug :fetch_current_user
     plug GesttaltWeb.ThemeLoaderPlug
+    plug GesttaltWeb.MetaTagsPlug
   end
 
   pipeline :api do
     plug :accepts, ["json"]
     plug OpenApiSpex.Plug.PutApiSpec, module: GesttaltWeb.ApiSpec
+  end
+
+  pipeline :feeds do
+    plug :accepts, ["rss", "atom", "xml"]
   end
 
   scope "/", GesttaltWeb do
@@ -29,6 +34,11 @@ defmodule GesttaltWeb.Router do
     get "/assets/theme.css", ThemeCSSController, :show
     post "/theme", ThemeController, :update
     get "/docs/api", ApiDocsController, :show
+    
+    # Legal pages
+    get "/terms", LegalController, :terms
+    get "/privacy", LegalController, :privacy
+    get "/cookies", LegalController, :cookies
   end
 
   # Authenticated user routes
@@ -99,6 +109,30 @@ defmodule GesttaltWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
+  end
+
+  # Blog feed routes (must come before dynamic routes)
+  scope "/", GesttaltWeb do
+    pipe_through [:feeds]
+
+    get "/blog.xml", BlogController, :rss
+    get "/blog/atom.xml", BlogController, :atom
+  end
+
+  # Blog routes
+  scope "/", GesttaltWeb do
+    pipe_through [:browser]
+
+    get "/blog", BlogController, :index
+    get "/blog/:id", BlogController, :show
+  end
+
+  # Changelog routes
+  scope "/", GesttaltWeb do
+    pipe_through [:browser]
+
+    get "/changelog", ChangelogController, :index
+    get "/changelog/:version", ChangelogController, :show
   end
 
   # User profile routes (must come last to avoid conflicts)

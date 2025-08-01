@@ -1,0 +1,34 @@
+<div class="gst-BlogPost">
+  <header class="gst-BlogPost_header">
+    <nav class="gst-BlogPost_breadcrumb">
+      <a href="/blog" class="gst-BlogPost_breadcrumbLink">← Back to Garden Journal</a>
+    </nav>
+    
+    <h1 class="gst-BlogPost_title">{@post.title}</h1>
+    
+    <div class="gst-BlogPost_meta">
+      <time class="gst-BlogPost_date" datetime={@post.date}>
+        {format_date(@post.date)}
+      </time>
+      <span class="gst-BlogPost_author">by {@post.author}</span>
+    </div>
+    
+    <%= if @post.tags != [] do %>
+      <div class="gst-BlogPost_tags">
+        <%= for tag <- @post.tags do %>
+          <span class="gst-BlogPost_tag">{tag}</span>
+        <% end %>
+      </div>
+    <% end %>
+  </header>
+  
+  <div class="gst-BlogPost_content">
+    {raw(@post.body)}
+  </div>
+  
+  <footer class="gst-BlogPost_footer">
+    <nav class="gst-BlogPost_navigation">
+      <a href="/blog" class="gst-BlogPost_backLink">← Back to Garden Journal</a>
+    </nav>
+  </footer>
+</div>

@@ -59,4 +59,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Configure MIME types for RSS and Atom feeds
+config :mime, :types, %{
+  "application/rss+xml" => ["rss"],
+  "application/atom+xml" => ["atom"]
+}
+
 import_config "#{config_env()}.exs"

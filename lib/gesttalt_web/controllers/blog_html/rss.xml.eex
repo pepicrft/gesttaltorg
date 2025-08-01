@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gesttalt Garden Journal</title>
+    <description>Stories from our knowledge gardening community, cultivation techniques, and insights from tending digital gardens.</description>
+    <link>https://gesttalt.org/blog</link>
+    <atom:link href="https://gesttalt.org/blog.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <%= if @posts != [] do %>
+    <lastBuildDate><%= format_rfc2822(hd(@posts).date) %></lastBuildDate>
+    <% else %>
+    <lastBuildDate><%= format_rfc2822(Date.utc_today()) %></lastBuildDate>
+    <% end %>
+    <generator>Gesttalt</generator>
+    
+    <%= for post <- @posts do %>
+    <item>
+      <title><![CDATA[<%= post.title %>]]></title>
+      <description><![CDATA[<%= post.description %>]]></description>
+      <link>https://gesttalt.org/blog/<%= post.id %></link>
+      <guid>https://gesttalt.org/blog/<%= post.id %></guid>
+      <pubDate><%= format_rfc2822(post.date) %></pubDate>
+      <author>noreply@gesttalt.org (<%= post.author %>)</author>
+      <%= for tag <- post.tags do %>
+      <category><%= tag %></category>
+      <% end %>
+    </item>
+    <% end %>
+  </channel>
+</rss>

@@ -20,6 +20,12 @@ if System.get_env("PHX_SERVER") do
   config :gesttalt, GesttaltWeb.Endpoint, server: true
 end
 
+# Allow PORT to be set via environment variable in all environments
+if port = System.get_env("PORT") do
+  config :gesttalt, GesttaltWeb.Endpoint,
+    http: [port: String.to_integer(port)]
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

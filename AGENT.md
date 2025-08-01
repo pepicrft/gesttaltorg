@@ -21,7 +21,7 @@ This capability allows the agent to understand the look, feel, and functionality
 
 Gesttalt includes Tidewave, an AI assistant that understands the web application through the Model Context Protocol (MCP). When running in development:
 
-- **MCP Endpoint**: Available at `http://localhost:4000/tidewave/mcp`
+- **MCP Endpoint**: Available at `http://localhost:{PORT}/tidewave/mcp` (default PORT=4000)
 - **MCP Proxy**: The `mcp-proxy-rust` tool is installed via Mise to connect STDIO-based MCP clients to Tidewave's HTTP/SSE endpoint
 - **Usage**: Configure your AI editor (like Claude Desktop) to connect to the MCP endpoint for real-time application context
 
@@ -36,6 +36,8 @@ To use Tidewave with Claude Desktop:
   }
 }
 ```
+
+Note: Update the port in the args if running the server on a different port.
 
 Note: The `mcp-proxy` command will be available after running `mise install`.
 
@@ -54,7 +56,33 @@ mise run install    # Run complete project setup using Mise
 ```bash
 mix phx.server      # Start Phoenix server (visit localhost:4000)
 iex -S mix phx.server  # Start server with interactive shell
+PORT=3000 mix phx.server  # Start server on custom port
 ```
+
+#### Port Configuration
+The server port can be configured via the `PORT` environment variable:
+```bash
+PORT=5000 mix phx.server  # Start on port 5000
+```
+
+**Important for AI Agents:** When running the server to verify changes or test features, use a randomized port to avoid conflicts with any already running server:
+```bash
+PORT=$((4000 + RANDOM % 1000)) mix phx.server  # Random port between 4000-4999
+```
+
+**Stopping the Server:** When you need to stop a server, use the port number to find and kill the specific process:
+```bash
+# Find the process ID using the port
+lsof -ti:4567  # Returns PID of process on port 4567
+
+# Kill the server on a specific port
+kill $(lsof -ti:4567)  # Kill process on port 4567
+
+# Or as a one-liner with error handling
+lsof -ti:4567 | xargs kill 2>/dev/null || true
+```
+
+**Never use** `pkill -f "beam.*phx.server"` as it will kill ALL Phoenix servers, not just yours!
 
 ### Database
 ```bash
@@ -127,7 +155,13 @@ Gesttalt follows an HTML-first approach to web design with CSS using the Endurin
 - **Semantic HTML**: Focus on using proper semantic elements (`<article>`, `<nav>`, `<section>`, etc.)
 - **Text-First Design**: Content and readability are the primary concerns
 - **Minimal Styling**: Clean, functional design inspired by [sourcehut.org](https://sourcehut.org/) and [ampcode.com](https://ampcode.com/how-to-build-an-agent)
-- **Consistent Typography**: All text uses the same font size (`--font-sizes-3`). Headers and titles are differentiated using font weight (`--font-weights-heading` vs `--font-weights-body`) rather than size
+- **Consistent Typography**: ALL text throughout the website uses the same font size (`--font-sizes-3`). This includes headers, body text, navigation, blog posts, changelogs, and all other content. Headers and titles are differentiated using font weight (`--font-weights-heading` vs `--font-weights-body`) rather than size. Never use larger font sizes for headers or titles
+- **Custom Heading Components**: ALWAYS use the custom heading components (`<.h1>`, `<.h2>`, `<.h3>`, etc.) instead of plain HTML heading tags. These components include anchor links for navigation:
+  ```heex
+  <.h1 class="gst-Component_title">Page Title</.h1>
+  <.h2 class="gst-Component_sectionTitle">Section Title</.h2>
+  <.h3 class="gst-Component_subsectionTitle">Subsection Title</.h3>
+  ```
 - **EnduringCSS Methodology**: A CSS architecture designed for maintainability and scalability:
   - Namespace-based component architecture prevents style conflicts
   - Component namespaces: `.ns-Component {}` (e.g., `.gst-Home {}`)

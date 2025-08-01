@@ -1,0 +1,62 @@
+<div class="gst-Changelog">
+  <header class="gst-Changelog_header">
+    <h1 class="gst-Changelog_title">Garden Changelog</h1>
+    <p class="gst-Changelog_description">
+      Track the evolution of our digital gardening platform. From seeds of ideas to full blooms of functionality.
+    </p>
+  </header>
+
+  <div class="gst-Changelog_entries">
+    <%= for entry <- @entries do %>
+      <article class="gst-ChangelogEntry">
+        <header class="gst-ChangelogEntry_header">
+          <div class="gst-ChangelogEntry_versionBadge">
+            <span class="gst-ChangelogEntry_version">v{entry.version}</span>
+            <time class="gst-ChangelogEntry_date" datetime={entry.date}>
+              {format_date(entry.date)}
+            </time>
+          </div>
+          
+          <h2 class="gst-ChangelogEntry_title">
+            <a href={"/changelog/#{entry.version}"} class="gst-ChangelogEntry_titleLink">
+              {entry.title}
+            </a>
+          </h2>
+          
+          <%= if entry.categories != [] do %>
+            <div class="gst-ChangelogEntry_categories">
+              <%= for category <- entry.categories do %>
+                <span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--{category}">
+                  {category_emoji(category)} {String.capitalize(category)}
+                </span>
+              <% end %>
+            </div>
+          <% end %>
+        </header>
+        
+        <div class="gst-ChangelogEntry_description">
+          {entry.description}
+        </div>
+        
+        <footer class="gst-ChangelogEntry_footer">
+          <a href={"/changelog/#{entry.version}"} class="gst-ChangelogEntry_readMore">
+            View full release notes →
+          </a>
+        </footer>
+      </article>
+    <% end %>
+  </div>
+  
+  <aside class="gst-Changelog_sidebar">
+    <div class="gst-Changelog_categories">
+      <h3>Categories</h3>
+      <ul class="gst-Changelog_categoryList">
+        <li><span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--feature">✨ Features</span></li>
+        <li><span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--improvement">⚡ Improvements</span></li>
+        <li><span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--bugfix">🐛 Bug Fixes</span></li>
+        <li><span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--security">🔒 Security</span></li>
+        <li><span class="gst-ChangelogEntry_category gst-ChangelogEntry_category--breaking">💥 Breaking Changes</span></li>
+      </ul>
+    </div>
+  </aside>
+</div>

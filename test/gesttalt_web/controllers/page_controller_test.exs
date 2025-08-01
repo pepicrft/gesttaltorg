@@ -15,8 +15,9 @@ defmodule GesttaltWeb.PageControllerTest do
       assert response =~ "Tend Your Garden"
 
       # Should show navigation for non-authenticated users
-      assert response =~ "About"
       assert response =~ "Explore"
+      assert response =~ "Log in"
+      assert response =~ "Sign up"
 
       # Should show footer
       assert response =~ "Mobile"

@@ -58,7 +58,8 @@ defmodule Gesttalt.MixProject do
       {:tidewave, "~> 0.2.0"},
       {:typed_struct, "~> 0.3.0", runtime: false},
       {:open_api_spex, "~> 3.6"},
-      {:uuid_v7, "~> 0.6.0"}
+      {:uuid_v7, "~> 0.6.0"},
+      {:nimble_publisher, "~> 1.1"}
     ]
   end
 
